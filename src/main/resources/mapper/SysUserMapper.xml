@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qst.financial.dao.mapper.base.SysUserMapper">
+  <resultMap id="BaseResultMap" type="com.qst.financial.modle.base.SysUserModel">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="account_name" property="accountName" jdbcType="VARCHAR" />
+    <result column="pwd" property="pwd" jdbcType="VARCHAR" />
+    <result column="locked" property="locked" jdbcType="INTEGER" />
+    <result column="account_type" property="accountType" jdbcType="INTEGER" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="account_port_type" property="accountPortType" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="chrild_type" property="chrildType" jdbcType="VARCHAR" />
+    <result column="org_id" property="orgId" jdbcType="BIGINT"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_name, account_name, pwd, locked, account_type, create_user_id, description, create_time,
+    account_port_type,type,chrild_type,org_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_user
+    where id = #{id}
+  </select>
+  
+  <select id="selectByAccountName" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+		from 
+			t_sys_user
+		where
+			account_name = #{accountName}
+  </select>
+  <select id="selectSysUserByList" resultType="com.qst.financial.modle.base.SysUserModel" parameterType="com.qst.financial.modle.base.SysUserModel" >
+   	select  <include refid="Base_Column_List" /> from  t_sys_user where account_type != 0
+   	<if test="userName != null" >
+        and user_name like concat(concat('%', #{userName,jdbcType=VARCHAR}),'%')
+    </if>
+    <if test="orgId != null and orgId!='' " >
+        and org_id =#{orgId}
+    </if>
+    <if test="accountName != null and accountName!='' " >
+      and account_name = #{accountName,jdbcType=VARCHAR}
+    </if>
+   	<if test="id != null and id!=''" >
+      and id = #{id}
+    </if>
+   </select>
+  <select id="selectSysUserList" resultType="java.util.Map" parameterType="java.util.Map" >
+    select 
+    	<include refid="Base_Column_List" />,
+    	(select t1.account_name from t_sys_user t1 where t1.id = t_sys_user.create_user_id) 
+    		as create_name,
+    	(
+    		select role.name from t_sys_role role 
+    		where role.id = 
+    		(
+    			select user_role.role_id from t_sys_user_role user_role where user_role.user_id = t_sys_user.id
+    		)
+    	) as role_name
+    from 
+    	t_sys_user
+    where
+    	account_type != 0
+    and 
+    	id != #{userId}
+    <if test="userName != null" >
+        and user_name like concat(concat('%', #{userName,jdbcType=VARCHAR}),'%')
+    </if>
+    <if test="orgId != null and orgId!='' " >
+        and org_id =#{orgId}
+    </if>
+    <if test="accountName != null" >
+      and account_name = #{accountName,jdbcType=VARCHAR}
+    </if>
+	order by create_time desc
+    ${limit}
+  </select>
+  
+  <select id="selectSysUserCount" resultType="int" parameterType="java.util.Map" >
+    select 
+    	count(id)
+    from 
+    	t_sys_user
+    where
+    	account_type != 0
+    and 
+    	id != #{userId}
+    <if test="userName != null" >
+        and user_name like concat(concat('%', #{userName,jdbcType=VARCHAR}),'%')
+    </if>
+     <if test="orgId != null and orgId!='' " >
+        and org_id =#{orgId}
+    </if>
+    <if test="accountName != null" >
+      and account_name = #{accountName,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  <select id="selectByAccountNameAndNotIncludedSelf" parameterType="com.qst.financial.modle.base.SysUserModel" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+		from 
+			t_sys_user
+		where
+			account_name = #{accountName}
+		and 
+			id != #{id}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_sys_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <delete id="deleteByPrimaryKeyBatch" parameterType="java.util.List" >
+    delete from t_sys_user where id in
+    <foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
+		#{item} 
+	</foreach>
+  </delete>
+  
+  <insert id="insert" parameterType="com.qst.financial.modle.base.SysUserModel" >
+    insert into t_sys_user (id, user_name, account_name, 
+      pwd, locked, account_type, 
+      create_user_id, description, create_time,org_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{accountName,jdbcType=VARCHAR}, 
+      #{pwd,jdbcType=VARCHAR}, #{locked,jdbcType=INTEGER}, #{accountType,jdbcType=INTEGER}, 
+      #{createUserId,jdbcType=BIGINT}, #{description,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{orgId}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qst.financial.modle.base.SysUserModel" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_sys_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="accountName != null" >
+        account_name,
+      </if>
+      <if test="pwd != null" >
+        pwd,
+      </if>
+      <if test="locked != null" >
+        locked,
+      </if>
+      <if test="accountType != null" >
+        account_type,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+       <if test="accountPortType != null" >
+        account_port_type,
+      </if>
+      <if test="orgId != null and orgId!= '' " >
+        org_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null" >
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null" >
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="locked != null" >
+        #{locked,jdbcType=INTEGER},
+      </if>
+      <if test="accountType != null" >
+        #{accountType,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="accountPortType != null" >
+        #{accountPortType},
+      </if>
+       <if test="orgId != null and orgId!= '' " >
+        #{orgId},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qst.financial.modle.base.SysUserModel" >
+    update t_sys_user
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null" >
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null" >
+        pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="locked != null" >
+        locked = #{locked,jdbcType=INTEGER},
+      </if>
+      <if test="accountType != null" >
+        account_type = #{accountType,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+        <if test="accountPortType != null" >
+        account_port_type=#{accountPortType},
+      </if>
+       <if test="orgId != null and orgId!= '' " >
+        org_id=#{orgId},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qst.financial.modle.base.SysUserModel" >
+    update t_sys_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      account_name = #{accountName,jdbcType=VARCHAR},
+      pwd = #{pwd,jdbcType=VARCHAR},
+      locked = #{locked,jdbcType=INTEGER},
+      account_type = #{accountType,jdbcType=INTEGER},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      description = #{description,jdbcType=VARCHAR},
+      org_id=#{orgId},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

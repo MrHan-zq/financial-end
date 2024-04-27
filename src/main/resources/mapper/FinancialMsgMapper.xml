@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.financial.dao.mapper.subject.FinancialMsgMapper">
+  <resultMap id="BaseResultMap" type="com.qst.financial.modle.msg.FinancialMsg">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="ARRY_QUE" jdbcType="VARCHAR" property="arryQue" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="VIEW_NUM" jdbcType="DECIMAL" property="viewNum" />
+    <result column="AUTHOR" jdbcType="VARCHAR" property="author" />
+    <result column="UP_DATE" jdbcType="DATE" property="upDate" />
+    <result column="UP_PERSON" jdbcType="VARCHAR" property="upPerson" />
+    <result column="UP_PERSON_TEL" jdbcType="VARCHAR" property="upPersonTel" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="CREATE_USER" jdbcType="VARCHAR" property="createUser" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_USER" jdbcType="VARCHAR" property="updateUser" />
+    <result column="CLZZ" jdbcType="INTEGER" property="clzz" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.qst.financial.modle.msg.FinancialMsg">
+    <result column="CONTENT" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ARRY_QUE, TITLE, VIEW_NUM, AUTHOR, UP_DATE, UP_PERSON, UP_PERSON_TEL, CREATE_TIME, 
+    CREATE_USER, UPDATE_TIME, UPDATE_USER, CLZZ
+  </sql>
+  <sql id="Blob_Column_List">
+    CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from T_MESSAGE_INFO
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKeyBatch" parameterType="java.util.List" >
+    delete from T_MESSAGE_INFO
+    where id in 
+    <foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
+		#{item} 
+	</foreach>
+  </delete>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from T_MESSAGE_INFO
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.qst.financial.modle.msg.FinancialMsg">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into T_MESSAGE_INFO (ARRY_QUE, TITLE, VIEW_NUM, 
+      AUTHOR, UP_DATE, UP_PERSON, 
+      UP_PERSON_TEL, CREATE_TIME, CREATE_USER, 
+      UPDATE_TIME, UPDATE_USER, CLZZ, 
+      CONTENT)
+    values (#{arryQue,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{viewNum,jdbcType=DECIMAL}, 
+      #{author,jdbcType=VARCHAR}, #{upDate,jdbcType=DATE}, #{upPerson,jdbcType=VARCHAR}, 
+      #{upPersonTel,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{clzz,jdbcType=INTEGER}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qst.financial.modle.msg.FinancialMsg">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into T_MESSAGE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="arryQue != null">
+        ARRY_QUE,
+      </if>
+      <if test="title != null">
+        TITLE,
+      </if>
+      <if test="viewNum != null">
+        VIEW_NUM,
+      </if>
+      <if test="author != null">
+        AUTHOR,
+      </if>
+      <if test="upDate != null">
+        UP_DATE,
+      </if>
+      <if test="upPerson != null">
+        UP_PERSON,
+      </if>
+      <if test="upPersonTel != null">
+        UP_PERSON_TEL,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createUser != null">
+        CREATE_USER,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateUser != null">
+        UPDATE_USER,
+      </if>
+      <if test="clzz != null">
+        CLZZ,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="arryQue != null">
+        #{arryQue,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="viewNum != null">
+        #{viewNum,jdbcType=DECIMAL},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="upDate != null">
+        #{upDate,jdbcType=DATE},
+      </if>
+      <if test="upPerson != null">
+        #{upPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="upPersonTel != null">
+        #{upPersonTel,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="clzz != null">
+        #{clzz,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qst.financial.modle.msg.FinancialMsg">
+    update T_MESSAGE_INFO
+    <set>
+      <if test="arryQue != null">
+        ARRY_QUE = #{arryQue,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="viewNum != null">
+        VIEW_NUM = #{viewNum,jdbcType=DECIMAL},
+      </if>
+      <if test="author != null">
+        AUTHOR = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="upDate != null">
+        UP_DATE = #{upDate,jdbcType=DATE},
+      </if>
+      <if test="upPerson != null">
+        UP_PERSON = #{upPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="upPersonTel != null">
+        UP_PERSON_TEL = #{upPersonTel,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="clzz != null">
+        CLZZ = #{clzz,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qst.financial.modle.msg.FinancialMsg">
+    update T_MESSAGE_INFO
+    set ARRY_QUE = #{arryQue,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      VIEW_NUM = #{viewNum,jdbcType=DECIMAL},
+      AUTHOR = #{author,jdbcType=VARCHAR},
+      UP_DATE = #{upDate,jdbcType=DATE},
+      UP_PERSON = #{upPerson,jdbcType=VARCHAR},
+      UP_PERSON_TEL = #{upPersonTel,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+      CLZZ = #{clzz,jdbcType=INTEGER},
+      CONTENT = #{content,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qst.financial.modle.msg.FinancialMsg">
+    update T_MESSAGE_INFO
+    set ARRY_QUE = #{arryQue,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      VIEW_NUM = #{viewNum,jdbcType=DECIMAL},
+      AUTHOR = #{author,jdbcType=VARCHAR},
+      UP_DATE = #{upDate,jdbcType=DATE},
+      UP_PERSON = #{upPerson,jdbcType=VARCHAR},
+      UP_PERSON_TEL = #{upPersonTel,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+      CLZZ = #{clzz,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

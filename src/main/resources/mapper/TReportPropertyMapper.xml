@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.financial.dao.mapper.subject.TReportPropertyMapper">
+  <resultMap id="BaseResultMap" type="com.qst.financial.modle.subject.TReportProperty">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="pro_name" jdbcType="VARCHAR" property="proName" />
+    <result column="pro_code" jdbcType="VARCHAR" property="proCode" />
+    <result column="pro_row" jdbcType="INTEGER" property="proRow" />
+    <result column="pro_column" jdbcType="INTEGER" property="proColumn" />
+    <result column="pro_money_row" jdbcType="INTEGER" property="proMoneyRow" />
+    <result column="pro_end" jdbcType="INTEGER" property="proEnd" />
+    <result column="pro_row_or_column" jdbcType="INTEGER" property="proRowOrColumn" />
+    <result column="pro_class" jdbcType="INTEGER" property="proClass" />
+    <result column="pro_subject" jdbcType="INTEGER" property="proSubject" />
+    <result column="pro_public" jdbcType="INTEGER" property="proPublic" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pro_name, pro_code, pro_row, pro_column, pro_money_row, pro_end, pro_row_or_column, 
+    pro_class, pro_subject, pro_public
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_report_property
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+    <delete id="deleteByPrimaryKeyBatch" parameterType="java.util.List" >
+    delete from t_report_property
+    where id in 
+    <foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
+		#{item} 
+	</foreach>
+  </delete>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_report_property
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.qst.financial.modle.subject.TReportProperty">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_report_property (pro_name, pro_code, pro_row, 
+      pro_column, pro_money_row, pro_end, 
+      pro_row_or_column, pro_class, pro_subject, 
+      pro_public)
+    values (#{proName,jdbcType=VARCHAR}, #{proCode,jdbcType=VARCHAR}, #{proRow,jdbcType=INTEGER}, 
+      #{proColumn,jdbcType=INTEGER}, #{proMoneyRow,jdbcType=INTEGER}, #{proEnd,jdbcType=INTEGER}, 
+      #{proRowOrColumn,jdbcType=INTEGER}, #{proClass,jdbcType=INTEGER}, #{proSubject,jdbcType=INTEGER}, 
+      #{proPublic,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qst.financial.modle.subject.TReportProperty">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_report_property
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="proName != null">
+        pro_name,
+      </if>
+      <if test="proCode != null">
+        pro_code,
+      </if>
+      <if test="proRow != null">
+        pro_row,
+      </if>
+      <if test="proColumn != null">
+        pro_column,
+      </if>
+      <if test="proMoneyRow != null">
+        pro_money_row,
+      </if>
+      <if test="proEnd != null">
+        pro_end,
+      </if>
+      <if test="proRowOrColumn != null">
+        pro_row_or_column,
+      </if>
+      <if test="proClass != null">
+        pro_class,
+      </if>
+      <if test="proSubject != null">
+        pro_subject,
+      </if>
+      <if test="proPublic != null">
+        pro_public,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="proName != null">
+        #{proName,jdbcType=VARCHAR},
+      </if>
+      <if test="proCode != null">
+        #{proCode,jdbcType=VARCHAR},
+      </if>
+      <if test="proRow != null">
+        #{proRow,jdbcType=INTEGER},
+      </if>
+      <if test="proColumn != null">
+        #{proColumn,jdbcType=INTEGER},
+      </if>
+      <if test="proMoneyRow != null">
+        #{proMoneyRow,jdbcType=INTEGER},
+      </if>
+      <if test="proEnd != null">
+        #{proEnd,jdbcType=INTEGER},
+      </if>
+      <if test="proRowOrColumn != null">
+        #{proRowOrColumn,jdbcType=INTEGER},
+      </if>
+      <if test="proClass != null">
+        #{proClass,jdbcType=INTEGER},
+      </if>
+      <if test="proSubject != null">
+        #{proSubject,jdbcType=INTEGER},
+      </if>
+      <if test="proPublic != null">
+        #{proPublic,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qst.financial.modle.subject.TReportProperty">
+    update t_report_property
+    <set>
+      <if test="proName != null">
+        pro_name = #{proName,jdbcType=VARCHAR},
+      </if>
+      <if test="proCode != null">
+        pro_code = #{proCode,jdbcType=VARCHAR},
+      </if>
+      <if test="proRow != null">
+        pro_row = #{proRow,jdbcType=INTEGER},
+      </if>
+      <if test="proColumn != null">
+        pro_column = #{proColumn,jdbcType=INTEGER},
+      </if>
+      <if test="proMoneyRow != null">
+        pro_money_row = #{proMoneyRow,jdbcType=INTEGER},
+      </if>
+      <if test="proEnd != null">
+        pro_end = #{proEnd,jdbcType=INTEGER},
+      </if>
+      <if test="proRowOrColumn != null">
+        pro_row_or_column = #{proRowOrColumn,jdbcType=INTEGER},
+      </if>
+      <if test="proClass != null">
+        pro_class = #{proClass,jdbcType=INTEGER},
+      </if>
+      <if test="proSubject != null">
+        pro_subject = #{proSubject,jdbcType=INTEGER},
+      </if>
+      <if test="proPublic != null">
+        pro_public = #{proPublic,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qst.financial.modle.subject.TReportProperty">
+    update t_report_property
+    set pro_name = #{proName,jdbcType=VARCHAR},
+      pro_code = #{proCode,jdbcType=VARCHAR},
+      pro_row = #{proRow,jdbcType=INTEGER},
+      pro_column = #{proColumn,jdbcType=INTEGER},
+      pro_money_row = #{proMoneyRow,jdbcType=INTEGER},
+      pro_end = #{proEnd,jdbcType=INTEGER},
+      pro_row_or_column = #{proRowOrColumn,jdbcType=INTEGER},
+      pro_class = #{proClass,jdbcType=INTEGER},
+      pro_subject = #{proSubject,jdbcType=INTEGER},
+      pro_public = #{proPublic,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

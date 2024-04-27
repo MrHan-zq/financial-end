@@ -1,0 +1,1199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.financial.dao.mapper.subject.TBasiProfitMapper">
+  <resultMap id="BaseResultMap" type="com.qst.financial.modle.subject.TBasiProfit">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="IMP_TIME" jdbcType="TIMESTAMP" property="impTime" />
+    <result column="IMP_USER" jdbcType="VARCHAR" property="impUser" />
+    <result column="BATCH_ID" jdbcType="VARCHAR" property="batchId" />
+    <result column="ORG_ID" jdbcType="VARCHAR" property="orgId" />
+    <result column="KJYEAR" jdbcType="VARCHAR" property="kjyear" />
+    <result column="KJMOTH" jdbcType="VARCHAR" property="kjmoth" />
+    <result column="KJYEAR_MOTH" jdbcType="VARCHAR" property="kjyearMoth" />
+    <result column="JEDW" jdbcType="VARCHAR" property="jedw" />
+    <result column="BY_ZYYWSR" jdbcType="DECIMAL" property="byZyywsr" />
+    <result column="BY_ZYYWCB" jdbcType="DECIMAL" property="byZyywcb" />
+    <result column="BY_ZYYWSJJFJ" jdbcType="DECIMAL" property="byZyywsjjfj" />
+    <result column="BY_ZYYWLR" jdbcType="DECIMAL" property="byZyywlr" />
+    <result column="BY_QTYWLR" jdbcType="DECIMAL" property="byQtywlr" />
+    <result column="BY_YYFY" jdbcType="DECIMAL" property="byYyfy" />
+    <result column="BY_GLFY" jdbcType="DECIMAL" property="byGlfy" />
+    <result column="BY_CWFY" jdbcType="DECIMAL" property="byCwfy" />
+    <result column="BY_YYLR" jdbcType="DECIMAL" property="byYylr" />
+    <result column="BY_TZSY" jdbcType="DECIMAL" property="byTzsy" />
+    <result column="BY_BTSR" jdbcType="DECIMAL" property="byBtsr" />
+    <result column="BY_YYWSR" jdbcType="DECIMAL" property="byYywsr" />
+    <result column="BY_YYWZC" jdbcType="DECIMAL" property="byYywzc" />
+    <result column="BY_LRZE" jdbcType="DECIMAL" property="byLrze" />
+    <result column="BY_SDS" jdbcType="DECIMAL" property="bySds" />
+    <result column="BY_JLR" jdbcType="DECIMAL" property="byJlr" />
+    <result column="BY_CSCLBM" jdbcType="DECIMAL" property="byCsclbm" />
+    <result column="BY_ZRZHFSDSS" jdbcType="DECIMAL" property="byZrzhfsdss" />
+    <result column="BY_KJZCBGZJ" jdbcType="DECIMAL" property="byKjzcbgzj" />
+    <result column="BY_KJGJBGZJ" jdbcType="DECIMAL" property="byKjgjbgzj" />
+    <result column="BY_ZWCZSS" jdbcType="DECIMAL" property="byZwczss" />
+    <result column="BY_OTHERS" jdbcType="DECIMAL" property="byOthers" />
+    <result column="BN_ZYYWSR" jdbcType="DECIMAL" property="bnZyywsr" />
+    <result column="BN_ZYYWCB" jdbcType="DECIMAL" property="bnZyywcb" />
+    <result column="BN_ZYYWSJJFJ" jdbcType="DECIMAL" property="bnZyywsjjfj" />
+    <result column="BN_ZYYWLR" jdbcType="DECIMAL" property="bnZyywlr" />
+    <result column="BN_QTYWLR" jdbcType="DECIMAL" property="bnQtywlr" />
+    <result column="BN_YYFY" jdbcType="DECIMAL" property="bnYyfy" />
+    <result column="BN_GLFY" jdbcType="DECIMAL" property="bnGlfy" />
+    <result column="BN_CWFY" jdbcType="DECIMAL" property="bnCwfy" />
+    <result column="BN_YYLR" jdbcType="DECIMAL" property="bnYylr" />
+    <result column="BN_TZSY" jdbcType="DECIMAL" property="bnTzsy" />
+    <result column="BN_BTSR" jdbcType="DECIMAL" property="bnBtsr" />
+    <result column="BN_YYWSR" jdbcType="DECIMAL" property="bnYywsr" />
+    <result column="BN_YYWZC" jdbcType="DECIMAL" property="bnYywzc" />
+    <result column="BN_LRZE" jdbcType="DECIMAL" property="bnLrze" />
+    <result column="BN_SDS" jdbcType="DECIMAL" property="bnSds" />
+    <result column="BN_JLR" jdbcType="DECIMAL" property="bnJlr" />
+    <result column="BN_CSCLBM" jdbcType="DECIMAL" property="bnCsclbm" />
+    <result column="BN_ZRZHFSDSS" jdbcType="DECIMAL" property="bnZrzhfsdss" />
+    <result column="BN_KJZCBGZJ" jdbcType="DECIMAL" property="bnKjzcbgzj" />
+    <result column="BN_KJGJBGZJ" jdbcType="DECIMAL" property="bnKjgjbgzj" />
+    <result column="BN_ZWCZSS" jdbcType="DECIMAL" property="bnZwczss" />
+    <result column="BN_OTHERS" jdbcType="DECIMAL" property="bnOthers" />
+    <result column="BY_XSFY" jdbcType="DECIMAL" property="byXsfy" />
+    <result column="BN_XSFY" jdbcType="DECIMAL" property="bnXsfy" />
+    <result column="BY_ZCJZSS" jdbcType="DECIMAL" property="byZcjzss" />
+    <result column="BN_ZCJZSS" jdbcType="DECIMAL" property="bnZcjzss" />
+    <result column="BY_GYJZBDSY" jdbcType="DECIMAL" property="byGyjzbdsy" />
+    <result column="BN_GYJZBDSY" jdbcType="DECIMAL" property="bnGyjzbdsy" />
+    <result column="BY_DLYQYHHYQYDTZSY" jdbcType="DECIMAL" property="byDlyqyhhyqydtzsy" />
+    <result column="BN_DLYQYHHYQYDTZSY" jdbcType="DECIMAL" property="bnDlyqyhhyqydtzsy" />
+    <result column="BY_FLDZCCZSS" jdbcType="DECIMAL" property="byFldzcczss" />
+    <result column="BN_FLDZCCZSS" jdbcType="DECIMAL" property="bnFldzcczss" />
+    <result column="BY_MGSY" jdbcType="DECIMAL" property="byMgsy" />
+    <result column="BN_MGSY" jdbcType="DECIMAL" property="bnMgsy" />
+    <result column="BY_JBMGSY" jdbcType="DECIMAL" property="byJbmgsy" />
+    <result column="BN_JBMGSY" jdbcType="DECIMAL" property="bnJbmgsy" />
+    <result column="BY_XSMGSY" jdbcType="DECIMAL" property="byXsmgsy" />
+    <result column="BN_XSMGSY" jdbcType="DECIMAL" property="bnXsmgsy" />
+    <result column="account_port_type" jdbcType="BIGINT" property="accountPortType" />
+    <result column="FORMAT_FLAG" jdbcType="VARCHAR" property="formatFlag" />
+    <result column="BY_YYZCB" jdbcType="DECIMAL" property="byYyzcb" />
+    <result column="BN_YYZCB" jdbcType="DECIMAL" property="bnYyzcb" />
+    <result column="BY_GSYMGSJLR" jdbcType="DECIMAL" property="byGsymgsjlr" />
+    <result column="BN_GSYMGSJLR" jdbcType="DECIMAL" property="bnGsymgsjlr" />
+    <result column="BY_SSGDSY" jdbcType="DECIMAL" property="bySsgdsy" />
+    <result column="BN_SSGDSY" jdbcType="DECIMAL" property="bnSsgdsy" />
+    <result column="BY_YYSR" jdbcType="DECIMAL" property="byYysr" />
+    <result column="BY_JZCJZSS" jdbcType="DECIMAL" property="byJzcjzss" />
+    <result column="BY_LYQYTZ" jdbcType="DECIMAL" property="byLyqytz" />
+    <result column="BY_HYSY" jdbcType="DECIMAL" property="byHysy" />
+    <result column="BY_LQTSY" jdbcType="DECIMAL" property="byLqtsy" />
+    <result column="BY_ZCCZSY" jdbcType="DECIMAL" property="byZcczsy" />
+    <result column="BN_ZCCZSY" jdbcType="DECIMAL" property="bnZcczsy" />
+    <result column="BY_QTSY" jdbcType="DECIMAL" property="byQtsy" />
+    <result column="BN_QTSY" jdbcType="DECIMAL" property="bnQtsy" />
+    <result column="BY_BHBFJLRBD" jdbcType="DECIMAL" property="byBhbfjlrbd" />
+    <result column="BN_BHBFJLRBD" jdbcType="DECIMAL" property="bnBhbfjlrbd" />
+    <result column="BY_CSCLBMSY" jdbcType="DECIMAL" property="byCsclbmsy" />
+    <result column="BN_CSCLBMSY" jdbcType="DECIMAL" property="bnCsclbmsy" />
+    <result column="BY_ZRZHFSSS" jdbcType="DECIMAL" property="byZrzhfsss" />
+    <result column="BN_ZRZHFSSS" jdbcType="DECIMAL" property="bnZrzhfsss" />
+    <result column="BY_KJZCBGZJJLR" jdbcType="DECIMAL" property="byKjzcbgzjjlr" />
+    <result column="BN_KJZCBGZJJLR" jdbcType="DECIMAL" property="bnKjzcbgzjjlr" />
+    <result column="BY_KJGJBGZJJLR" jdbcType="DECIMAL" property="byKjgjbgzjjlr" />
+    <result column="BN_KJGJBGZJJLR" jdbcType="DECIMAL" property="bnKjgjbgzjjlr" />
+    <result column="BY_QT" jdbcType="DECIMAL" property="byQt" />
+    <result column="BN_QT" jdbcType="DECIMAL" property="bnQt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, IMP_TIME, IMP_USER, BATCH_ID, ORG_ID, KJYEAR, KJMOTH, KJYEAR_MOTH, JEDW, BY_ZYYWSR, 
+    BY_ZYYWCB, BY_ZYYWSJJFJ, BY_ZYYWLR, BY_QTYWLR, BY_YYFY, BY_GLFY, BY_CWFY, BY_YYLR, 
+    BY_TZSY, BY_BTSR, BY_YYWSR, BY_YYWZC, BY_LRZE, BY_SDS, BY_JLR, BY_CSCLBM, BY_ZRZHFSDSS, 
+    BY_KJZCBGZJ, BY_KJGJBGZJ, BY_ZWCZSS, BY_OTHERS, BN_ZYYWSR, BN_ZYYWCB, BN_ZYYWSJJFJ, 
+    BN_ZYYWLR, BN_QTYWLR, BN_YYFY, BN_GLFY, BN_CWFY, BN_YYLR, BN_TZSY, BN_BTSR, BN_YYWSR, 
+    BN_YYWZC, BN_LRZE, BN_SDS, BN_JLR, BN_CSCLBM, BN_ZRZHFSDSS, BN_KJZCBGZJ, BN_KJGJBGZJ, 
+    BN_ZWCZSS, BN_OTHERS, BY_XSFY, BN_XSFY, BY_ZCJZSS, BN_ZCJZSS, BY_GYJZBDSY, BN_GYJZBDSY, 
+    BY_DLYQYHHYQYDTZSY, BN_DLYQYHHYQYDTZSY, BY_FLDZCCZSS, BN_FLDZCCZSS, BY_MGSY, BN_MGSY, 
+    BY_JBMGSY, BN_JBMGSY, BY_XSMGSY, BN_XSMGSY, account_port_type, FORMAT_FLAG, BY_YYZCB, 
+    BN_YYZCB, BY_GSYMGSJLR, BN_GSYMGSJLR, BY_SSGDSY, BN_SSGDSY, BY_YYSR, BY_JZCJZSS, 
+    BY_LYQYTZ, BY_HYSY, BY_LQTSY, BY_ZCCZSY, BN_ZCCZSY, BY_QTSY, BN_QTSY, BY_BHBFJLRBD, 
+    BN_BHBFJLRBD, BY_CSCLBMSY, BN_CSCLBMSY, BY_ZRZHFSSS, BN_ZRZHFSSS, BY_KJZCBGZJJLR, 
+    BN_KJZCBGZJJLR, BY_KJGJBGZJJLR, BN_KJGJBGZJJLR, BY_QT, BN_QT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_BASI_PROFIT
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_BASI_PROFIT
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.qst.financial.modle.subject.TBasiProfit">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into T_BASI_PROFIT (IMP_TIME, IMP_USER, BATCH_ID, 
+      ORG_ID, KJYEAR, KJMOTH, 
+      KJYEAR_MOTH, JEDW, BY_ZYYWSR, 
+      BY_ZYYWCB, BY_ZYYWSJJFJ, BY_ZYYWLR, 
+      BY_QTYWLR, BY_YYFY, BY_GLFY, 
+      BY_CWFY, BY_YYLR, BY_TZSY, 
+      BY_BTSR, BY_YYWSR, BY_YYWZC, 
+      BY_LRZE, BY_SDS, BY_JLR, 
+      BY_CSCLBM, BY_ZRZHFSDSS, BY_KJZCBGZJ, 
+      BY_KJGJBGZJ, BY_ZWCZSS, BY_OTHERS, 
+      BN_ZYYWSR, BN_ZYYWCB, BN_ZYYWSJJFJ, 
+      BN_ZYYWLR, BN_QTYWLR, BN_YYFY, 
+      BN_GLFY, BN_CWFY, BN_YYLR, 
+      BN_TZSY, BN_BTSR, BN_YYWSR, 
+      BN_YYWZC, BN_LRZE, BN_SDS, 
+      BN_JLR, BN_CSCLBM, BN_ZRZHFSDSS, 
+      BN_KJZCBGZJ, BN_KJGJBGZJ, BN_ZWCZSS, 
+      BN_OTHERS, BY_XSFY, BN_XSFY, 
+      BY_ZCJZSS, BN_ZCJZSS, BY_GYJZBDSY, 
+      BN_GYJZBDSY, BY_DLYQYHHYQYDTZSY, BN_DLYQYHHYQYDTZSY, 
+      BY_FLDZCCZSS, BN_FLDZCCZSS, BY_MGSY, 
+      BN_MGSY, BY_JBMGSY, BN_JBMGSY, 
+      BY_XSMGSY, BN_XSMGSY, account_port_type, 
+      FORMAT_FLAG, BY_YYZCB, BN_YYZCB, 
+      BY_GSYMGSJLR, BN_GSYMGSJLR, BY_SSGDSY, 
+      BN_SSGDSY, BY_YYSR, BY_JZCJZSS, 
+      BY_LYQYTZ, BY_HYSY, BY_LQTSY, 
+      BY_ZCCZSY, BN_ZCCZSY, BY_QTSY, 
+      BN_QTSY, BY_BHBFJLRBD, BN_BHBFJLRBD, 
+      BY_CSCLBMSY, BN_CSCLBMSY, BY_ZRZHFSSS, 
+      BN_ZRZHFSSS, BY_KJZCBGZJJLR, BN_KJZCBGZJJLR, 
+      BY_KJGJBGZJJLR, BN_KJGJBGZJJLR, BY_QT, 
+      BN_QT)
+    values (#{impTime,jdbcType=TIMESTAMP}, #{impUser,jdbcType=VARCHAR}, #{batchId,jdbcType=VARCHAR}, 
+      #{orgId,jdbcType=VARCHAR}, #{kjyear,jdbcType=VARCHAR}, #{kjmoth,jdbcType=VARCHAR}, 
+      #{kjyearMoth,jdbcType=VARCHAR}, #{jedw,jdbcType=VARCHAR}, #{byZyywsr,jdbcType=DECIMAL}, 
+      #{byZyywcb,jdbcType=DECIMAL}, #{byZyywsjjfj,jdbcType=DECIMAL}, #{byZyywlr,jdbcType=DECIMAL}, 
+      #{byQtywlr,jdbcType=DECIMAL}, #{byYyfy,jdbcType=DECIMAL}, #{byGlfy,jdbcType=DECIMAL}, 
+      #{byCwfy,jdbcType=DECIMAL}, #{byYylr,jdbcType=DECIMAL}, #{byTzsy,jdbcType=DECIMAL}, 
+      #{byBtsr,jdbcType=DECIMAL}, #{byYywsr,jdbcType=DECIMAL}, #{byYywzc,jdbcType=DECIMAL}, 
+      #{byLrze,jdbcType=DECIMAL}, #{bySds,jdbcType=DECIMAL}, #{byJlr,jdbcType=DECIMAL}, 
+      #{byCsclbm,jdbcType=DECIMAL}, #{byZrzhfsdss,jdbcType=DECIMAL}, #{byKjzcbgzj,jdbcType=DECIMAL}, 
+      #{byKjgjbgzj,jdbcType=DECIMAL}, #{byZwczss,jdbcType=DECIMAL}, #{byOthers,jdbcType=DECIMAL}, 
+      #{bnZyywsr,jdbcType=DECIMAL}, #{bnZyywcb,jdbcType=DECIMAL}, #{bnZyywsjjfj,jdbcType=DECIMAL}, 
+      #{bnZyywlr,jdbcType=DECIMAL}, #{bnQtywlr,jdbcType=DECIMAL}, #{bnYyfy,jdbcType=DECIMAL}, 
+      #{bnGlfy,jdbcType=DECIMAL}, #{bnCwfy,jdbcType=DECIMAL}, #{bnYylr,jdbcType=DECIMAL}, 
+      #{bnTzsy,jdbcType=DECIMAL}, #{bnBtsr,jdbcType=DECIMAL}, #{bnYywsr,jdbcType=DECIMAL}, 
+      #{bnYywzc,jdbcType=DECIMAL}, #{bnLrze,jdbcType=DECIMAL}, #{bnSds,jdbcType=DECIMAL}, 
+      #{bnJlr,jdbcType=DECIMAL}, #{bnCsclbm,jdbcType=DECIMAL}, #{bnZrzhfsdss,jdbcType=DECIMAL}, 
+      #{bnKjzcbgzj,jdbcType=DECIMAL}, #{bnKjgjbgzj,jdbcType=DECIMAL}, #{bnZwczss,jdbcType=DECIMAL}, 
+      #{bnOthers,jdbcType=DECIMAL}, #{byXsfy,jdbcType=DECIMAL}, #{bnXsfy,jdbcType=DECIMAL}, 
+      #{byZcjzss,jdbcType=DECIMAL}, #{bnZcjzss,jdbcType=DECIMAL}, #{byGyjzbdsy,jdbcType=DECIMAL}, 
+      #{bnGyjzbdsy,jdbcType=DECIMAL}, #{byDlyqyhhyqydtzsy,jdbcType=DECIMAL}, #{bnDlyqyhhyqydtzsy,jdbcType=DECIMAL}, 
+      #{byFldzcczss,jdbcType=DECIMAL}, #{bnFldzcczss,jdbcType=DECIMAL}, #{byMgsy,jdbcType=DECIMAL}, 
+      #{bnMgsy,jdbcType=DECIMAL}, #{byJbmgsy,jdbcType=DECIMAL}, #{bnJbmgsy,jdbcType=DECIMAL}, 
+      #{byXsmgsy,jdbcType=DECIMAL}, #{bnXsmgsy,jdbcType=DECIMAL}, #{accountPortType,jdbcType=BIGINT}, 
+      #{formatFlag,jdbcType=VARCHAR}, #{byYyzcb,jdbcType=DECIMAL}, #{bnYyzcb,jdbcType=DECIMAL}, 
+      #{byGsymgsjlr,jdbcType=DECIMAL}, #{bnGsymgsjlr,jdbcType=DECIMAL}, #{bySsgdsy,jdbcType=DECIMAL}, 
+      #{bnSsgdsy,jdbcType=DECIMAL}, #{byYysr,jdbcType=DECIMAL}, #{byJzcjzss,jdbcType=DECIMAL}, 
+      #{byLyqytz,jdbcType=DECIMAL}, #{byHysy,jdbcType=DECIMAL}, #{byLqtsy,jdbcType=DECIMAL}, 
+      #{byZcczsy,jdbcType=DECIMAL}, #{bnZcczsy,jdbcType=DECIMAL}, #{byQtsy,jdbcType=DECIMAL}, 
+      #{bnQtsy,jdbcType=DECIMAL}, #{byBhbfjlrbd,jdbcType=DECIMAL}, #{bnBhbfjlrbd,jdbcType=DECIMAL}, 
+      #{byCsclbmsy,jdbcType=DECIMAL}, #{bnCsclbmsy,jdbcType=DECIMAL}, #{byZrzhfsss,jdbcType=DECIMAL}, 
+      #{bnZrzhfsss,jdbcType=DECIMAL}, #{byKjzcbgzjjlr,jdbcType=DECIMAL}, #{bnKjzcbgzjjlr,jdbcType=DECIMAL}, 
+      #{byKjgjbgzjjlr,jdbcType=DECIMAL}, #{bnKjgjbgzjjlr,jdbcType=DECIMAL}, #{byQt,jdbcType=DECIMAL}, 
+      #{bnQt,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qst.financial.modle.subject.TBasiProfit">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into T_BASI_PROFIT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="impTime != null">
+        IMP_TIME,
+      </if>
+      <if test="impUser != null">
+        IMP_USER,
+      </if>
+      <if test="batchId != null">
+        BATCH_ID,
+      </if>
+      <if test="orgId != null">
+        ORG_ID,
+      </if>
+      <if test="kjyear != null">
+        KJYEAR,
+      </if>
+      <if test="kjmoth != null">
+        KJMOTH,
+      </if>
+      <if test="kjyearMoth != null">
+        KJYEAR_MOTH,
+      </if>
+      <if test="jedw != null">
+        JEDW,
+      </if>
+      <if test="byZyywsr != null">
+        BY_ZYYWSR,
+      </if>
+      <if test="byZyywcb != null">
+        BY_ZYYWCB,
+      </if>
+      <if test="byZyywsjjfj != null">
+        BY_ZYYWSJJFJ,
+      </if>
+      <if test="byZyywlr != null">
+        BY_ZYYWLR,
+      </if>
+      <if test="byQtywlr != null">
+        BY_QTYWLR,
+      </if>
+      <if test="byYyfy != null">
+        BY_YYFY,
+      </if>
+      <if test="byGlfy != null">
+        BY_GLFY,
+      </if>
+      <if test="byCwfy != null">
+        BY_CWFY,
+      </if>
+      <if test="byYylr != null">
+        BY_YYLR,
+      </if>
+      <if test="byTzsy != null">
+        BY_TZSY,
+      </if>
+      <if test="byBtsr != null">
+        BY_BTSR,
+      </if>
+      <if test="byYywsr != null">
+        BY_YYWSR,
+      </if>
+      <if test="byYywzc != null">
+        BY_YYWZC,
+      </if>
+      <if test="byLrze != null">
+        BY_LRZE,
+      </if>
+      <if test="bySds != null">
+        BY_SDS,
+      </if>
+      <if test="byJlr != null">
+        BY_JLR,
+      </if>
+      <if test="byCsclbm != null">
+        BY_CSCLBM,
+      </if>
+      <if test="byZrzhfsdss != null">
+        BY_ZRZHFSDSS,
+      </if>
+      <if test="byKjzcbgzj != null">
+        BY_KJZCBGZJ,
+      </if>
+      <if test="byKjgjbgzj != null">
+        BY_KJGJBGZJ,
+      </if>
+      <if test="byZwczss != null">
+        BY_ZWCZSS,
+      </if>
+      <if test="byOthers != null">
+        BY_OTHERS,
+      </if>
+      <if test="bnZyywsr != null">
+        BN_ZYYWSR,
+      </if>
+      <if test="bnZyywcb != null">
+        BN_ZYYWCB,
+      </if>
+      <if test="bnZyywsjjfj != null">
+        BN_ZYYWSJJFJ,
+      </if>
+      <if test="bnZyywlr != null">
+        BN_ZYYWLR,
+      </if>
+      <if test="bnQtywlr != null">
+        BN_QTYWLR,
+      </if>
+      <if test="bnYyfy != null">
+        BN_YYFY,
+      </if>
+      <if test="bnGlfy != null">
+        BN_GLFY,
+      </if>
+      <if test="bnCwfy != null">
+        BN_CWFY,
+      </if>
+      <if test="bnYylr != null">
+        BN_YYLR,
+      </if>
+      <if test="bnTzsy != null">
+        BN_TZSY,
+      </if>
+      <if test="bnBtsr != null">
+        BN_BTSR,
+      </if>
+      <if test="bnYywsr != null">
+        BN_YYWSR,
+      </if>
+      <if test="bnYywzc != null">
+        BN_YYWZC,
+      </if>
+      <if test="bnLrze != null">
+        BN_LRZE,
+      </if>
+      <if test="bnSds != null">
+        BN_SDS,
+      </if>
+      <if test="bnJlr != null">
+        BN_JLR,
+      </if>
+      <if test="bnCsclbm != null">
+        BN_CSCLBM,
+      </if>
+      <if test="bnZrzhfsdss != null">
+        BN_ZRZHFSDSS,
+      </if>
+      <if test="bnKjzcbgzj != null">
+        BN_KJZCBGZJ,
+      </if>
+      <if test="bnKjgjbgzj != null">
+        BN_KJGJBGZJ,
+      </if>
+      <if test="bnZwczss != null">
+        BN_ZWCZSS,
+      </if>
+      <if test="bnOthers != null">
+        BN_OTHERS,
+      </if>
+      <if test="byXsfy != null">
+        BY_XSFY,
+      </if>
+      <if test="bnXsfy != null">
+        BN_XSFY,
+      </if>
+      <if test="byZcjzss != null">
+        BY_ZCJZSS,
+      </if>
+      <if test="bnZcjzss != null">
+        BN_ZCJZSS,
+      </if>
+      <if test="byGyjzbdsy != null">
+        BY_GYJZBDSY,
+      </if>
+      <if test="bnGyjzbdsy != null">
+        BN_GYJZBDSY,
+      </if>
+      <if test="byDlyqyhhyqydtzsy != null">
+        BY_DLYQYHHYQYDTZSY,
+      </if>
+      <if test="bnDlyqyhhyqydtzsy != null">
+        BN_DLYQYHHYQYDTZSY,
+      </if>
+      <if test="byFldzcczss != null">
+        BY_FLDZCCZSS,
+      </if>
+      <if test="bnFldzcczss != null">
+        BN_FLDZCCZSS,
+      </if>
+      <if test="byMgsy != null">
+        BY_MGSY,
+      </if>
+      <if test="bnMgsy != null">
+        BN_MGSY,
+      </if>
+      <if test="byJbmgsy != null">
+        BY_JBMGSY,
+      </if>
+      <if test="bnJbmgsy != null">
+        BN_JBMGSY,
+      </if>
+      <if test="byXsmgsy != null">
+        BY_XSMGSY,
+      </if>
+      <if test="bnXsmgsy != null">
+        BN_XSMGSY,
+      </if>
+      <if test="accountPortType != null">
+        account_port_type,
+      </if>
+      <if test="formatFlag != null">
+        FORMAT_FLAG,
+      </if>
+      <if test="byYyzcb != null">
+        BY_YYZCB,
+      </if>
+      <if test="bnYyzcb != null">
+        BN_YYZCB,
+      </if>
+      <if test="byGsymgsjlr != null">
+        BY_GSYMGSJLR,
+      </if>
+      <if test="bnGsymgsjlr != null">
+        BN_GSYMGSJLR,
+      </if>
+      <if test="bySsgdsy != null">
+        BY_SSGDSY,
+      </if>
+      <if test="bnSsgdsy != null">
+        BN_SSGDSY,
+      </if>
+      <if test="byYysr != null">
+        BY_YYSR,
+      </if>
+      <if test="byJzcjzss != null">
+        BY_JZCJZSS,
+      </if>
+      <if test="byLyqytz != null">
+        BY_LYQYTZ,
+      </if>
+      <if test="byHysy != null">
+        BY_HYSY,
+      </if>
+      <if test="byLqtsy != null">
+        BY_LQTSY,
+      </if>
+      <if test="byZcczsy != null">
+        BY_ZCCZSY,
+      </if>
+      <if test="bnZcczsy != null">
+        BN_ZCCZSY,
+      </if>
+      <if test="byQtsy != null">
+        BY_QTSY,
+      </if>
+      <if test="bnQtsy != null">
+        BN_QTSY,
+      </if>
+      <if test="byBhbfjlrbd != null">
+        BY_BHBFJLRBD,
+      </if>
+      <if test="bnBhbfjlrbd != null">
+        BN_BHBFJLRBD,
+      </if>
+      <if test="byCsclbmsy != null">
+        BY_CSCLBMSY,
+      </if>
+      <if test="bnCsclbmsy != null">
+        BN_CSCLBMSY,
+      </if>
+      <if test="byZrzhfsss != null">
+        BY_ZRZHFSSS,
+      </if>
+      <if test="bnZrzhfsss != null">
+        BN_ZRZHFSSS,
+      </if>
+      <if test="byKjzcbgzjjlr != null">
+        BY_KJZCBGZJJLR,
+      </if>
+      <if test="bnKjzcbgzjjlr != null">
+        BN_KJZCBGZJJLR,
+      </if>
+      <if test="byKjgjbgzjjlr != null">
+        BY_KJGJBGZJJLR,
+      </if>
+      <if test="bnKjgjbgzjjlr != null">
+        BN_KJGJBGZJJLR,
+      </if>
+      <if test="byQt != null">
+        BY_QT,
+      </if>
+      <if test="bnQt != null">
+        BN_QT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="impTime != null">
+        #{impTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="impUser != null">
+        #{impUser,jdbcType=VARCHAR},
+      </if>
+      <if test="batchId != null">
+        #{batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="kjyear != null">
+        #{kjyear,jdbcType=VARCHAR},
+      </if>
+      <if test="kjmoth != null">
+        #{kjmoth,jdbcType=VARCHAR},
+      </if>
+      <if test="kjyearMoth != null">
+        #{kjyearMoth,jdbcType=VARCHAR},
+      </if>
+      <if test="jedw != null">
+        #{jedw,jdbcType=VARCHAR},
+      </if>
+      <if test="byZyywsr != null">
+        #{byZyywsr,jdbcType=DECIMAL},
+      </if>
+      <if test="byZyywcb != null">
+        #{byZyywcb,jdbcType=DECIMAL},
+      </if>
+      <if test="byZyywsjjfj != null">
+        #{byZyywsjjfj,jdbcType=DECIMAL},
+      </if>
+      <if test="byZyywlr != null">
+        #{byZyywlr,jdbcType=DECIMAL},
+      </if>
+      <if test="byQtywlr != null">
+        #{byQtywlr,jdbcType=DECIMAL},
+      </if>
+      <if test="byYyfy != null">
+        #{byYyfy,jdbcType=DECIMAL},
+      </if>
+      <if test="byGlfy != null">
+        #{byGlfy,jdbcType=DECIMAL},
+      </if>
+      <if test="byCwfy != null">
+        #{byCwfy,jdbcType=DECIMAL},
+      </if>
+      <if test="byYylr != null">
+        #{byYylr,jdbcType=DECIMAL},
+      </if>
+      <if test="byTzsy != null">
+        #{byTzsy,jdbcType=DECIMAL},
+      </if>
+      <if test="byBtsr != null">
+        #{byBtsr,jdbcType=DECIMAL},
+      </if>
+      <if test="byYywsr != null">
+        #{byYywsr,jdbcType=DECIMAL},
+      </if>
+      <if test="byYywzc != null">
+        #{byYywzc,jdbcType=DECIMAL},
+      </if>
+      <if test="byLrze != null">
+        #{byLrze,jdbcType=DECIMAL},
+      </if>
+      <if test="bySds != null">
+        #{bySds,jdbcType=DECIMAL},
+      </if>
+      <if test="byJlr != null">
+        #{byJlr,jdbcType=DECIMAL},
+      </if>
+      <if test="byCsclbm != null">
+        #{byCsclbm,jdbcType=DECIMAL},
+      </if>
+      <if test="byZrzhfsdss != null">
+        #{byZrzhfsdss,jdbcType=DECIMAL},
+      </if>
+      <if test="byKjzcbgzj != null">
+        #{byKjzcbgzj,jdbcType=DECIMAL},
+      </if>
+      <if test="byKjgjbgzj != null">
+        #{byKjgjbgzj,jdbcType=DECIMAL},
+      </if>
+      <if test="byZwczss != null">
+        #{byZwczss,jdbcType=DECIMAL},
+      </if>
+      <if test="byOthers != null">
+        #{byOthers,jdbcType=DECIMAL},
+      </if>
+      <if test="bnZyywsr != null">
+        #{bnZyywsr,jdbcType=DECIMAL},
+      </if>
+      <if test="bnZyywcb != null">
+        #{bnZyywcb,jdbcType=DECIMAL},
+      </if>
+      <if test="bnZyywsjjfj != null">
+        #{bnZyywsjjfj,jdbcType=DECIMAL},
+      </if>
+      <if test="bnZyywlr != null">
+        #{bnZyywlr,jdbcType=DECIMAL},
+      </if>
+      <if test="bnQtywlr != null">
+        #{bnQtywlr,jdbcType=DECIMAL},
+      </if>
+      <if test="bnYyfy != null">
+        #{bnYyfy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnGlfy != null">
+        #{bnGlfy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnCwfy != null">
+        #{bnCwfy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnYylr != null">
+        #{bnYylr,jdbcType=DECIMAL},
+      </if>
+      <if test="bnTzsy != null">
+        #{bnTzsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnBtsr != null">
+        #{bnBtsr,jdbcType=DECIMAL},
+      </if>
+      <if test="bnYywsr != null">
+        #{bnYywsr,jdbcType=DECIMAL},
+      </if>
+      <if test="bnYywzc != null">
+        #{bnYywzc,jdbcType=DECIMAL},
+      </if>
+      <if test="bnLrze != null">
+        #{bnLrze,jdbcType=DECIMAL},
+      </if>
+      <if test="bnSds != null">
+        #{bnSds,jdbcType=DECIMAL},
+      </if>
+      <if test="bnJlr != null">
+        #{bnJlr,jdbcType=DECIMAL},
+      </if>
+      <if test="bnCsclbm != null">
+        #{bnCsclbm,jdbcType=DECIMAL},
+      </if>
+      <if test="bnZrzhfsdss != null">
+        #{bnZrzhfsdss,jdbcType=DECIMAL},
+      </if>
+      <if test="bnKjzcbgzj != null">
+        #{bnKjzcbgzj,jdbcType=DECIMAL},
+      </if>
+      <if test="bnKjgjbgzj != null">
+        #{bnKjgjbgzj,jdbcType=DECIMAL},
+      </if>
+      <if test="bnZwczss != null">
+        #{bnZwczss,jdbcType=DECIMAL},
+      </if>
+      <if test="bnOthers != null">
+        #{bnOthers,jdbcType=DECIMAL},
+      </if>
+      <if test="byXsfy != null">
+        #{byXsfy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnXsfy != null">
+        #{bnXsfy,jdbcType=DECIMAL},
+      </if>
+      <if test="byZcjzss != null">
+        #{byZcjzss,jdbcType=DECIMAL},
+      </if>
+      <if test="bnZcjzss != null">
+        #{bnZcjzss,jdbcType=DECIMAL},
+      </if>
+      <if test="byGyjzbdsy != null">
+        #{byGyjzbdsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnGyjzbdsy != null">
+        #{bnGyjzbdsy,jdbcType=DECIMAL},
+      </if>
+      <if test="byDlyqyhhyqydtzsy != null">
+        #{byDlyqyhhyqydtzsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnDlyqyhhyqydtzsy != null">
+        #{bnDlyqyhhyqydtzsy,jdbcType=DECIMAL},
+      </if>
+      <if test="byFldzcczss != null">
+        #{byFldzcczss,jdbcType=DECIMAL},
+      </if>
+      <if test="bnFldzcczss != null">
+        #{bnFldzcczss,jdbcType=DECIMAL},
+      </if>
+      <if test="byMgsy != null">
+        #{byMgsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnMgsy != null">
+        #{bnMgsy,jdbcType=DECIMAL},
+      </if>
+      <if test="byJbmgsy != null">
+        #{byJbmgsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnJbmgsy != null">
+        #{bnJbmgsy,jdbcType=DECIMAL},
+      </if>
+      <if test="byXsmgsy != null">
+        #{byXsmgsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnXsmgsy != null">
+        #{bnXsmgsy,jdbcType=DECIMAL},
+      </if>
+      <if test="accountPortType != null">
+        #{accountPortType,jdbcType=BIGINT},
+      </if>
+      <if test="formatFlag != null">
+        #{formatFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="byYyzcb != null">
+        #{byYyzcb,jdbcType=DECIMAL},
+      </if>
+      <if test="bnYyzcb != null">
+        #{bnYyzcb,jdbcType=DECIMAL},
+      </if>
+      <if test="byGsymgsjlr != null">
+        #{byGsymgsjlr,jdbcType=DECIMAL},
+      </if>
+      <if test="bnGsymgsjlr != null">
+        #{bnGsymgsjlr,jdbcType=DECIMAL},
+      </if>
+      <if test="bySsgdsy != null">
+        #{bySsgdsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnSsgdsy != null">
+        #{bnSsgdsy,jdbcType=DECIMAL},
+      </if>
+      <if test="byYysr != null">
+        #{byYysr,jdbcType=DECIMAL},
+      </if>
+      <if test="byJzcjzss != null">
+        #{byJzcjzss,jdbcType=DECIMAL},
+      </if>
+      <if test="byLyqytz != null">
+        #{byLyqytz,jdbcType=DECIMAL},
+      </if>
+      <if test="byHysy != null">
+        #{byHysy,jdbcType=DECIMAL},
+      </if>
+      <if test="byLqtsy != null">
+        #{byLqtsy,jdbcType=DECIMAL},
+      </if>
+      <if test="byZcczsy != null">
+        #{byZcczsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnZcczsy != null">
+        #{bnZcczsy,jdbcType=DECIMAL},
+      </if>
+      <if test="byQtsy != null">
+        #{byQtsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnQtsy != null">
+        #{bnQtsy,jdbcType=DECIMAL},
+      </if>
+      <if test="byBhbfjlrbd != null">
+        #{byBhbfjlrbd,jdbcType=DECIMAL},
+      </if>
+      <if test="bnBhbfjlrbd != null">
+        #{bnBhbfjlrbd,jdbcType=DECIMAL},
+      </if>
+      <if test="byCsclbmsy != null">
+        #{byCsclbmsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnCsclbmsy != null">
+        #{bnCsclbmsy,jdbcType=DECIMAL},
+      </if>
+      <if test="byZrzhfsss != null">
+        #{byZrzhfsss,jdbcType=DECIMAL},
+      </if>
+      <if test="bnZrzhfsss != null">
+        #{bnZrzhfsss,jdbcType=DECIMAL},
+      </if>
+      <if test="byKjzcbgzjjlr != null">
+        #{byKjzcbgzjjlr,jdbcType=DECIMAL},
+      </if>
+      <if test="bnKjzcbgzjjlr != null">
+        #{bnKjzcbgzjjlr,jdbcType=DECIMAL},
+      </if>
+      <if test="byKjgjbgzjjlr != null">
+        #{byKjgjbgzjjlr,jdbcType=DECIMAL},
+      </if>
+      <if test="bnKjgjbgzjjlr != null">
+        #{bnKjgjbgzjjlr,jdbcType=DECIMAL},
+      </if>
+      <if test="byQt != null">
+        #{byQt,jdbcType=DECIMAL},
+      </if>
+      <if test="bnQt != null">
+        #{bnQt,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qst.financial.modle.subject.TBasiProfit">
+    update T_BASI_PROFIT
+    <set>
+      <if test="impTime != null">
+        IMP_TIME = #{impTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="impUser != null">
+        IMP_USER = #{impUser,jdbcType=VARCHAR},
+      </if>
+      <if test="batchId != null">
+        BATCH_ID = #{batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        ORG_ID = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="kjyear != null">
+        KJYEAR = #{kjyear,jdbcType=VARCHAR},
+      </if>
+      <if test="kjmoth != null">
+        KJMOTH = #{kjmoth,jdbcType=VARCHAR},
+      </if>
+      <if test="kjyearMoth != null">
+        KJYEAR_MOTH = #{kjyearMoth,jdbcType=VARCHAR},
+      </if>
+      <if test="jedw != null">
+        JEDW = #{jedw,jdbcType=VARCHAR},
+      </if>
+      <if test="byZyywsr != null">
+        BY_ZYYWSR = #{byZyywsr,jdbcType=DECIMAL},
+      </if>
+      <if test="byZyywcb != null">
+        BY_ZYYWCB = #{byZyywcb,jdbcType=DECIMAL},
+      </if>
+      <if test="byZyywsjjfj != null">
+        BY_ZYYWSJJFJ = #{byZyywsjjfj,jdbcType=DECIMAL},
+      </if>
+      <if test="byZyywlr != null">
+        BY_ZYYWLR = #{byZyywlr,jdbcType=DECIMAL},
+      </if>
+      <if test="byQtywlr != null">
+        BY_QTYWLR = #{byQtywlr,jdbcType=DECIMAL},
+      </if>
+      <if test="byYyfy != null">
+        BY_YYFY = #{byYyfy,jdbcType=DECIMAL},
+      </if>
+      <if test="byGlfy != null">
+        BY_GLFY = #{byGlfy,jdbcType=DECIMAL},
+      </if>
+      <if test="byCwfy != null">
+        BY_CWFY = #{byCwfy,jdbcType=DECIMAL},
+      </if>
+      <if test="byYylr != null">
+        BY_YYLR = #{byYylr,jdbcType=DECIMAL},
+      </if>
+      <if test="byTzsy != null">
+        BY_TZSY = #{byTzsy,jdbcType=DECIMAL},
+      </if>
+      <if test="byBtsr != null">
+        BY_BTSR = #{byBtsr,jdbcType=DECIMAL},
+      </if>
+      <if test="byYywsr != null">
+        BY_YYWSR = #{byYywsr,jdbcType=DECIMAL},
+      </if>
+      <if test="byYywzc != null">
+        BY_YYWZC = #{byYywzc,jdbcType=DECIMAL},
+      </if>
+      <if test="byLrze != null">
+        BY_LRZE = #{byLrze,jdbcType=DECIMAL},
+      </if>
+      <if test="bySds != null">
+        BY_SDS = #{bySds,jdbcType=DECIMAL},
+      </if>
+      <if test="byJlr != null">
+        BY_JLR = #{byJlr,jdbcType=DECIMAL},
+      </if>
+      <if test="byCsclbm != null">
+        BY_CSCLBM = #{byCsclbm,jdbcType=DECIMAL},
+      </if>
+      <if test="byZrzhfsdss != null">
+        BY_ZRZHFSDSS = #{byZrzhfsdss,jdbcType=DECIMAL},
+      </if>
+      <if test="byKjzcbgzj != null">
+        BY_KJZCBGZJ = #{byKjzcbgzj,jdbcType=DECIMAL},
+      </if>
+      <if test="byKjgjbgzj != null">
+        BY_KJGJBGZJ = #{byKjgjbgzj,jdbcType=DECIMAL},
+      </if>
+      <if test="byZwczss != null">
+        BY_ZWCZSS = #{byZwczss,jdbcType=DECIMAL},
+      </if>
+      <if test="byOthers != null">
+        BY_OTHERS = #{byOthers,jdbcType=DECIMAL},
+      </if>
+      <if test="bnZyywsr != null">
+        BN_ZYYWSR = #{bnZyywsr,jdbcType=DECIMAL},
+      </if>
+      <if test="bnZyywcb != null">
+        BN_ZYYWCB = #{bnZyywcb,jdbcType=DECIMAL},
+      </if>
+      <if test="bnZyywsjjfj != null">
+        BN_ZYYWSJJFJ = #{bnZyywsjjfj,jdbcType=DECIMAL},
+      </if>
+      <if test="bnZyywlr != null">
+        BN_ZYYWLR = #{bnZyywlr,jdbcType=DECIMAL},
+      </if>
+      <if test="bnQtywlr != null">
+        BN_QTYWLR = #{bnQtywlr,jdbcType=DECIMAL},
+      </if>
+      <if test="bnYyfy != null">
+        BN_YYFY = #{bnYyfy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnGlfy != null">
+        BN_GLFY = #{bnGlfy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnCwfy != null">
+        BN_CWFY = #{bnCwfy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnYylr != null">
+        BN_YYLR = #{bnYylr,jdbcType=DECIMAL},
+      </if>
+      <if test="bnTzsy != null">
+        BN_TZSY = #{bnTzsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnBtsr != null">
+        BN_BTSR = #{bnBtsr,jdbcType=DECIMAL},
+      </if>
+      <if test="bnYywsr != null">
+        BN_YYWSR = #{bnYywsr,jdbcType=DECIMAL},
+      </if>
+      <if test="bnYywzc != null">
+        BN_YYWZC = #{bnYywzc,jdbcType=DECIMAL},
+      </if>
+      <if test="bnLrze != null">
+        BN_LRZE = #{bnLrze,jdbcType=DECIMAL},
+      </if>
+      <if test="bnSds != null">
+        BN_SDS = #{bnSds,jdbcType=DECIMAL},
+      </if>
+      <if test="bnJlr != null">
+        BN_JLR = #{bnJlr,jdbcType=DECIMAL},
+      </if>
+      <if test="bnCsclbm != null">
+        BN_CSCLBM = #{bnCsclbm,jdbcType=DECIMAL},
+      </if>
+      <if test="bnZrzhfsdss != null">
+        BN_ZRZHFSDSS = #{bnZrzhfsdss,jdbcType=DECIMAL},
+      </if>
+      <if test="bnKjzcbgzj != null">
+        BN_KJZCBGZJ = #{bnKjzcbgzj,jdbcType=DECIMAL},
+      </if>
+      <if test="bnKjgjbgzj != null">
+        BN_KJGJBGZJ = #{bnKjgjbgzj,jdbcType=DECIMAL},
+      </if>
+      <if test="bnZwczss != null">
+        BN_ZWCZSS = #{bnZwczss,jdbcType=DECIMAL},
+      </if>
+      <if test="bnOthers != null">
+        BN_OTHERS = #{bnOthers,jdbcType=DECIMAL},
+      </if>
+      <if test="byXsfy != null">
+        BY_XSFY = #{byXsfy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnXsfy != null">
+        BN_XSFY = #{bnXsfy,jdbcType=DECIMAL},
+      </if>
+      <if test="byZcjzss != null">
+        BY_ZCJZSS = #{byZcjzss,jdbcType=DECIMAL},
+      </if>
+      <if test="bnZcjzss != null">
+        BN_ZCJZSS = #{bnZcjzss,jdbcType=DECIMAL},
+      </if>
+      <if test="byGyjzbdsy != null">
+        BY_GYJZBDSY = #{byGyjzbdsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnGyjzbdsy != null">
+        BN_GYJZBDSY = #{bnGyjzbdsy,jdbcType=DECIMAL},
+      </if>
+      <if test="byDlyqyhhyqydtzsy != null">
+        BY_DLYQYHHYQYDTZSY = #{byDlyqyhhyqydtzsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnDlyqyhhyqydtzsy != null">
+        BN_DLYQYHHYQYDTZSY = #{bnDlyqyhhyqydtzsy,jdbcType=DECIMAL},
+      </if>
+      <if test="byFldzcczss != null">
+        BY_FLDZCCZSS = #{byFldzcczss,jdbcType=DECIMAL},
+      </if>
+      <if test="bnFldzcczss != null">
+        BN_FLDZCCZSS = #{bnFldzcczss,jdbcType=DECIMAL},
+      </if>
+      <if test="byMgsy != null">
+        BY_MGSY = #{byMgsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnMgsy != null">
+        BN_MGSY = #{bnMgsy,jdbcType=DECIMAL},
+      </if>
+      <if test="byJbmgsy != null">
+        BY_JBMGSY = #{byJbmgsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnJbmgsy != null">
+        BN_JBMGSY = #{bnJbmgsy,jdbcType=DECIMAL},
+      </if>
+      <if test="byXsmgsy != null">
+        BY_XSMGSY = #{byXsmgsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnXsmgsy != null">
+        BN_XSMGSY = #{bnXsmgsy,jdbcType=DECIMAL},
+      </if>
+      <if test="accountPortType != null">
+        account_port_type = #{accountPortType,jdbcType=BIGINT},
+      </if>
+      <if test="formatFlag != null">
+        FORMAT_FLAG = #{formatFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="byYyzcb != null">
+        BY_YYZCB = #{byYyzcb,jdbcType=DECIMAL},
+      </if>
+      <if test="bnYyzcb != null">
+        BN_YYZCB = #{bnYyzcb,jdbcType=DECIMAL},
+      </if>
+      <if test="byGsymgsjlr != null">
+        BY_GSYMGSJLR = #{byGsymgsjlr,jdbcType=DECIMAL},
+      </if>
+      <if test="bnGsymgsjlr != null">
+        BN_GSYMGSJLR = #{bnGsymgsjlr,jdbcType=DECIMAL},
+      </if>
+      <if test="bySsgdsy != null">
+        BY_SSGDSY = #{bySsgdsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnSsgdsy != null">
+        BN_SSGDSY = #{bnSsgdsy,jdbcType=DECIMAL},
+      </if>
+      <if test="byYysr != null">
+        BY_YYSR = #{byYysr,jdbcType=DECIMAL},
+      </if>
+      <if test="byJzcjzss != null">
+        BY_JZCJZSS = #{byJzcjzss,jdbcType=DECIMAL},
+      </if>
+      <if test="byLyqytz != null">
+        BY_LYQYTZ = #{byLyqytz,jdbcType=DECIMAL},
+      </if>
+      <if test="byHysy != null">
+        BY_HYSY = #{byHysy,jdbcType=DECIMAL},
+      </if>
+      <if test="byLqtsy != null">
+        BY_LQTSY = #{byLqtsy,jdbcType=DECIMAL},
+      </if>
+      <if test="byZcczsy != null">
+        BY_ZCCZSY = #{byZcczsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnZcczsy != null">
+        BN_ZCCZSY = #{bnZcczsy,jdbcType=DECIMAL},
+      </if>
+      <if test="byQtsy != null">
+        BY_QTSY = #{byQtsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnQtsy != null">
+        BN_QTSY = #{bnQtsy,jdbcType=DECIMAL},
+      </if>
+      <if test="byBhbfjlrbd != null">
+        BY_BHBFJLRBD = #{byBhbfjlrbd,jdbcType=DECIMAL},
+      </if>
+      <if test="bnBhbfjlrbd != null">
+        BN_BHBFJLRBD = #{bnBhbfjlrbd,jdbcType=DECIMAL},
+      </if>
+      <if test="byCsclbmsy != null">
+        BY_CSCLBMSY = #{byCsclbmsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bnCsclbmsy != null">
+        BN_CSCLBMSY = #{bnCsclbmsy,jdbcType=DECIMAL},
+      </if>
+      <if test="byZrzhfsss != null">
+        BY_ZRZHFSSS = #{byZrzhfsss,jdbcType=DECIMAL},
+      </if>
+      <if test="bnZrzhfsss != null">
+        BN_ZRZHFSSS = #{bnZrzhfsss,jdbcType=DECIMAL},
+      </if>
+      <if test="byKjzcbgzjjlr != null">
+        BY_KJZCBGZJJLR = #{byKjzcbgzjjlr,jdbcType=DECIMAL},
+      </if>
+      <if test="bnKjzcbgzjjlr != null">
+        BN_KJZCBGZJJLR = #{bnKjzcbgzjjlr,jdbcType=DECIMAL},
+      </if>
+      <if test="byKjgjbgzjjlr != null">
+        BY_KJGJBGZJJLR = #{byKjgjbgzjjlr,jdbcType=DECIMAL},
+      </if>
+      <if test="bnKjgjbgzjjlr != null">
+        BN_KJGJBGZJJLR = #{bnKjgjbgzjjlr,jdbcType=DECIMAL},
+      </if>
+      <if test="byQt != null">
+        BY_QT = #{byQt,jdbcType=DECIMAL},
+      </if>
+      <if test="bnQt != null">
+        BN_QT = #{bnQt,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qst.financial.modle.subject.TBasiProfit">
+    update T_BASI_PROFIT
+    set IMP_TIME = #{impTime,jdbcType=TIMESTAMP},
+      IMP_USER = #{impUser,jdbcType=VARCHAR},
+      BATCH_ID = #{batchId,jdbcType=VARCHAR},
+      ORG_ID = #{orgId,jdbcType=VARCHAR},
+      KJYEAR = #{kjyear,jdbcType=VARCHAR},
+      KJMOTH = #{kjmoth,jdbcType=VARCHAR},
+      KJYEAR_MOTH = #{kjyearMoth,jdbcType=VARCHAR},
+      JEDW = #{jedw,jdbcType=VARCHAR},
+      BY_ZYYWSR = #{byZyywsr,jdbcType=DECIMAL},
+      BY_ZYYWCB = #{byZyywcb,jdbcType=DECIMAL},
+      BY_ZYYWSJJFJ = #{byZyywsjjfj,jdbcType=DECIMAL},
+      BY_ZYYWLR = #{byZyywlr,jdbcType=DECIMAL},
+      BY_QTYWLR = #{byQtywlr,jdbcType=DECIMAL},
+      BY_YYFY = #{byYyfy,jdbcType=DECIMAL},
+      BY_GLFY = #{byGlfy,jdbcType=DECIMAL},
+      BY_CWFY = #{byCwfy,jdbcType=DECIMAL},
+      BY_YYLR = #{byYylr,jdbcType=DECIMAL},
+      BY_TZSY = #{byTzsy,jdbcType=DECIMAL},
+      BY_BTSR = #{byBtsr,jdbcType=DECIMAL},
+      BY_YYWSR = #{byYywsr,jdbcType=DECIMAL},
+      BY_YYWZC = #{byYywzc,jdbcType=DECIMAL},
+      BY_LRZE = #{byLrze,jdbcType=DECIMAL},
+      BY_SDS = #{bySds,jdbcType=DECIMAL},
+      BY_JLR = #{byJlr,jdbcType=DECIMAL},
+      BY_CSCLBM = #{byCsclbm,jdbcType=DECIMAL},
+      BY_ZRZHFSDSS = #{byZrzhfsdss,jdbcType=DECIMAL},
+      BY_KJZCBGZJ = #{byKjzcbgzj,jdbcType=DECIMAL},
+      BY_KJGJBGZJ = #{byKjgjbgzj,jdbcType=DECIMAL},
+      BY_ZWCZSS = #{byZwczss,jdbcType=DECIMAL},
+      BY_OTHERS = #{byOthers,jdbcType=DECIMAL},
+      BN_ZYYWSR = #{bnZyywsr,jdbcType=DECIMAL},
+      BN_ZYYWCB = #{bnZyywcb,jdbcType=DECIMAL},
+      BN_ZYYWSJJFJ = #{bnZyywsjjfj,jdbcType=DECIMAL},
+      BN_ZYYWLR = #{bnZyywlr,jdbcType=DECIMAL},
+      BN_QTYWLR = #{bnQtywlr,jdbcType=DECIMAL},
+      BN_YYFY = #{bnYyfy,jdbcType=DECIMAL},
+      BN_GLFY = #{bnGlfy,jdbcType=DECIMAL},
+      BN_CWFY = #{bnCwfy,jdbcType=DECIMAL},
+      BN_YYLR = #{bnYylr,jdbcType=DECIMAL},
+      BN_TZSY = #{bnTzsy,jdbcType=DECIMAL},
+      BN_BTSR = #{bnBtsr,jdbcType=DECIMAL},
+      BN_YYWSR = #{bnYywsr,jdbcType=DECIMAL},
+      BN_YYWZC = #{bnYywzc,jdbcType=DECIMAL},
+      BN_LRZE = #{bnLrze,jdbcType=DECIMAL},
+      BN_SDS = #{bnSds,jdbcType=DECIMAL},
+      BN_JLR = #{bnJlr,jdbcType=DECIMAL},
+      BN_CSCLBM = #{bnCsclbm,jdbcType=DECIMAL},
+      BN_ZRZHFSDSS = #{bnZrzhfsdss,jdbcType=DECIMAL},
+      BN_KJZCBGZJ = #{bnKjzcbgzj,jdbcType=DECIMAL},
+      BN_KJGJBGZJ = #{bnKjgjbgzj,jdbcType=DECIMAL},
+      BN_ZWCZSS = #{bnZwczss,jdbcType=DECIMAL},
+      BN_OTHERS = #{bnOthers,jdbcType=DECIMAL},
+      BY_XSFY = #{byXsfy,jdbcType=DECIMAL},
+      BN_XSFY = #{bnXsfy,jdbcType=DECIMAL},
+      BY_ZCJZSS = #{byZcjzss,jdbcType=DECIMAL},
+      BN_ZCJZSS = #{bnZcjzss,jdbcType=DECIMAL},
+      BY_GYJZBDSY = #{byGyjzbdsy,jdbcType=DECIMAL},
+      BN_GYJZBDSY = #{bnGyjzbdsy,jdbcType=DECIMAL},
+      BY_DLYQYHHYQYDTZSY = #{byDlyqyhhyqydtzsy,jdbcType=DECIMAL},
+      BN_DLYQYHHYQYDTZSY = #{bnDlyqyhhyqydtzsy,jdbcType=DECIMAL},
+      BY_FLDZCCZSS = #{byFldzcczss,jdbcType=DECIMAL},
+      BN_FLDZCCZSS = #{bnFldzcczss,jdbcType=DECIMAL},
+      BY_MGSY = #{byMgsy,jdbcType=DECIMAL},
+      BN_MGSY = #{bnMgsy,jdbcType=DECIMAL},
+      BY_JBMGSY = #{byJbmgsy,jdbcType=DECIMAL},
+      BN_JBMGSY = #{bnJbmgsy,jdbcType=DECIMAL},
+      BY_XSMGSY = #{byXsmgsy,jdbcType=DECIMAL},
+      BN_XSMGSY = #{bnXsmgsy,jdbcType=DECIMAL},
+      account_port_type = #{accountPortType,jdbcType=BIGINT},
+      FORMAT_FLAG = #{formatFlag,jdbcType=VARCHAR},
+      BY_YYZCB = #{byYyzcb,jdbcType=DECIMAL},
+      BN_YYZCB = #{bnYyzcb,jdbcType=DECIMAL},
+      BY_GSYMGSJLR = #{byGsymgsjlr,jdbcType=DECIMAL},
+      BN_GSYMGSJLR = #{bnGsymgsjlr,jdbcType=DECIMAL},
+      BY_SSGDSY = #{bySsgdsy,jdbcType=DECIMAL},
+      BN_SSGDSY = #{bnSsgdsy,jdbcType=DECIMAL},
+      BY_YYSR = #{byYysr,jdbcType=DECIMAL},
+      BY_JZCJZSS = #{byJzcjzss,jdbcType=DECIMAL},
+      BY_LYQYTZ = #{byLyqytz,jdbcType=DECIMAL},
+      BY_HYSY = #{byHysy,jdbcType=DECIMAL},
+      BY_LQTSY = #{byLqtsy,jdbcType=DECIMAL},
+      BY_ZCCZSY = #{byZcczsy,jdbcType=DECIMAL},
+      BN_ZCCZSY = #{bnZcczsy,jdbcType=DECIMAL},
+      BY_QTSY = #{byQtsy,jdbcType=DECIMAL},
+      BN_QTSY = #{bnQtsy,jdbcType=DECIMAL},
+      BY_BHBFJLRBD = #{byBhbfjlrbd,jdbcType=DECIMAL},
+      BN_BHBFJLRBD = #{bnBhbfjlrbd,jdbcType=DECIMAL},
+      BY_CSCLBMSY = #{byCsclbmsy,jdbcType=DECIMAL},
+      BN_CSCLBMSY = #{bnCsclbmsy,jdbcType=DECIMAL},
+      BY_ZRZHFSSS = #{byZrzhfsss,jdbcType=DECIMAL},
+      BN_ZRZHFSSS = #{bnZrzhfsss,jdbcType=DECIMAL},
+      BY_KJZCBGZJJLR = #{byKjzcbgzjjlr,jdbcType=DECIMAL},
+      BN_KJZCBGZJJLR = #{bnKjzcbgzjjlr,jdbcType=DECIMAL},
+      BY_KJGJBGZJJLR = #{byKjgjbgzjjlr,jdbcType=DECIMAL},
+      BN_KJGJBGZJJLR = #{bnKjgjbgzjjlr,jdbcType=DECIMAL},
+      BY_QT = #{byQt,jdbcType=DECIMAL},
+      BN_QT = #{bnQt,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateFormatFlagByPrimaryKey" parameterType="java.lang.String">
+    update T_BASI_PROFIT
+    set FORMAT_FLAG='${formatFlag}'
+    where ID='${id}'
+  </update>
+   <delete id="deleteByYearMonth" >
+    delete from T_BASI_PROFIT
+    where KJYEAR_MOTH = #{yearMonth,jdbcType=VARCHAR} and account_port_type = #{accountPortType,jdbcType=BIGINT} and  ORG_ID = #{orgId,jdbcType=BIGINT} 
+  </delete>
+</mapper>

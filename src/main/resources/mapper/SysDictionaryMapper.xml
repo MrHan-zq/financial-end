@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qst.financial.dao.mapper.base.SysDictionaryMapper" >
+  <resultMap id="BaseResultMap" type="com.qst.financial.modle.base.SysDictionaryModel" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="cn_name" property="cnName" jdbcType="VARCHAR" />
+    <result column="en_name" property="enName" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="CHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_user_id" property="updateUserId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cn_name, en_name, flag, remark, create_time, create_user_id, update_time, update_user_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_dictionary
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectDictionaryList" resultType="java.util.Map" parameterType="java.util.Map" >
+  	select 
+   		t1.id, t1.cn_name, t1.en_name, t1.flag, t1.remark, t1.create_time, t1.create_user_id, t1.update_time, t1.update_user_id,
+		(select t2.account_name from t_sys_user t2 where t2.id = t1.create_user_id) create_user_name, 
+		(select t2.account_name from t_sys_user t2 where t2.id = t1.update_user_id) update_user_name
+	from 
+		t_sys_dictionary t1
+	left join
+		t_sys_user t2 
+	on 
+		t1.create_user_id = t2.id
+	where 1 = 1
+    <if test="cnName != null" >
+        and t1.cn_name like concat(concat('%', #{cnName,jdbcType=VARCHAR}),'%')
+    </if>
+    <if test="enName != null" >
+       and t1.en_name like concat(concat('%', #{enName,jdbcType=VARCHAR}),'%')
+    </if>
+	order by create_time desc
+    ${limit}
+  </select>
+  
+  <select id="selectDictionaryCount" resultType="int" parameterType="java.util.Map" >
+    select 
+   		count(id)
+    from 
+    	t_sys_dictionary
+    where 1 = 1
+    <if test="cnName != null" >
+        and cn_name like concat(concat('%', #{cnName,jdbcType=VARCHAR}),'%')
+    </if>
+    <if test="enName != null" >
+       and en_name like concat(concat('%', #{enName,jdbcType=VARCHAR}),'%')
+    </if>
+  </select>
+  
+  <select id="selectByCnNameOrEnName" resultMap="BaseResultMap" parameterType="com.qst.financial.modle.base.SysDictionaryModel" >
+    select 
+    	<include refid="Base_Column_List" />
+    from 
+    	t_sys_dictionary
+    where 
+    	cn_name = #{cnName}
+    or 
+    	en_name = #{enName}
+  </select>
+  
+  <select id="selectByCnNameOrEnNameAndNotIncludedSelf" resultMap="BaseResultMap" parameterType="com.qst.financial.modle.base.SysDictionaryModel" >
+    select 
+    	<include refid="Base_Column_List" />
+    from 
+    	t_sys_dictionary
+    where 
+    	(
+    	cn_name = #{cnName}
+    or 
+    	en_name = #{enName}
+    	)
+    and 
+    	id != #{id}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_sys_dictionary
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <delete id="deleteByPrimaryKeyBatch" parameterType="java.util.List" >
+    delete from t_sys_dictionary
+    where id in 
+    <foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
+		#{item} 
+	</foreach>
+  </delete>
+  
+  <insert id="insert" parameterType="com.qst.financial.modle.base.SysDictionaryModel" >
+    insert into t_sys_dictionary (id, cn_name, en_name, 
+      flag, remark, create_time, 
+      create_user_id, update_time, update_user_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{cnName,jdbcType=VARCHAR}, #{enName,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createUserId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qst.financial.modle.base.SysDictionaryModel" useGeneratedKeys="true" keyProperty="id">
+    insert into t_sys_dictionary
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cnName != null" >
+        cn_name,
+      </if>
+      <if test="enName != null" >
+        en_name,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="cnName != null" >
+        #{cnName,jdbcType=VARCHAR},
+      </if>
+      <if test="enName != null" >
+        #{enName,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qst.financial.modle.base.SysDictionaryModel" >
+    update t_sys_dictionary
+    <set >
+      <if test="cnName != null" >
+        cn_name = #{cnName,jdbcType=VARCHAR},
+      </if>
+      <if test="enName != null" >
+        en_name = #{enName,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id = #{updateUserId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qst.financial.modle.base.SysDictionaryModel" >
+    update t_sys_dictionary
+    set cn_name = #{cnName,jdbcType=VARCHAR},
+      en_name = #{enName,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=CHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <!-- 查询id -->
+   <select id="selectByCnName" resultType="java.lang.Long" parameterType="java.lang.String" >
+    select 
+    	id
+    from 
+    	t_sys_dictionary
+    where 
+    	cn_name = #{cnName,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

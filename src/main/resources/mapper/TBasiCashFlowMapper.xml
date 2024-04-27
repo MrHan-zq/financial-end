@@ -1,0 +1,2111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.financial.dao.mapper.subject.TBasiCashFlowMapper">
+  <resultMap id="BaseResultMap" type="com.qst.financial.modle.subject.TBasiCashFlow">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="IMP_TIME" jdbcType="TIMESTAMP" property="impTime" />
+    <result column="IMP_USER" jdbcType="VARCHAR" property="impUser" />
+    <result column="BATCH_ID" jdbcType="VARCHAR" property="batchId" />
+    <result column="ORG_ID" jdbcType="VARCHAR" property="orgId" />
+    <result column="KJYEAR" jdbcType="VARCHAR" property="kjyear" />
+    <result column="KJMOTH" jdbcType="VARCHAR" property="kjmoth" />
+    <result column="KJYEAR_MOTH" jdbcType="VARCHAR" property="kjyearMoth" />
+    <result column="JEDW" jdbcType="VARCHAR" property="jedw" />
+    <result column="JYHD_SDDXJ" jdbcType="DECIMAL" property="jyhdSddxj" />
+    <result column="JYHD_SDDSFFH" jdbcType="DECIMAL" property="jyhdSddsffh" />
+    <result column="JYHD_SDDQTYGDXJ" jdbcType="DECIMAL" property="jyhdSddqtygdxj" />
+    <result column="JYHD_XJLRXJ" jdbcType="DECIMAL" property="jyhdXjlrxj" />
+    <result column="JYHD_GJZFDXJ" jdbcType="DECIMAL" property="jyhdGjzfdxj" />
+    <result column="JYHD_ZFGZGDXJ" jdbcType="DECIMAL" property="jyhdZfgzgdxj" />
+    <result column="JYHD_ZFDGXSF" jdbcType="DECIMAL" property="jyhdZfdgxsf" />
+    <result column="JYHD_ZFDQTDXJ" jdbcType="DECIMAL" property="jyhdZfdqtdxj" />
+    <result column="JYHD_XJLCXJ" jdbcType="DECIMAL" property="jyhdXjlcxj" />
+    <result column="JYHD_JYHDCSDJE" jdbcType="DECIMAL" property="jyhdJyhdcsdje" />
+    <result column="TZHD_SHTZSSDXJ" jdbcType="DECIMAL" property="tzhdShtzssdxj" />
+    <result column="TZHD_QDSYSSDXJ" jdbcType="DECIMAL" property="tzhdQdsyssdxj" />
+    <result column="TZHD_SSHDXJ" jdbcType="DECIMAL" property="tzhdSshdxj" />
+    <result column="TZHD_SDDQTYGDXJ" jdbcType="DECIMAL" property="tzhdSddqtygdxj" />
+    <result column="TZHD_XJLRXJ" jdbcType="DECIMAL" property="tzhdXjlrxj" />
+    <result column="TZHD_SZFDXJ" jdbcType="DECIMAL" property="tzhdSzfdxj" />
+    <result column="TZHD_TZSZFDXJ" jdbcType="DECIMAL" property="tzhdTzszfdxj" />
+    <result column="TZHD_ZFQTDXJ" jdbcType="DECIMAL" property="tzhdZfqtdxj" />
+    <result column="TZHD_XJLCXJ" jdbcType="DECIMAL" property="tzhdXjlcxj" />
+    <result column="TZHD_TZHDSCSDXJLLJE" jdbcType="DECIMAL" property="tzhdTzhdscsdxjllje" />
+    <result column="CZHD_XSTZSSDDXJ" jdbcType="DECIMAL" property="czhdXstzssddxj" />
+    <result column="CZHD_JKSSDDXJ" jdbcType="DECIMAL" property="czhdJkssddxj" />
+    <result column="CZHD_SDQTYGDXJ" jdbcType="DECIMAL" property="czhdSdqtygdxj" />
+    <result column="CZHD_XJLRXJ" jdbcType="DECIMAL" property="czhdXjlrxj" />
+    <result column="CZHD_CHZWSZFDXJ" jdbcType="DECIMAL" property="czhdChzwszfdxj" />
+    <result column="CZHD_FPGLSZFDXJ" jdbcType="DECIMAL" property="czhdFpglszfdxj" />
+    <result column="CZHD_ZFQTYGDXJ" jdbcType="DECIMAL" property="czhdZfqtygdxj" />
+    <result column="CZHD_XJLCXJ" jdbcType="DECIMAL" property="czhdXjlcxj" />
+    <result column="CZHD_ZCHDXJLLJE" jdbcType="DECIMAL" property="czhdZchdxjllje" />
+    <result column="CZHD_HLBDXJDYX" jdbcType="DECIMAL" property="czhdHlbdxjdyx" />
+    <result column="CZHD_XJJXJDWJJZE" jdbcType="DECIMAL" property="czhdXjjxjdwjjze" />
+    <result column="JLRJYHD_JLR" jdbcType="DECIMAL" property="jlrjyhdJlr" />
+    <result column="JLRJYHD_JTZCJZZB" jdbcType="DECIMAL" property="jlrjyhdJtzcjzzb" />
+    <result column="JLRJYHD_GDZCZJ" jdbcType="DECIMAL" property="jlrjyhdGdzczj" />
+    <result column="JLRJYHD_WXZCTX" jdbcType="DECIMAL" property="jlrjyhdWxzctx" />
+    <result column="JLRJYHD_CQDTFYTX" jdbcType="DECIMAL" property="jlrjyhdCqdtfytx" />
+    <result column="JLRJYHD_DTFYJS" jdbcType="DECIMAL" property="jlrjyhdDtfyjs" />
+    <result column="JLRJYHD_YTFYZJ" jdbcType="DECIMAL" property="jlrjyhdYtfyzj" />
+    <result column="JLRJYHD_CQZCDSS" jdbcType="DECIMAL" property="jlrjyhdCqzcdss" />
+    <result column="JLRJYHD_GDZCBFSS" jdbcType="DECIMAL" property="jlrjyhdGdzcbfss" />
+    <result column="JLRJYHD_CWFY" jdbcType="DECIMAL" property="jlrjyhdCwfy" />
+    <result column="JLRJYHD_TZSS" jdbcType="DECIMAL" property="jlrjyhdTzss" />
+    <result column="JLRJYHD_DYSDX" jdbcType="DECIMAL" property="jlrjyhdDysdx" />
+    <result column="JLRJYHD_CHDJS" jdbcType="DECIMAL" property="jlrjyhdChdjs" />
+    <result column="JLRJYHD_JYXYSXMJS" jdbcType="DECIMAL" property="jlrjyhdJyxysxmjs" />
+    <result column="JLRJYHD_JYXYFXMZJ" jdbcType="DECIMAL" property="jlrjyhdJyxyfxmzj" />
+    <result column="JLRJYHD_OHTERS" jdbcType="DECIMAL" property="jlrjyhdOhters" />
+    <result column="JLRJYHD_JYHDCSXJLLJE" jdbcType="DECIMAL" property="jlrjyhdJyhdcsxjllje" />
+    <result column="BSJXJ_ZWZWZB" jdbcType="DECIMAL" property="bsjxjZwzwzb" />
+    <result column="BSJXJ_YNNDQZQ" jdbcType="DECIMAL" property="bsjxjYnndqzq" />
+    <result column="BSJXJ_RZZRGDZC" jdbcType="DECIMAL" property="bsjxjRzzrgdzc" />
+    <result column="XJJZJE_XJQMYE" jdbcType="DECIMAL" property="xjjzjeXjqmye" />
+    <result column="XJJZJE_XJDQCYE" jdbcType="DECIMAL" property="xjjzjeXjdqcye" />
+    <result column="XJJZJE_XJDJWDQMYE" jdbcType="DECIMAL" property="xjjzjeXjdjwdqmye" />
+    <result column="XJJZJE_XJDJWDQCYE" jdbcType="DECIMAL" property="xjjzjeXjdjwdqcye" />
+    <result column="XJJZJE_XJDJWJZJE" jdbcType="DECIMAL" property="xjjzjeXjdjwjzje" />
+    <result column="account_port_type" jdbcType="BIGINT" property="accountPortType" />
+    <result column="FORMAT_FLAG" jdbcType="VARCHAR" property="formatFlag" />
+    <result column="BQ_JYHD_SDDXJ" jdbcType="DECIMAL" property="bqJyhdSddxj" />
+    <result column="BQ_JYHD_SDDSFFH" jdbcType="DECIMAL" property="bqJyhdSddsffh" />
+    <result column="BQ_JYHD_SDDQTYGDXJ" jdbcType="DECIMAL" property="bqJyhdSddqtygdxj" />
+    <result column="BQ_JYHD_XJLRXJ" jdbcType="DECIMAL" property="bqJyhdXjlrxj" />
+    <result column="BQ_JYHD_GJZFDXJ" jdbcType="DECIMAL" property="bqJyhdGjzfdxj" />
+    <result column="BQ_JYHD_ZFGZGDXJ" jdbcType="DECIMAL" property="bqJyhdZfgzgdxj" />
+    <result column="BQ_JYHD_ZFDGXSF" jdbcType="DECIMAL" property="bqJyhdZfdgxsf" />
+    <result column="BQ_JYHD_ZFDQTDXJ" jdbcType="DECIMAL" property="bqJyhdZfdqtdxj" />
+    <result column="BQ_JYHD_XJLCXJ" jdbcType="DECIMAL" property="bqJyhdXjlcxj" />
+    <result column="BQ_JYHD_JYHDCSDJE" jdbcType="DECIMAL" property="bqJyhdJyhdcsdje" />
+    <result column="BQ_TZHD_SHTZSSDXJ" jdbcType="DECIMAL" property="bqTzhdShtzssdxj" />
+    <result column="BQ_TZHD_QDSYSSDXJ" jdbcType="DECIMAL" property="bqTzhdQdsyssdxj" />
+    <result column="BQ_TZHD_SSHDXJ" jdbcType="DECIMAL" property="bqTzhdSshdxj" />
+    <result column="BQ_TZHD_SDDQTYGDXJ" jdbcType="DECIMAL" property="bqTzhdSddqtygdxj" />
+    <result column="BQ_TZHD_XJLRXJ" jdbcType="DECIMAL" property="bqTzhdXjlrxj" />
+    <result column="BQ_TZHD_SZFDXJ" jdbcType="DECIMAL" property="bqTzhdSzfdxj" />
+    <result column="BQ_TZHD_TZSZFDXJ" jdbcType="DECIMAL" property="bqTzhdTzszfdxj" />
+    <result column="BQ_TZHD_ZFQTDXJ" jdbcType="DECIMAL" property="bqTzhdZfqtdxj" />
+    <result column="BQ_TZHD_XJLCXJ" jdbcType="DECIMAL" property="bqTzhdXjlcxj" />
+    <result column="BQ_TZHD_TZHDSCSDXJLLJE" jdbcType="DECIMAL" property="bqTzhdTzhdscsdxjllje" />
+    <result column="BQ_CZHD_XSTZSSDDXJ" jdbcType="DECIMAL" property="bqCzhdXstzssddxj" />
+    <result column="BQ_CZHD_JKSSDDXJ" jdbcType="DECIMAL" property="bqCzhdJkssddxj" />
+    <result column="BQ_CZHD_SDQTYGDXJ" jdbcType="DECIMAL" property="bqCzhdSdqtygdxj" />
+    <result column="BQ_CZHD_XJLRXJ" jdbcType="DECIMAL" property="bqCzhdXjlrxj" />
+    <result column="BQ_CZHD_CHZWSZFDXJ" jdbcType="DECIMAL" property="bqCzhdChzwszfdxj" />
+    <result column="BQ_CZHD_FPGLSZFDXJ" jdbcType="DECIMAL" property="bqCzhdFpglszfdxj" />
+    <result column="BQ_CZHD_ZFQTYGDXJ" jdbcType="DECIMAL" property="bqCzhdZfqtygdxj" />
+    <result column="BQ_CZHD_XJLCXJ" jdbcType="DECIMAL" property="bqCzhdXjlcxj" />
+    <result column="BQ_CZHD_ZCHDXJLLJE" jdbcType="DECIMAL" property="bqCzhdZchdxjllje" />
+    <result column="BQ_CZHD_HLBDXJDYX" jdbcType="DECIMAL" property="bqCzhdHlbdxjdyx" />
+    <result column="BQ_CZHD_XJJXJDWJJZE" jdbcType="DECIMAL" property="bqCzhdXjjxjdwjjze" />
+    <result column="BQ_JLRJYHD_JLR" jdbcType="DECIMAL" property="bqJlrjyhdJlr" />
+    <result column="BQ_JLRJYHD_JTZCJZZB" jdbcType="DECIMAL" property="bqJlrjyhdJtzcjzzb" />
+    <result column="BQ_JLRJYHD_GDZCZJ" jdbcType="DECIMAL" property="bqJlrjyhdGdzczj" />
+    <result column="BQ_JLRJYHD_WXZCTX" jdbcType="DECIMAL" property="bqJlrjyhdWxzctx" />
+    <result column="BQ_JLRJYHD_CQDTFYTX" jdbcType="DECIMAL" property="bqJlrjyhdCqdtfytx" />
+    <result column="BQ_JLRJYHD_DTFYJS" jdbcType="DECIMAL" property="bqJlrjyhdDtfyjs" />
+    <result column="BQ_JLRJYHD_YTFYZJ" jdbcType="DECIMAL" property="bqJlrjyhdYtfyzj" />
+    <result column="BQ_JLRJYHD_CQZCDSS" jdbcType="DECIMAL" property="bqJlrjyhdCqzcdss" />
+    <result column="BQ_JLRJYHD_GDZCBFSS" jdbcType="DECIMAL" property="bqJlrjyhdGdzcbfss" />
+    <result column="BQ_JLRJYHD_CWFY" jdbcType="DECIMAL" property="bqJlrjyhdCwfy" />
+    <result column="BQ_JLRJYHD_TZSS" jdbcType="DECIMAL" property="bqJlrjyhdTzss" />
+    <result column="BQ_JLRJYHD_DYSDX" jdbcType="DECIMAL" property="bqJlrjyhdDysdx" />
+    <result column="BQ_JLRJYHD_CHDJS" jdbcType="DECIMAL" property="bqJlrjyhdChdjs" />
+    <result column="BQ_JLRJYHD_JYXYSXMJS" jdbcType="DECIMAL" property="bqJlrjyhdJyxysxmjs" />
+    <result column="BQ_JLRJYHD_JYXYFXMZJ" jdbcType="DECIMAL" property="bqJlrjyhdJyxyfxmzj" />
+    <result column="BQ_JLRJYHD_OHTERS" jdbcType="DECIMAL" property="bqJlrjyhdOhters" />
+    <result column="BQ_JLRJYHD_JYHDCSXJLLJE" jdbcType="DECIMAL" property="bqJlrjyhdJyhdcsxjllje" />
+    <result column="BQ_BSJXJ_ZWZWZB" jdbcType="DECIMAL" property="bqBsjxjZwzwzb" />
+    <result column="BQ_BSJXJ_YNNDQZQ" jdbcType="DECIMAL" property="bqBsjxjYnndqzq" />
+    <result column="BQ_BSJXJ_RZZRGDZC" jdbcType="DECIMAL" property="bqBsjxjRzzrgdzc" />
+    <result column="BQ_XJJZJE_XJQMYE" jdbcType="DECIMAL" property="bqXjjzjeXjqmye" />
+    <result column="BQ_XJJZJE_XJDQCYE" jdbcType="DECIMAL" property="bqXjjzjeXjdqcye" />
+    <result column="BQ_XJJZJE_XJDJWDQMYE" jdbcType="DECIMAL" property="bqXjjzjeXjdjwdqmye" />
+    <result column="BQ_XJJZJE_XJDJWDQCYE" jdbcType="DECIMAL" property="bqXjjzjeXjdjwdqcye" />
+    <result column="BQ_XJJZJE_XJDJWJZJE" jdbcType="DECIMAL" property="bqXjjzjeXjdjwjzje" />
+    <result column="JYHD_XSSPTGLWSDDXJ" jdbcType="DECIMAL" property="jyhdXssptglwsddxj" />
+    <result column="BQ_JYHD_XSSPTGLWSDDXJ" jdbcType="DECIMAL" property="bqJyhdXssptglwsddxj" />
+    <result column="BQ_TZHD_CZWXHQTSHDXJJE" jdbcType="DECIMAL" property="bqTzhdCzwxhqtshdxjje" />
+    <result column="TZHD_CZWXHQTSHDXJJE" jdbcType="DECIMAL" property="tzhdCzwxhqtshdxjje" />
+    <result column="TZHD_CZZGSJQTZFDXJJE" jdbcType="DECIMAL" property="tzhdCzzgsjqtzfdxjje" />
+    <result column="BQ_TZHD_CZZGSJQTZFDXJJE" jdbcType="DECIMAL" property="bqTzhdCzzgsjqtzfdxjje" />
+    <result column="BQ_TZHD_GJGDWXHQTZFDXJ" jdbcType="DECIMAL" property="bqTzhdGjgdwxhqtzfdxj" />
+    <result column="TZHD_GJGDWXHQTZFDXJ" jdbcType="DECIMAL" property="tzhdGjgdwxhqtzfdxj" />
+    <result column="TZHD_QDZGSJQTZFDXJJE" jdbcType="DECIMAL" property="tzhdQdzgsjqtzfdxjje" />
+    <result column="BQ_TZHD_QDZGSJQTZFDXJJE" jdbcType="DECIMAL" property="bqTzhdQdzgsjqtzfdxjje" />
+    <result column="CZHD_ZGSZFGLLR" jdbcType="DECIMAL" property="czhdZgszfgllr" />
+    <result column="BQ_CZHD_ZGSZFGLLR" jdbcType="DECIMAL" property="bqCzhdZgszfgllr" />
+    <result column="CZHD_CZHDCSDXJLLJE" jdbcType="DECIMAL" property="czhdCzhdcsdxjllje" />
+    <result column="BQ_CZHD_CZHDCSDXJLLJE" jdbcType="DECIMAL" property="bqCzhdCzhdcsdxjllje" />
+    <result column="XJJXJDJWJZJE" jdbcType="DECIMAL" property="xjjxjdjwjzje" />
+    <result column="BQ_XJJXJDJWJZJE" jdbcType="DECIMAL" property="bqXjjxjdjwjzje" />
+    <result column="QCXJJXJDJWYE" jdbcType="DECIMAL" property="qcxjjxjdjwye" />
+    <result column="BQ_QCXJJXJDJWYE" jdbcType="DECIMAL" property="bqQcxjjxjdjwye" />
+    <result column="BQ_QMXJJXJDJWYE" jdbcType="DECIMAL" property="bqQmxjjxjdjwye" />
+    <result column="QMXJJXJDJWYE" jdbcType="DECIMAL" property="qmxjjxjdjwye" />
+    <result column="BQ_CZHD_ZGSXSSDDXJ" jdbcType="DECIMAL" property="bqCzhdZgsxssddxj" />
+    <result column="CZHD_ZGSXSSDDXJ" jdbcType="DECIMAL" property="czhdZgsxssddxj" />
+    <result column="BQ_ZGSXJJE" jdbcType="DECIMAL" property="bqZgsxjje" />
+    <result column="BQ_QDZGSXJJE" jdbcType="DECIMAL" property="bqQdzgsxjje" />
+    <result column="BQ_JLR" jdbcType="DECIMAL" property="bqJlr" />
+    <result column="BQ_JTDZCJZ" jdbcType="DECIMAL" property="bqJtdzcjz" />
+    <result column="BQ_GDZCZJ" jdbcType="DECIMAL" property="bqGdzczj" />
+    <result column="BQ_WXZCTX" jdbcType="DECIMAL" property="bqWxzctx" />
+    <result column="BQ_CQDTFYTX" jdbcType="DECIMAL" property="bqCqdtfytx" />
+    <result column="BQ_DTFYJS" jdbcType="DECIMAL" property="bqDtfyjs" />
+    <result column="BQ_YTFYZJ" jdbcType="DECIMAL" property="bqYtfyzj" />
+    <result column="BQ_CZGDZCWXZC" jdbcType="DECIMAL" property="bqCzgdzcwxzc" />
+    <result column="BQ_GDZCBFSS" jdbcType="DECIMAL" property="bqGdzcbfss" />
+    <result column="BQ_CWFY" jdbcType="DECIMAL" property="bqCwfy" />
+    <result column="BQ_TZSS" jdbcType="DECIMAL" property="bqTzss" />
+    <result column="BQ_DYSKDX" jdbcType="DECIMAL" property="bqDyskdx" />
+    <result column="BQ_CHDJS" jdbcType="DECIMAL" property="bqChdjs" />
+    <result column="BQ_JYXYSXMDJS" jdbcType="DECIMAL" property="bqJyxysxmdjs" />
+    <result column="BQ_JYXYFXMDZJ" jdbcType="DECIMAL" property="bqJyxyfxmdzj" />
+    <result column="BQ_QT" jdbcType="DECIMAL" property="bqQt" />
+    <result column="BQ_JYHDCSDXJLLJE" jdbcType="DECIMAL" property="bqJyhdcsdxjllje" />
+    <result column="BQ_BSJXJSZ" jdbcType="DECIMAL" property="bqBsjxjsz" />
+    <result column="BQ_ZWZWZB" jdbcType="DECIMAL" property="bqZwzwzb" />
+    <result column="BQ_YNNDQDKZHGSZJ" jdbcType="DECIMAL" property="bqYnndqdkzhgszj" />
+    <result column="BQ_RZZRGDZC" jdbcType="DECIMAL" property="bqRzzrgdzc" />
+    <result column="BQ_XJJXJDJWJZJQK" jdbcType="DECIMAL" property="bqXjjxjdjwjzjqk" />
+    <result column="BQ_XJDQMYE" jdbcType="DECIMAL" property="bqXjdqmye" />
+    <result column="BQ_JXJDQCYE" jdbcType="DECIMAL" property="bqJxjdqcye" />
+    <result column="BQ_JXJDJWDQMYE" jdbcType="DECIMAL" property="bqJxjdjwdqmye" />
+    <result column="BQ_JXJDJWDQCYE" jdbcType="DECIMAL" property="bqJxjdjwdqcye" />
+    <result column="BQ_XJJXJDJWJZJE2" jdbcType="DECIMAL" property="bqXjjxjdjwjzje2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, IMP_TIME, IMP_USER, BATCH_ID, ORG_ID, KJYEAR, KJMOTH, KJYEAR_MOTH, JEDW, JYHD_SDDXJ, 
+    JYHD_SDDSFFH, JYHD_SDDQTYGDXJ, JYHD_XJLRXJ, JYHD_GJZFDXJ, JYHD_ZFGZGDXJ, JYHD_ZFDGXSF, 
+    JYHD_ZFDQTDXJ, JYHD_XJLCXJ, JYHD_JYHDCSDJE, TZHD_SHTZSSDXJ, TZHD_QDSYSSDXJ, TZHD_SSHDXJ, 
+    TZHD_SDDQTYGDXJ, TZHD_XJLRXJ, TZHD_SZFDXJ, TZHD_TZSZFDXJ, TZHD_ZFQTDXJ, TZHD_XJLCXJ, 
+    TZHD_TZHDSCSDXJLLJE, CZHD_XSTZSSDDXJ, CZHD_JKSSDDXJ, CZHD_SDQTYGDXJ, CZHD_XJLRXJ, 
+    CZHD_CHZWSZFDXJ, CZHD_FPGLSZFDXJ, CZHD_ZFQTYGDXJ, CZHD_XJLCXJ, CZHD_ZCHDXJLLJE, CZHD_HLBDXJDYX, 
+    CZHD_XJJXJDWJJZE, JLRJYHD_JLR, JLRJYHD_JTZCJZZB, JLRJYHD_GDZCZJ, JLRJYHD_WXZCTX, 
+    JLRJYHD_CQDTFYTX, JLRJYHD_DTFYJS, JLRJYHD_YTFYZJ, JLRJYHD_CQZCDSS, JLRJYHD_GDZCBFSS, 
+    JLRJYHD_CWFY, JLRJYHD_TZSS, JLRJYHD_DYSDX, JLRJYHD_CHDJS, JLRJYHD_JYXYSXMJS, JLRJYHD_JYXYFXMZJ, 
+    JLRJYHD_OHTERS, JLRJYHD_JYHDCSXJLLJE, BSJXJ_ZWZWZB, BSJXJ_YNNDQZQ, BSJXJ_RZZRGDZC, 
+    XJJZJE_XJQMYE, XJJZJE_XJDQCYE, XJJZJE_XJDJWDQMYE, XJJZJE_XJDJWDQCYE, XJJZJE_XJDJWJZJE, 
+    account_port_type, FORMAT_FLAG, BQ_JYHD_SDDXJ, BQ_JYHD_SDDSFFH, BQ_JYHD_SDDQTYGDXJ, 
+    BQ_JYHD_XJLRXJ, BQ_JYHD_GJZFDXJ, BQ_JYHD_ZFGZGDXJ, BQ_JYHD_ZFDGXSF, BQ_JYHD_ZFDQTDXJ, 
+    BQ_JYHD_XJLCXJ, BQ_JYHD_JYHDCSDJE, BQ_TZHD_SHTZSSDXJ, BQ_TZHD_QDSYSSDXJ, BQ_TZHD_SSHDXJ, 
+    BQ_TZHD_SDDQTYGDXJ, BQ_TZHD_XJLRXJ, BQ_TZHD_SZFDXJ, BQ_TZHD_TZSZFDXJ, BQ_TZHD_ZFQTDXJ, 
+    BQ_TZHD_XJLCXJ, BQ_TZHD_TZHDSCSDXJLLJE, BQ_CZHD_XSTZSSDDXJ, BQ_CZHD_JKSSDDXJ, BQ_CZHD_SDQTYGDXJ, 
+    BQ_CZHD_XJLRXJ, BQ_CZHD_CHZWSZFDXJ, BQ_CZHD_FPGLSZFDXJ, BQ_CZHD_ZFQTYGDXJ, BQ_CZHD_XJLCXJ, 
+    BQ_CZHD_ZCHDXJLLJE, BQ_CZHD_HLBDXJDYX, BQ_CZHD_XJJXJDWJJZE, BQ_JLRJYHD_JLR, BQ_JLRJYHD_JTZCJZZB, 
+    BQ_JLRJYHD_GDZCZJ, BQ_JLRJYHD_WXZCTX, BQ_JLRJYHD_CQDTFYTX, BQ_JLRJYHD_DTFYJS, BQ_JLRJYHD_YTFYZJ, 
+    BQ_JLRJYHD_CQZCDSS, BQ_JLRJYHD_GDZCBFSS, BQ_JLRJYHD_CWFY, BQ_JLRJYHD_TZSS, BQ_JLRJYHD_DYSDX, 
+    BQ_JLRJYHD_CHDJS, BQ_JLRJYHD_JYXYSXMJS, BQ_JLRJYHD_JYXYFXMZJ, BQ_JLRJYHD_OHTERS, 
+    BQ_JLRJYHD_JYHDCSXJLLJE, BQ_BSJXJ_ZWZWZB, BQ_BSJXJ_YNNDQZQ, BQ_BSJXJ_RZZRGDZC, BQ_XJJZJE_XJQMYE, 
+    BQ_XJJZJE_XJDQCYE, BQ_XJJZJE_XJDJWDQMYE, BQ_XJJZJE_XJDJWDQCYE, BQ_XJJZJE_XJDJWJZJE, 
+    JYHD_XSSPTGLWSDDXJ, BQ_JYHD_XSSPTGLWSDDXJ, BQ_TZHD_CZWXHQTSHDXJJE, TZHD_CZWXHQTSHDXJJE, 
+    TZHD_CZZGSJQTZFDXJJE, BQ_TZHD_CZZGSJQTZFDXJJE, BQ_TZHD_GJGDWXHQTZFDXJ, TZHD_GJGDWXHQTZFDXJ, 
+    TZHD_QDZGSJQTZFDXJJE, BQ_TZHD_QDZGSJQTZFDXJJE, CZHD_ZGSZFGLLR, BQ_CZHD_ZGSZFGLLR, 
+    CZHD_CZHDCSDXJLLJE, BQ_CZHD_CZHDCSDXJLLJE, XJJXJDJWJZJE, BQ_XJJXJDJWJZJE, QCXJJXJDJWYE, 
+    BQ_QCXJJXJDJWYE, BQ_QMXJJXJDJWYE, QMXJJXJDJWYE, BQ_CZHD_ZGSXSSDDXJ, CZHD_ZGSXSSDDXJ, 
+    BQ_ZGSXJJE, BQ_QDZGSXJJE, BQ_JLR, BQ_JTDZCJZ, BQ_GDZCZJ, BQ_WXZCTX, BQ_CQDTFYTX, 
+    BQ_DTFYJS, BQ_YTFYZJ, BQ_CZGDZCWXZC, BQ_GDZCBFSS, BQ_CWFY, BQ_TZSS, BQ_DYSKDX, BQ_CHDJS, 
+    BQ_JYXYSXMDJS, BQ_JYXYFXMDZJ, BQ_QT, BQ_JYHDCSDXJLLJE, BQ_BSJXJSZ, BQ_ZWZWZB, BQ_YNNDQDKZHGSZJ, 
+    BQ_RZZRGDZC, BQ_XJJXJDJWJZJQK, BQ_XJDQMYE, BQ_JXJDQCYE, BQ_JXJDJWDQMYE, BQ_JXJDJWDQCYE, 
+    BQ_XJJXJDJWJZJE2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_BASI_CASH_FLOW
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_BASI_CASH_FLOW
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.qst.financial.modle.subject.TBasiCashFlow">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into T_BASI_CASH_FLOW (IMP_TIME, IMP_USER, BATCH_ID, 
+      ORG_ID, KJYEAR, KJMOTH, 
+      KJYEAR_MOTH, JEDW, JYHD_SDDXJ, 
+      JYHD_SDDSFFH, JYHD_SDDQTYGDXJ, JYHD_XJLRXJ, 
+      JYHD_GJZFDXJ, JYHD_ZFGZGDXJ, JYHD_ZFDGXSF, 
+      JYHD_ZFDQTDXJ, JYHD_XJLCXJ, JYHD_JYHDCSDJE, 
+      TZHD_SHTZSSDXJ, TZHD_QDSYSSDXJ, TZHD_SSHDXJ, 
+      TZHD_SDDQTYGDXJ, TZHD_XJLRXJ, TZHD_SZFDXJ, 
+      TZHD_TZSZFDXJ, TZHD_ZFQTDXJ, TZHD_XJLCXJ, 
+      TZHD_TZHDSCSDXJLLJE, CZHD_XSTZSSDDXJ, CZHD_JKSSDDXJ, 
+      CZHD_SDQTYGDXJ, CZHD_XJLRXJ, CZHD_CHZWSZFDXJ, 
+      CZHD_FPGLSZFDXJ, CZHD_ZFQTYGDXJ, CZHD_XJLCXJ, 
+      CZHD_ZCHDXJLLJE, CZHD_HLBDXJDYX, CZHD_XJJXJDWJJZE, 
+      JLRJYHD_JLR, JLRJYHD_JTZCJZZB, JLRJYHD_GDZCZJ, 
+      JLRJYHD_WXZCTX, JLRJYHD_CQDTFYTX, JLRJYHD_DTFYJS, 
+      JLRJYHD_YTFYZJ, JLRJYHD_CQZCDSS, JLRJYHD_GDZCBFSS, 
+      JLRJYHD_CWFY, JLRJYHD_TZSS, JLRJYHD_DYSDX, 
+      JLRJYHD_CHDJS, JLRJYHD_JYXYSXMJS, JLRJYHD_JYXYFXMZJ, 
+      JLRJYHD_OHTERS, JLRJYHD_JYHDCSXJLLJE, BSJXJ_ZWZWZB, 
+      BSJXJ_YNNDQZQ, BSJXJ_RZZRGDZC, XJJZJE_XJQMYE, 
+      XJJZJE_XJDQCYE, XJJZJE_XJDJWDQMYE, XJJZJE_XJDJWDQCYE, 
+      XJJZJE_XJDJWJZJE, account_port_type, FORMAT_FLAG, 
+      BQ_JYHD_SDDXJ, BQ_JYHD_SDDSFFH, BQ_JYHD_SDDQTYGDXJ, 
+      BQ_JYHD_XJLRXJ, BQ_JYHD_GJZFDXJ, BQ_JYHD_ZFGZGDXJ, 
+      BQ_JYHD_ZFDGXSF, BQ_JYHD_ZFDQTDXJ, BQ_JYHD_XJLCXJ, 
+      BQ_JYHD_JYHDCSDJE, BQ_TZHD_SHTZSSDXJ, BQ_TZHD_QDSYSSDXJ, 
+      BQ_TZHD_SSHDXJ, BQ_TZHD_SDDQTYGDXJ, BQ_TZHD_XJLRXJ, 
+      BQ_TZHD_SZFDXJ, BQ_TZHD_TZSZFDXJ, BQ_TZHD_ZFQTDXJ, 
+      BQ_TZHD_XJLCXJ, BQ_TZHD_TZHDSCSDXJLLJE, BQ_CZHD_XSTZSSDDXJ, 
+      BQ_CZHD_JKSSDDXJ, BQ_CZHD_SDQTYGDXJ, BQ_CZHD_XJLRXJ, 
+      BQ_CZHD_CHZWSZFDXJ, BQ_CZHD_FPGLSZFDXJ, BQ_CZHD_ZFQTYGDXJ, 
+      BQ_CZHD_XJLCXJ, BQ_CZHD_ZCHDXJLLJE, BQ_CZHD_HLBDXJDYX, 
+      BQ_CZHD_XJJXJDWJJZE, BQ_JLRJYHD_JLR, BQ_JLRJYHD_JTZCJZZB, 
+      BQ_JLRJYHD_GDZCZJ, BQ_JLRJYHD_WXZCTX, BQ_JLRJYHD_CQDTFYTX, 
+      BQ_JLRJYHD_DTFYJS, BQ_JLRJYHD_YTFYZJ, BQ_JLRJYHD_CQZCDSS, 
+      BQ_JLRJYHD_GDZCBFSS, BQ_JLRJYHD_CWFY, BQ_JLRJYHD_TZSS, 
+      BQ_JLRJYHD_DYSDX, BQ_JLRJYHD_CHDJS, BQ_JLRJYHD_JYXYSXMJS, 
+      BQ_JLRJYHD_JYXYFXMZJ, BQ_JLRJYHD_OHTERS, BQ_JLRJYHD_JYHDCSXJLLJE, 
+      BQ_BSJXJ_ZWZWZB, BQ_BSJXJ_YNNDQZQ, BQ_BSJXJ_RZZRGDZC, 
+      BQ_XJJZJE_XJQMYE, BQ_XJJZJE_XJDQCYE, BQ_XJJZJE_XJDJWDQMYE, 
+      BQ_XJJZJE_XJDJWDQCYE, BQ_XJJZJE_XJDJWJZJE, 
+      JYHD_XSSPTGLWSDDXJ, BQ_JYHD_XSSPTGLWSDDXJ, 
+      BQ_TZHD_CZWXHQTSHDXJJE, TZHD_CZWXHQTSHDXJJE, 
+      TZHD_CZZGSJQTZFDXJJE, BQ_TZHD_CZZGSJQTZFDXJJE, 
+      BQ_TZHD_GJGDWXHQTZFDXJ, TZHD_GJGDWXHQTZFDXJ, 
+      TZHD_QDZGSJQTZFDXJJE, BQ_TZHD_QDZGSJQTZFDXJJE, 
+      CZHD_ZGSZFGLLR, BQ_CZHD_ZGSZFGLLR, CZHD_CZHDCSDXJLLJE, 
+      BQ_CZHD_CZHDCSDXJLLJE, XJJXJDJWJZJE, BQ_XJJXJDJWJZJE, 
+      QCXJJXJDJWYE, BQ_QCXJJXJDJWYE, BQ_QMXJJXJDJWYE, 
+      QMXJJXJDJWYE, BQ_CZHD_ZGSXSSDDXJ, CZHD_ZGSXSSDDXJ, 
+      BQ_ZGSXJJE, BQ_QDZGSXJJE, BQ_JLR, 
+      BQ_JTDZCJZ, BQ_GDZCZJ, BQ_WXZCTX, 
+      BQ_CQDTFYTX, BQ_DTFYJS, BQ_YTFYZJ, 
+      BQ_CZGDZCWXZC, BQ_GDZCBFSS, BQ_CWFY, 
+      BQ_TZSS, BQ_DYSKDX, BQ_CHDJS, 
+      BQ_JYXYSXMDJS, BQ_JYXYFXMDZJ, BQ_QT, 
+      BQ_JYHDCSDXJLLJE, BQ_BSJXJSZ, BQ_ZWZWZB, 
+      BQ_YNNDQDKZHGSZJ, BQ_RZZRGDZC, BQ_XJJXJDJWJZJQK, 
+      BQ_XJDQMYE, BQ_JXJDQCYE, BQ_JXJDJWDQMYE, 
+      BQ_JXJDJWDQCYE, BQ_XJJXJDJWJZJE2)
+    values (#{impTime,jdbcType=TIMESTAMP}, #{impUser,jdbcType=VARCHAR}, #{batchId,jdbcType=VARCHAR}, 
+      #{orgId,jdbcType=VARCHAR}, #{kjyear,jdbcType=VARCHAR}, #{kjmoth,jdbcType=VARCHAR}, 
+      #{kjyearMoth,jdbcType=VARCHAR}, #{jedw,jdbcType=VARCHAR}, #{jyhdSddxj,jdbcType=DECIMAL}, 
+      #{jyhdSddsffh,jdbcType=DECIMAL}, #{jyhdSddqtygdxj,jdbcType=DECIMAL}, #{jyhdXjlrxj,jdbcType=DECIMAL}, 
+      #{jyhdGjzfdxj,jdbcType=DECIMAL}, #{jyhdZfgzgdxj,jdbcType=DECIMAL}, #{jyhdZfdgxsf,jdbcType=DECIMAL}, 
+      #{jyhdZfdqtdxj,jdbcType=DECIMAL}, #{jyhdXjlcxj,jdbcType=DECIMAL}, #{jyhdJyhdcsdje,jdbcType=DECIMAL}, 
+      #{tzhdShtzssdxj,jdbcType=DECIMAL}, #{tzhdQdsyssdxj,jdbcType=DECIMAL}, #{tzhdSshdxj,jdbcType=DECIMAL}, 
+      #{tzhdSddqtygdxj,jdbcType=DECIMAL}, #{tzhdXjlrxj,jdbcType=DECIMAL}, #{tzhdSzfdxj,jdbcType=DECIMAL}, 
+      #{tzhdTzszfdxj,jdbcType=DECIMAL}, #{tzhdZfqtdxj,jdbcType=DECIMAL}, #{tzhdXjlcxj,jdbcType=DECIMAL}, 
+      #{tzhdTzhdscsdxjllje,jdbcType=DECIMAL}, #{czhdXstzssddxj,jdbcType=DECIMAL}, #{czhdJkssddxj,jdbcType=DECIMAL}, 
+      #{czhdSdqtygdxj,jdbcType=DECIMAL}, #{czhdXjlrxj,jdbcType=DECIMAL}, #{czhdChzwszfdxj,jdbcType=DECIMAL}, 
+      #{czhdFpglszfdxj,jdbcType=DECIMAL}, #{czhdZfqtygdxj,jdbcType=DECIMAL}, #{czhdXjlcxj,jdbcType=DECIMAL}, 
+      #{czhdZchdxjllje,jdbcType=DECIMAL}, #{czhdHlbdxjdyx,jdbcType=DECIMAL}, #{czhdXjjxjdwjjze,jdbcType=DECIMAL}, 
+      #{jlrjyhdJlr,jdbcType=DECIMAL}, #{jlrjyhdJtzcjzzb,jdbcType=DECIMAL}, #{jlrjyhdGdzczj,jdbcType=DECIMAL}, 
+      #{jlrjyhdWxzctx,jdbcType=DECIMAL}, #{jlrjyhdCqdtfytx,jdbcType=DECIMAL}, #{jlrjyhdDtfyjs,jdbcType=DECIMAL}, 
+      #{jlrjyhdYtfyzj,jdbcType=DECIMAL}, #{jlrjyhdCqzcdss,jdbcType=DECIMAL}, #{jlrjyhdGdzcbfss,jdbcType=DECIMAL}, 
+      #{jlrjyhdCwfy,jdbcType=DECIMAL}, #{jlrjyhdTzss,jdbcType=DECIMAL}, #{jlrjyhdDysdx,jdbcType=DECIMAL}, 
+      #{jlrjyhdChdjs,jdbcType=DECIMAL}, #{jlrjyhdJyxysxmjs,jdbcType=DECIMAL}, #{jlrjyhdJyxyfxmzj,jdbcType=DECIMAL}, 
+      #{jlrjyhdOhters,jdbcType=DECIMAL}, #{jlrjyhdJyhdcsxjllje,jdbcType=DECIMAL}, #{bsjxjZwzwzb,jdbcType=DECIMAL}, 
+      #{bsjxjYnndqzq,jdbcType=DECIMAL}, #{bsjxjRzzrgdzc,jdbcType=DECIMAL}, #{xjjzjeXjqmye,jdbcType=DECIMAL}, 
+      #{xjjzjeXjdqcye,jdbcType=DECIMAL}, #{xjjzjeXjdjwdqmye,jdbcType=DECIMAL}, #{xjjzjeXjdjwdqcye,jdbcType=DECIMAL}, 
+      #{xjjzjeXjdjwjzje,jdbcType=DECIMAL}, #{accountPortType,jdbcType=BIGINT}, #{formatFlag,jdbcType=VARCHAR}, 
+      #{bqJyhdSddxj,jdbcType=DECIMAL}, #{bqJyhdSddsffh,jdbcType=DECIMAL}, #{bqJyhdSddqtygdxj,jdbcType=DECIMAL}, 
+      #{bqJyhdXjlrxj,jdbcType=DECIMAL}, #{bqJyhdGjzfdxj,jdbcType=DECIMAL}, #{bqJyhdZfgzgdxj,jdbcType=DECIMAL}, 
+      #{bqJyhdZfdgxsf,jdbcType=DECIMAL}, #{bqJyhdZfdqtdxj,jdbcType=DECIMAL}, #{bqJyhdXjlcxj,jdbcType=DECIMAL}, 
+      #{bqJyhdJyhdcsdje,jdbcType=DECIMAL}, #{bqTzhdShtzssdxj,jdbcType=DECIMAL}, #{bqTzhdQdsyssdxj,jdbcType=DECIMAL}, 
+      #{bqTzhdSshdxj,jdbcType=DECIMAL}, #{bqTzhdSddqtygdxj,jdbcType=DECIMAL}, #{bqTzhdXjlrxj,jdbcType=DECIMAL}, 
+      #{bqTzhdSzfdxj,jdbcType=DECIMAL}, #{bqTzhdTzszfdxj,jdbcType=DECIMAL}, #{bqTzhdZfqtdxj,jdbcType=DECIMAL}, 
+      #{bqTzhdXjlcxj,jdbcType=DECIMAL}, #{bqTzhdTzhdscsdxjllje,jdbcType=DECIMAL}, #{bqCzhdXstzssddxj,jdbcType=DECIMAL}, 
+      #{bqCzhdJkssddxj,jdbcType=DECIMAL}, #{bqCzhdSdqtygdxj,jdbcType=DECIMAL}, #{bqCzhdXjlrxj,jdbcType=DECIMAL}, 
+      #{bqCzhdChzwszfdxj,jdbcType=DECIMAL}, #{bqCzhdFpglszfdxj,jdbcType=DECIMAL}, #{bqCzhdZfqtygdxj,jdbcType=DECIMAL}, 
+      #{bqCzhdXjlcxj,jdbcType=DECIMAL}, #{bqCzhdZchdxjllje,jdbcType=DECIMAL}, #{bqCzhdHlbdxjdyx,jdbcType=DECIMAL}, 
+      #{bqCzhdXjjxjdwjjze,jdbcType=DECIMAL}, #{bqJlrjyhdJlr,jdbcType=DECIMAL}, #{bqJlrjyhdJtzcjzzb,jdbcType=DECIMAL}, 
+      #{bqJlrjyhdGdzczj,jdbcType=DECIMAL}, #{bqJlrjyhdWxzctx,jdbcType=DECIMAL}, #{bqJlrjyhdCqdtfytx,jdbcType=DECIMAL}, 
+      #{bqJlrjyhdDtfyjs,jdbcType=DECIMAL}, #{bqJlrjyhdYtfyzj,jdbcType=DECIMAL}, #{bqJlrjyhdCqzcdss,jdbcType=DECIMAL}, 
+      #{bqJlrjyhdGdzcbfss,jdbcType=DECIMAL}, #{bqJlrjyhdCwfy,jdbcType=DECIMAL}, #{bqJlrjyhdTzss,jdbcType=DECIMAL}, 
+      #{bqJlrjyhdDysdx,jdbcType=DECIMAL}, #{bqJlrjyhdChdjs,jdbcType=DECIMAL}, #{bqJlrjyhdJyxysxmjs,jdbcType=DECIMAL}, 
+      #{bqJlrjyhdJyxyfxmzj,jdbcType=DECIMAL}, #{bqJlrjyhdOhters,jdbcType=DECIMAL}, #{bqJlrjyhdJyhdcsxjllje,jdbcType=DECIMAL}, 
+      #{bqBsjxjZwzwzb,jdbcType=DECIMAL}, #{bqBsjxjYnndqzq,jdbcType=DECIMAL}, #{bqBsjxjRzzrgdzc,jdbcType=DECIMAL}, 
+      #{bqXjjzjeXjqmye,jdbcType=DECIMAL}, #{bqXjjzjeXjdqcye,jdbcType=DECIMAL}, #{bqXjjzjeXjdjwdqmye,jdbcType=DECIMAL}, 
+      #{bqXjjzjeXjdjwdqcye,jdbcType=DECIMAL}, #{bqXjjzjeXjdjwjzje,jdbcType=DECIMAL}, 
+      #{jyhdXssptglwsddxj,jdbcType=DECIMAL}, #{bqJyhdXssptglwsddxj,jdbcType=DECIMAL}, 
+      #{bqTzhdCzwxhqtshdxjje,jdbcType=DECIMAL}, #{tzhdCzwxhqtshdxjje,jdbcType=DECIMAL}, 
+      #{tzhdCzzgsjqtzfdxjje,jdbcType=DECIMAL}, #{bqTzhdCzzgsjqtzfdxjje,jdbcType=DECIMAL}, 
+      #{bqTzhdGjgdwxhqtzfdxj,jdbcType=DECIMAL}, #{tzhdGjgdwxhqtzfdxj,jdbcType=DECIMAL}, 
+      #{tzhdQdzgsjqtzfdxjje,jdbcType=DECIMAL}, #{bqTzhdQdzgsjqtzfdxjje,jdbcType=DECIMAL}, 
+      #{czhdZgszfgllr,jdbcType=DECIMAL}, #{bqCzhdZgszfgllr,jdbcType=DECIMAL}, #{czhdCzhdcsdxjllje,jdbcType=DECIMAL}, 
+      #{bqCzhdCzhdcsdxjllje,jdbcType=DECIMAL}, #{xjjxjdjwjzje,jdbcType=DECIMAL}, #{bqXjjxjdjwjzje,jdbcType=DECIMAL}, 
+      #{qcxjjxjdjwye,jdbcType=DECIMAL}, #{bqQcxjjxjdjwye,jdbcType=DECIMAL}, #{bqQmxjjxjdjwye,jdbcType=DECIMAL}, 
+      #{qmxjjxjdjwye,jdbcType=DECIMAL}, #{bqCzhdZgsxssddxj,jdbcType=DECIMAL}, #{czhdZgsxssddxj,jdbcType=DECIMAL}, 
+      #{bqZgsxjje,jdbcType=DECIMAL}, #{bqQdzgsxjje,jdbcType=DECIMAL}, #{bqJlr,jdbcType=DECIMAL}, 
+      #{bqJtdzcjz,jdbcType=DECIMAL}, #{bqGdzczj,jdbcType=DECIMAL}, #{bqWxzctx,jdbcType=DECIMAL}, 
+      #{bqCqdtfytx,jdbcType=DECIMAL}, #{bqDtfyjs,jdbcType=DECIMAL}, #{bqYtfyzj,jdbcType=DECIMAL}, 
+      #{bqCzgdzcwxzc,jdbcType=DECIMAL}, #{bqGdzcbfss,jdbcType=DECIMAL}, #{bqCwfy,jdbcType=DECIMAL}, 
+      #{bqTzss,jdbcType=DECIMAL}, #{bqDyskdx,jdbcType=DECIMAL}, #{bqChdjs,jdbcType=DECIMAL}, 
+      #{bqJyxysxmdjs,jdbcType=DECIMAL}, #{bqJyxyfxmdzj,jdbcType=DECIMAL}, #{bqQt,jdbcType=DECIMAL}, 
+      #{bqJyhdcsdxjllje,jdbcType=DECIMAL}, #{bqBsjxjsz,jdbcType=DECIMAL}, #{bqZwzwzb,jdbcType=DECIMAL}, 
+      #{bqYnndqdkzhgszj,jdbcType=DECIMAL}, #{bqRzzrgdzc,jdbcType=DECIMAL}, #{bqXjjxjdjwjzjqk,jdbcType=DECIMAL}, 
+      #{bqXjdqmye,jdbcType=DECIMAL}, #{bqJxjdqcye,jdbcType=DECIMAL}, #{bqJxjdjwdqmye,jdbcType=DECIMAL}, 
+      #{bqJxjdjwdqcye,jdbcType=DECIMAL}, #{bqXjjxjdjwjzje2,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qst.financial.modle.subject.TBasiCashFlow">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into T_BASI_CASH_FLOW
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="impTime != null">
+        IMP_TIME,
+      </if>
+      <if test="impUser != null">
+        IMP_USER,
+      </if>
+      <if test="batchId != null">
+        BATCH_ID,
+      </if>
+      <if test="orgId != null">
+        ORG_ID,
+      </if>
+      <if test="kjyear != null">
+        KJYEAR,
+      </if>
+      <if test="kjmoth != null">
+        KJMOTH,
+      </if>
+      <if test="kjyearMoth != null">
+        KJYEAR_MOTH,
+      </if>
+      <if test="jedw != null">
+        JEDW,
+      </if>
+      <if test="jyhdSddxj != null">
+        JYHD_SDDXJ,
+      </if>
+      <if test="jyhdSddsffh != null">
+        JYHD_SDDSFFH,
+      </if>
+      <if test="jyhdSddqtygdxj != null">
+        JYHD_SDDQTYGDXJ,
+      </if>
+      <if test="jyhdXjlrxj != null">
+        JYHD_XJLRXJ,
+      </if>
+      <if test="jyhdGjzfdxj != null">
+        JYHD_GJZFDXJ,
+      </if>
+      <if test="jyhdZfgzgdxj != null">
+        JYHD_ZFGZGDXJ,
+      </if>
+      <if test="jyhdZfdgxsf != null">
+        JYHD_ZFDGXSF,
+      </if>
+      <if test="jyhdZfdqtdxj != null">
+        JYHD_ZFDQTDXJ,
+      </if>
+      <if test="jyhdXjlcxj != null">
+        JYHD_XJLCXJ,
+      </if>
+      <if test="jyhdJyhdcsdje != null">
+        JYHD_JYHDCSDJE,
+      </if>
+      <if test="tzhdShtzssdxj != null">
+        TZHD_SHTZSSDXJ,
+      </if>
+      <if test="tzhdQdsyssdxj != null">
+        TZHD_QDSYSSDXJ,
+      </if>
+      <if test="tzhdSshdxj != null">
+        TZHD_SSHDXJ,
+      </if>
+      <if test="tzhdSddqtygdxj != null">
+        TZHD_SDDQTYGDXJ,
+      </if>
+      <if test="tzhdXjlrxj != null">
+        TZHD_XJLRXJ,
+      </if>
+      <if test="tzhdSzfdxj != null">
+        TZHD_SZFDXJ,
+      </if>
+      <if test="tzhdTzszfdxj != null">
+        TZHD_TZSZFDXJ,
+      </if>
+      <if test="tzhdZfqtdxj != null">
+        TZHD_ZFQTDXJ,
+      </if>
+      <if test="tzhdXjlcxj != null">
+        TZHD_XJLCXJ,
+      </if>
+      <if test="tzhdTzhdscsdxjllje != null">
+        TZHD_TZHDSCSDXJLLJE,
+      </if>
+      <if test="czhdXstzssddxj != null">
+        CZHD_XSTZSSDDXJ,
+      </if>
+      <if test="czhdJkssddxj != null">
+        CZHD_JKSSDDXJ,
+      </if>
+      <if test="czhdSdqtygdxj != null">
+        CZHD_SDQTYGDXJ,
+      </if>
+      <if test="czhdXjlrxj != null">
+        CZHD_XJLRXJ,
+      </if>
+      <if test="czhdChzwszfdxj != null">
+        CZHD_CHZWSZFDXJ,
+      </if>
+      <if test="czhdFpglszfdxj != null">
+        CZHD_FPGLSZFDXJ,
+      </if>
+      <if test="czhdZfqtygdxj != null">
+        CZHD_ZFQTYGDXJ,
+      </if>
+      <if test="czhdXjlcxj != null">
+        CZHD_XJLCXJ,
+      </if>
+      <if test="czhdZchdxjllje != null">
+        CZHD_ZCHDXJLLJE,
+      </if>
+      <if test="czhdHlbdxjdyx != null">
+        CZHD_HLBDXJDYX,
+      </if>
+      <if test="czhdXjjxjdwjjze != null">
+        CZHD_XJJXJDWJJZE,
+      </if>
+      <if test="jlrjyhdJlr != null">
+        JLRJYHD_JLR,
+      </if>
+      <if test="jlrjyhdJtzcjzzb != null">
+        JLRJYHD_JTZCJZZB,
+      </if>
+      <if test="jlrjyhdGdzczj != null">
+        JLRJYHD_GDZCZJ,
+      </if>
+      <if test="jlrjyhdWxzctx != null">
+        JLRJYHD_WXZCTX,
+      </if>
+      <if test="jlrjyhdCqdtfytx != null">
+        JLRJYHD_CQDTFYTX,
+      </if>
+      <if test="jlrjyhdDtfyjs != null">
+        JLRJYHD_DTFYJS,
+      </if>
+      <if test="jlrjyhdYtfyzj != null">
+        JLRJYHD_YTFYZJ,
+      </if>
+      <if test="jlrjyhdCqzcdss != null">
+        JLRJYHD_CQZCDSS,
+      </if>
+      <if test="jlrjyhdGdzcbfss != null">
+        JLRJYHD_GDZCBFSS,
+      </if>
+      <if test="jlrjyhdCwfy != null">
+        JLRJYHD_CWFY,
+      </if>
+      <if test="jlrjyhdTzss != null">
+        JLRJYHD_TZSS,
+      </if>
+      <if test="jlrjyhdDysdx != null">
+        JLRJYHD_DYSDX,
+      </if>
+      <if test="jlrjyhdChdjs != null">
+        JLRJYHD_CHDJS,
+      </if>
+      <if test="jlrjyhdJyxysxmjs != null">
+        JLRJYHD_JYXYSXMJS,
+      </if>
+      <if test="jlrjyhdJyxyfxmzj != null">
+        JLRJYHD_JYXYFXMZJ,
+      </if>
+      <if test="jlrjyhdOhters != null">
+        JLRJYHD_OHTERS,
+      </if>
+      <if test="jlrjyhdJyhdcsxjllje != null">
+        JLRJYHD_JYHDCSXJLLJE,
+      </if>
+      <if test="bsjxjZwzwzb != null">
+        BSJXJ_ZWZWZB,
+      </if>
+      <if test="bsjxjYnndqzq != null">
+        BSJXJ_YNNDQZQ,
+      </if>
+      <if test="bsjxjRzzrgdzc != null">
+        BSJXJ_RZZRGDZC,
+      </if>
+      <if test="xjjzjeXjqmye != null">
+        XJJZJE_XJQMYE,
+      </if>
+      <if test="xjjzjeXjdqcye != null">
+        XJJZJE_XJDQCYE,
+      </if>
+      <if test="xjjzjeXjdjwdqmye != null">
+        XJJZJE_XJDJWDQMYE,
+      </if>
+      <if test="xjjzjeXjdjwdqcye != null">
+        XJJZJE_XJDJWDQCYE,
+      </if>
+      <if test="xjjzjeXjdjwjzje != null">
+        XJJZJE_XJDJWJZJE,
+      </if>
+      <if test="accountPortType != null">
+        account_port_type,
+      </if>
+      <if test="formatFlag != null">
+        FORMAT_FLAG,
+      </if>
+      <if test="bqJyhdSddxj != null">
+        BQ_JYHD_SDDXJ,
+      </if>
+      <if test="bqJyhdSddsffh != null">
+        BQ_JYHD_SDDSFFH,
+      </if>
+      <if test="bqJyhdSddqtygdxj != null">
+        BQ_JYHD_SDDQTYGDXJ,
+      </if>
+      <if test="bqJyhdXjlrxj != null">
+        BQ_JYHD_XJLRXJ,
+      </if>
+      <if test="bqJyhdGjzfdxj != null">
+        BQ_JYHD_GJZFDXJ,
+      </if>
+      <if test="bqJyhdZfgzgdxj != null">
+        BQ_JYHD_ZFGZGDXJ,
+      </if>
+      <if test="bqJyhdZfdgxsf != null">
+        BQ_JYHD_ZFDGXSF,
+      </if>
+      <if test="bqJyhdZfdqtdxj != null">
+        BQ_JYHD_ZFDQTDXJ,
+      </if>
+      <if test="bqJyhdXjlcxj != null">
+        BQ_JYHD_XJLCXJ,
+      </if>
+      <if test="bqJyhdJyhdcsdje != null">
+        BQ_JYHD_JYHDCSDJE,
+      </if>
+      <if test="bqTzhdShtzssdxj != null">
+        BQ_TZHD_SHTZSSDXJ,
+      </if>
+      <if test="bqTzhdQdsyssdxj != null">
+        BQ_TZHD_QDSYSSDXJ,
+      </if>
+      <if test="bqTzhdSshdxj != null">
+        BQ_TZHD_SSHDXJ,
+      </if>
+      <if test="bqTzhdSddqtygdxj != null">
+        BQ_TZHD_SDDQTYGDXJ,
+      </if>
+      <if test="bqTzhdXjlrxj != null">
+        BQ_TZHD_XJLRXJ,
+      </if>
+      <if test="bqTzhdSzfdxj != null">
+        BQ_TZHD_SZFDXJ,
+      </if>
+      <if test="bqTzhdTzszfdxj != null">
+        BQ_TZHD_TZSZFDXJ,
+      </if>
+      <if test="bqTzhdZfqtdxj != null">
+        BQ_TZHD_ZFQTDXJ,
+      </if>
+      <if test="bqTzhdXjlcxj != null">
+        BQ_TZHD_XJLCXJ,
+      </if>
+      <if test="bqTzhdTzhdscsdxjllje != null">
+        BQ_TZHD_TZHDSCSDXJLLJE,
+      </if>
+      <if test="bqCzhdXstzssddxj != null">
+        BQ_CZHD_XSTZSSDDXJ,
+      </if>
+      <if test="bqCzhdJkssddxj != null">
+        BQ_CZHD_JKSSDDXJ,
+      </if>
+      <if test="bqCzhdSdqtygdxj != null">
+        BQ_CZHD_SDQTYGDXJ,
+      </if>
+      <if test="bqCzhdXjlrxj != null">
+        BQ_CZHD_XJLRXJ,
+      </if>
+      <if test="bqCzhdChzwszfdxj != null">
+        BQ_CZHD_CHZWSZFDXJ,
+      </if>
+      <if test="bqCzhdFpglszfdxj != null">
+        BQ_CZHD_FPGLSZFDXJ,
+      </if>
+      <if test="bqCzhdZfqtygdxj != null">
+        BQ_CZHD_ZFQTYGDXJ,
+      </if>
+      <if test="bqCzhdXjlcxj != null">
+        BQ_CZHD_XJLCXJ,
+      </if>
+      <if test="bqCzhdZchdxjllje != null">
+        BQ_CZHD_ZCHDXJLLJE,
+      </if>
+      <if test="bqCzhdHlbdxjdyx != null">
+        BQ_CZHD_HLBDXJDYX,
+      </if>
+      <if test="bqCzhdXjjxjdwjjze != null">
+        BQ_CZHD_XJJXJDWJJZE,
+      </if>
+      <if test="bqJlrjyhdJlr != null">
+        BQ_JLRJYHD_JLR,
+      </if>
+      <if test="bqJlrjyhdJtzcjzzb != null">
+        BQ_JLRJYHD_JTZCJZZB,
+      </if>
+      <if test="bqJlrjyhdGdzczj != null">
+        BQ_JLRJYHD_GDZCZJ,
+      </if>
+      <if test="bqJlrjyhdWxzctx != null">
+        BQ_JLRJYHD_WXZCTX,
+      </if>
+      <if test="bqJlrjyhdCqdtfytx != null">
+        BQ_JLRJYHD_CQDTFYTX,
+      </if>
+      <if test="bqJlrjyhdDtfyjs != null">
+        BQ_JLRJYHD_DTFYJS,
+      </if>
+      <if test="bqJlrjyhdYtfyzj != null">
+        BQ_JLRJYHD_YTFYZJ,
+      </if>
+      <if test="bqJlrjyhdCqzcdss != null">
+        BQ_JLRJYHD_CQZCDSS,
+      </if>
+      <if test="bqJlrjyhdGdzcbfss != null">
+        BQ_JLRJYHD_GDZCBFSS,
+      </if>
+      <if test="bqJlrjyhdCwfy != null">
+        BQ_JLRJYHD_CWFY,
+      </if>
+      <if test="bqJlrjyhdTzss != null">
+        BQ_JLRJYHD_TZSS,
+      </if>
+      <if test="bqJlrjyhdDysdx != null">
+        BQ_JLRJYHD_DYSDX,
+      </if>
+      <if test="bqJlrjyhdChdjs != null">
+        BQ_JLRJYHD_CHDJS,
+      </if>
+      <if test="bqJlrjyhdJyxysxmjs != null">
+        BQ_JLRJYHD_JYXYSXMJS,
+      </if>
+      <if test="bqJlrjyhdJyxyfxmzj != null">
+        BQ_JLRJYHD_JYXYFXMZJ,
+      </if>
+      <if test="bqJlrjyhdOhters != null">
+        BQ_JLRJYHD_OHTERS,
+      </if>
+      <if test="bqJlrjyhdJyhdcsxjllje != null">
+        BQ_JLRJYHD_JYHDCSXJLLJE,
+      </if>
+      <if test="bqBsjxjZwzwzb != null">
+        BQ_BSJXJ_ZWZWZB,
+      </if>
+      <if test="bqBsjxjYnndqzq != null">
+        BQ_BSJXJ_YNNDQZQ,
+      </if>
+      <if test="bqBsjxjRzzrgdzc != null">
+        BQ_BSJXJ_RZZRGDZC,
+      </if>
+      <if test="bqXjjzjeXjqmye != null">
+        BQ_XJJZJE_XJQMYE,
+      </if>
+      <if test="bqXjjzjeXjdqcye != null">
+        BQ_XJJZJE_XJDQCYE,
+      </if>
+      <if test="bqXjjzjeXjdjwdqmye != null">
+        BQ_XJJZJE_XJDJWDQMYE,
+      </if>
+      <if test="bqXjjzjeXjdjwdqcye != null">
+        BQ_XJJZJE_XJDJWDQCYE,
+      </if>
+      <if test="bqXjjzjeXjdjwjzje != null">
+        BQ_XJJZJE_XJDJWJZJE,
+      </if>
+      <if test="jyhdXssptglwsddxj != null">
+        JYHD_XSSPTGLWSDDXJ,
+      </if>
+      <if test="bqJyhdXssptglwsddxj != null">
+        BQ_JYHD_XSSPTGLWSDDXJ,
+      </if>
+      <if test="bqTzhdCzwxhqtshdxjje != null">
+        BQ_TZHD_CZWXHQTSHDXJJE,
+      </if>
+      <if test="tzhdCzwxhqtshdxjje != null">
+        TZHD_CZWXHQTSHDXJJE,
+      </if>
+      <if test="tzhdCzzgsjqtzfdxjje != null">
+        TZHD_CZZGSJQTZFDXJJE,
+      </if>
+      <if test="bqTzhdCzzgsjqtzfdxjje != null">
+        BQ_TZHD_CZZGSJQTZFDXJJE,
+      </if>
+      <if test="bqTzhdGjgdwxhqtzfdxj != null">
+        BQ_TZHD_GJGDWXHQTZFDXJ,
+      </if>
+      <if test="tzhdGjgdwxhqtzfdxj != null">
+        TZHD_GJGDWXHQTZFDXJ,
+      </if>
+      <if test="tzhdQdzgsjqtzfdxjje != null">
+        TZHD_QDZGSJQTZFDXJJE,
+      </if>
+      <if test="bqTzhdQdzgsjqtzfdxjje != null">
+        BQ_TZHD_QDZGSJQTZFDXJJE,
+      </if>
+      <if test="czhdZgszfgllr != null">
+        CZHD_ZGSZFGLLR,
+      </if>
+      <if test="bqCzhdZgszfgllr != null">
+        BQ_CZHD_ZGSZFGLLR,
+      </if>
+      <if test="czhdCzhdcsdxjllje != null">
+        CZHD_CZHDCSDXJLLJE,
+      </if>
+      <if test="bqCzhdCzhdcsdxjllje != null">
+        BQ_CZHD_CZHDCSDXJLLJE,
+      </if>
+      <if test="xjjxjdjwjzje != null">
+        XJJXJDJWJZJE,
+      </if>
+      <if test="bqXjjxjdjwjzje != null">
+        BQ_XJJXJDJWJZJE,
+      </if>
+      <if test="qcxjjxjdjwye != null">
+        QCXJJXJDJWYE,
+      </if>
+      <if test="bqQcxjjxjdjwye != null">
+        BQ_QCXJJXJDJWYE,
+      </if>
+      <if test="bqQmxjjxjdjwye != null">
+        BQ_QMXJJXJDJWYE,
+      </if>
+      <if test="qmxjjxjdjwye != null">
+        QMXJJXJDJWYE,
+      </if>
+      <if test="bqCzhdZgsxssddxj != null">
+        BQ_CZHD_ZGSXSSDDXJ,
+      </if>
+      <if test="czhdZgsxssddxj != null">
+        CZHD_ZGSXSSDDXJ,
+      </if>
+      <if test="bqZgsxjje != null">
+        BQ_ZGSXJJE,
+      </if>
+      <if test="bqQdzgsxjje != null">
+        BQ_QDZGSXJJE,
+      </if>
+      <if test="bqJlr != null">
+        BQ_JLR,
+      </if>
+      <if test="bqJtdzcjz != null">
+        BQ_JTDZCJZ,
+      </if>
+      <if test="bqGdzczj != null">
+        BQ_GDZCZJ,
+      </if>
+      <if test="bqWxzctx != null">
+        BQ_WXZCTX,
+      </if>
+      <if test="bqCqdtfytx != null">
+        BQ_CQDTFYTX,
+      </if>
+      <if test="bqDtfyjs != null">
+        BQ_DTFYJS,
+      </if>
+      <if test="bqYtfyzj != null">
+        BQ_YTFYZJ,
+      </if>
+      <if test="bqCzgdzcwxzc != null">
+        BQ_CZGDZCWXZC,
+      </if>
+      <if test="bqGdzcbfss != null">
+        BQ_GDZCBFSS,
+      </if>
+      <if test="bqCwfy != null">
+        BQ_CWFY,
+      </if>
+      <if test="bqTzss != null">
+        BQ_TZSS,
+      </if>
+      <if test="bqDyskdx != null">
+        BQ_DYSKDX,
+      </if>
+      <if test="bqChdjs != null">
+        BQ_CHDJS,
+      </if>
+      <if test="bqJyxysxmdjs != null">
+        BQ_JYXYSXMDJS,
+      </if>
+      <if test="bqJyxyfxmdzj != null">
+        BQ_JYXYFXMDZJ,
+      </if>
+      <if test="bqQt != null">
+        BQ_QT,
+      </if>
+      <if test="bqJyhdcsdxjllje != null">
+        BQ_JYHDCSDXJLLJE,
+      </if>
+      <if test="bqBsjxjsz != null">
+        BQ_BSJXJSZ,
+      </if>
+      <if test="bqZwzwzb != null">
+        BQ_ZWZWZB,
+      </if>
+      <if test="bqYnndqdkzhgszj != null">
+        BQ_YNNDQDKZHGSZJ,
+      </if>
+      <if test="bqRzzrgdzc != null">
+        BQ_RZZRGDZC,
+      </if>
+      <if test="bqXjjxjdjwjzjqk != null">
+        BQ_XJJXJDJWJZJQK,
+      </if>
+      <if test="bqXjdqmye != null">
+        BQ_XJDQMYE,
+      </if>
+      <if test="bqJxjdqcye != null">
+        BQ_JXJDQCYE,
+      </if>
+      <if test="bqJxjdjwdqmye != null">
+        BQ_JXJDJWDQMYE,
+      </if>
+      <if test="bqJxjdjwdqcye != null">
+        BQ_JXJDJWDQCYE,
+      </if>
+      <if test="bqXjjxjdjwjzje2 != null">
+        BQ_XJJXJDJWJZJE2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="impTime != null">
+        #{impTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="impUser != null">
+        #{impUser,jdbcType=VARCHAR},
+      </if>
+      <if test="batchId != null">
+        #{batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="kjyear != null">
+        #{kjyear,jdbcType=VARCHAR},
+      </if>
+      <if test="kjmoth != null">
+        #{kjmoth,jdbcType=VARCHAR},
+      </if>
+      <if test="kjyearMoth != null">
+        #{kjyearMoth,jdbcType=VARCHAR},
+      </if>
+      <if test="jedw != null">
+        #{jedw,jdbcType=VARCHAR},
+      </if>
+      <if test="jyhdSddxj != null">
+        #{jyhdSddxj,jdbcType=DECIMAL},
+      </if>
+      <if test="jyhdSddsffh != null">
+        #{jyhdSddsffh,jdbcType=DECIMAL},
+      </if>
+      <if test="jyhdSddqtygdxj != null">
+        #{jyhdSddqtygdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="jyhdXjlrxj != null">
+        #{jyhdXjlrxj,jdbcType=DECIMAL},
+      </if>
+      <if test="jyhdGjzfdxj != null">
+        #{jyhdGjzfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="jyhdZfgzgdxj != null">
+        #{jyhdZfgzgdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="jyhdZfdgxsf != null">
+        #{jyhdZfdgxsf,jdbcType=DECIMAL},
+      </if>
+      <if test="jyhdZfdqtdxj != null">
+        #{jyhdZfdqtdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="jyhdXjlcxj != null">
+        #{jyhdXjlcxj,jdbcType=DECIMAL},
+      </if>
+      <if test="jyhdJyhdcsdje != null">
+        #{jyhdJyhdcsdje,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdShtzssdxj != null">
+        #{tzhdShtzssdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdQdsyssdxj != null">
+        #{tzhdQdsyssdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdSshdxj != null">
+        #{tzhdSshdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdSddqtygdxj != null">
+        #{tzhdSddqtygdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdXjlrxj != null">
+        #{tzhdXjlrxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdSzfdxj != null">
+        #{tzhdSzfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdTzszfdxj != null">
+        #{tzhdTzszfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdZfqtdxj != null">
+        #{tzhdZfqtdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdXjlcxj != null">
+        #{tzhdXjlcxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdTzhdscsdxjllje != null">
+        #{tzhdTzhdscsdxjllje,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdXstzssddxj != null">
+        #{czhdXstzssddxj,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdJkssddxj != null">
+        #{czhdJkssddxj,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdSdqtygdxj != null">
+        #{czhdSdqtygdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdXjlrxj != null">
+        #{czhdXjlrxj,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdChzwszfdxj != null">
+        #{czhdChzwszfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdFpglszfdxj != null">
+        #{czhdFpglszfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdZfqtygdxj != null">
+        #{czhdZfqtygdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdXjlcxj != null">
+        #{czhdXjlcxj,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdZchdxjllje != null">
+        #{czhdZchdxjllje,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdHlbdxjdyx != null">
+        #{czhdHlbdxjdyx,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdXjjxjdwjjze != null">
+        #{czhdXjjxjdwjjze,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdJlr != null">
+        #{jlrjyhdJlr,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdJtzcjzzb != null">
+        #{jlrjyhdJtzcjzzb,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdGdzczj != null">
+        #{jlrjyhdGdzczj,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdWxzctx != null">
+        #{jlrjyhdWxzctx,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdCqdtfytx != null">
+        #{jlrjyhdCqdtfytx,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdDtfyjs != null">
+        #{jlrjyhdDtfyjs,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdYtfyzj != null">
+        #{jlrjyhdYtfyzj,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdCqzcdss != null">
+        #{jlrjyhdCqzcdss,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdGdzcbfss != null">
+        #{jlrjyhdGdzcbfss,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdCwfy != null">
+        #{jlrjyhdCwfy,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdTzss != null">
+        #{jlrjyhdTzss,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdDysdx != null">
+        #{jlrjyhdDysdx,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdChdjs != null">
+        #{jlrjyhdChdjs,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdJyxysxmjs != null">
+        #{jlrjyhdJyxysxmjs,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdJyxyfxmzj != null">
+        #{jlrjyhdJyxyfxmzj,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdOhters != null">
+        #{jlrjyhdOhters,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdJyhdcsxjllje != null">
+        #{jlrjyhdJyhdcsxjllje,jdbcType=DECIMAL},
+      </if>
+      <if test="bsjxjZwzwzb != null">
+        #{bsjxjZwzwzb,jdbcType=DECIMAL},
+      </if>
+      <if test="bsjxjYnndqzq != null">
+        #{bsjxjYnndqzq,jdbcType=DECIMAL},
+      </if>
+      <if test="bsjxjRzzrgdzc != null">
+        #{bsjxjRzzrgdzc,jdbcType=DECIMAL},
+      </if>
+      <if test="xjjzjeXjqmye != null">
+        #{xjjzjeXjqmye,jdbcType=DECIMAL},
+      </if>
+      <if test="xjjzjeXjdqcye != null">
+        #{xjjzjeXjdqcye,jdbcType=DECIMAL},
+      </if>
+      <if test="xjjzjeXjdjwdqmye != null">
+        #{xjjzjeXjdjwdqmye,jdbcType=DECIMAL},
+      </if>
+      <if test="xjjzjeXjdjwdqcye != null">
+        #{xjjzjeXjdjwdqcye,jdbcType=DECIMAL},
+      </if>
+      <if test="xjjzjeXjdjwjzje != null">
+        #{xjjzjeXjdjwjzje,jdbcType=DECIMAL},
+      </if>
+      <if test="accountPortType != null">
+        #{accountPortType,jdbcType=BIGINT},
+      </if>
+      <if test="formatFlag != null">
+        #{formatFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="bqJyhdSddxj != null">
+        #{bqJyhdSddxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdSddsffh != null">
+        #{bqJyhdSddsffh,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdSddqtygdxj != null">
+        #{bqJyhdSddqtygdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdXjlrxj != null">
+        #{bqJyhdXjlrxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdGjzfdxj != null">
+        #{bqJyhdGjzfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdZfgzgdxj != null">
+        #{bqJyhdZfgzgdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdZfdgxsf != null">
+        #{bqJyhdZfdgxsf,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdZfdqtdxj != null">
+        #{bqJyhdZfdqtdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdXjlcxj != null">
+        #{bqJyhdXjlcxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdJyhdcsdje != null">
+        #{bqJyhdJyhdcsdje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdShtzssdxj != null">
+        #{bqTzhdShtzssdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdQdsyssdxj != null">
+        #{bqTzhdQdsyssdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdSshdxj != null">
+        #{bqTzhdSshdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdSddqtygdxj != null">
+        #{bqTzhdSddqtygdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdXjlrxj != null">
+        #{bqTzhdXjlrxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdSzfdxj != null">
+        #{bqTzhdSzfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdTzszfdxj != null">
+        #{bqTzhdTzszfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdZfqtdxj != null">
+        #{bqTzhdZfqtdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdXjlcxj != null">
+        #{bqTzhdXjlcxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdTzhdscsdxjllje != null">
+        #{bqTzhdTzhdscsdxjllje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdXstzssddxj != null">
+        #{bqCzhdXstzssddxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdJkssddxj != null">
+        #{bqCzhdJkssddxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdSdqtygdxj != null">
+        #{bqCzhdSdqtygdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdXjlrxj != null">
+        #{bqCzhdXjlrxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdChzwszfdxj != null">
+        #{bqCzhdChzwszfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdFpglszfdxj != null">
+        #{bqCzhdFpglszfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdZfqtygdxj != null">
+        #{bqCzhdZfqtygdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdXjlcxj != null">
+        #{bqCzhdXjlcxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdZchdxjllje != null">
+        #{bqCzhdZchdxjllje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdHlbdxjdyx != null">
+        #{bqCzhdHlbdxjdyx,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdXjjxjdwjjze != null">
+        #{bqCzhdXjjxjdwjjze,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdJlr != null">
+        #{bqJlrjyhdJlr,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdJtzcjzzb != null">
+        #{bqJlrjyhdJtzcjzzb,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdGdzczj != null">
+        #{bqJlrjyhdGdzczj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdWxzctx != null">
+        #{bqJlrjyhdWxzctx,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdCqdtfytx != null">
+        #{bqJlrjyhdCqdtfytx,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdDtfyjs != null">
+        #{bqJlrjyhdDtfyjs,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdYtfyzj != null">
+        #{bqJlrjyhdYtfyzj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdCqzcdss != null">
+        #{bqJlrjyhdCqzcdss,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdGdzcbfss != null">
+        #{bqJlrjyhdGdzcbfss,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdCwfy != null">
+        #{bqJlrjyhdCwfy,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdTzss != null">
+        #{bqJlrjyhdTzss,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdDysdx != null">
+        #{bqJlrjyhdDysdx,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdChdjs != null">
+        #{bqJlrjyhdChdjs,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdJyxysxmjs != null">
+        #{bqJlrjyhdJyxysxmjs,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdJyxyfxmzj != null">
+        #{bqJlrjyhdJyxyfxmzj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdOhters != null">
+        #{bqJlrjyhdOhters,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdJyhdcsxjllje != null">
+        #{bqJlrjyhdJyhdcsxjllje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqBsjxjZwzwzb != null">
+        #{bqBsjxjZwzwzb,jdbcType=DECIMAL},
+      </if>
+      <if test="bqBsjxjYnndqzq != null">
+        #{bqBsjxjYnndqzq,jdbcType=DECIMAL},
+      </if>
+      <if test="bqBsjxjRzzrgdzc != null">
+        #{bqBsjxjRzzrgdzc,jdbcType=DECIMAL},
+      </if>
+      <if test="bqXjjzjeXjqmye != null">
+        #{bqXjjzjeXjqmye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqXjjzjeXjdqcye != null">
+        #{bqXjjzjeXjdqcye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqXjjzjeXjdjwdqmye != null">
+        #{bqXjjzjeXjdjwdqmye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqXjjzjeXjdjwdqcye != null">
+        #{bqXjjzjeXjdjwdqcye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqXjjzjeXjdjwjzje != null">
+        #{bqXjjzjeXjdjwjzje,jdbcType=DECIMAL},
+      </if>
+      <if test="jyhdXssptglwsddxj != null">
+        #{jyhdXssptglwsddxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdXssptglwsddxj != null">
+        #{bqJyhdXssptglwsddxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdCzwxhqtshdxjje != null">
+        #{bqTzhdCzwxhqtshdxjje,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdCzwxhqtshdxjje != null">
+        #{tzhdCzwxhqtshdxjje,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdCzzgsjqtzfdxjje != null">
+        #{tzhdCzzgsjqtzfdxjje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdCzzgsjqtzfdxjje != null">
+        #{bqTzhdCzzgsjqtzfdxjje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdGjgdwxhqtzfdxj != null">
+        #{bqTzhdGjgdwxhqtzfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdGjgdwxhqtzfdxj != null">
+        #{tzhdGjgdwxhqtzfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdQdzgsjqtzfdxjje != null">
+        #{tzhdQdzgsjqtzfdxjje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdQdzgsjqtzfdxjje != null">
+        #{bqTzhdQdzgsjqtzfdxjje,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdZgszfgllr != null">
+        #{czhdZgszfgllr,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdZgszfgllr != null">
+        #{bqCzhdZgszfgllr,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdCzhdcsdxjllje != null">
+        #{czhdCzhdcsdxjllje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdCzhdcsdxjllje != null">
+        #{bqCzhdCzhdcsdxjllje,jdbcType=DECIMAL},
+      </if>
+      <if test="xjjxjdjwjzje != null">
+        #{xjjxjdjwjzje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqXjjxjdjwjzje != null">
+        #{bqXjjxjdjwjzje,jdbcType=DECIMAL},
+      </if>
+      <if test="qcxjjxjdjwye != null">
+        #{qcxjjxjdjwye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqQcxjjxjdjwye != null">
+        #{bqQcxjjxjdjwye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqQmxjjxjdjwye != null">
+        #{bqQmxjjxjdjwye,jdbcType=DECIMAL},
+      </if>
+      <if test="qmxjjxjdjwye != null">
+        #{qmxjjxjdjwye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdZgsxssddxj != null">
+        #{bqCzhdZgsxssddxj,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdZgsxssddxj != null">
+        #{czhdZgsxssddxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqZgsxjje != null">
+        #{bqZgsxjje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqQdzgsxjje != null">
+        #{bqQdzgsxjje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlr != null">
+        #{bqJlr,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJtdzcjz != null">
+        #{bqJtdzcjz,jdbcType=DECIMAL},
+      </if>
+      <if test="bqGdzczj != null">
+        #{bqGdzczj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqWxzctx != null">
+        #{bqWxzctx,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCqdtfytx != null">
+        #{bqCqdtfytx,jdbcType=DECIMAL},
+      </if>
+      <if test="bqDtfyjs != null">
+        #{bqDtfyjs,jdbcType=DECIMAL},
+      </if>
+      <if test="bqYtfyzj != null">
+        #{bqYtfyzj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzgdzcwxzc != null">
+        #{bqCzgdzcwxzc,jdbcType=DECIMAL},
+      </if>
+      <if test="bqGdzcbfss != null">
+        #{bqGdzcbfss,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCwfy != null">
+        #{bqCwfy,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzss != null">
+        #{bqTzss,jdbcType=DECIMAL},
+      </if>
+      <if test="bqDyskdx != null">
+        #{bqDyskdx,jdbcType=DECIMAL},
+      </if>
+      <if test="bqChdjs != null">
+        #{bqChdjs,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyxysxmdjs != null">
+        #{bqJyxysxmdjs,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyxyfxmdzj != null">
+        #{bqJyxyfxmdzj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqQt != null">
+        #{bqQt,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdcsdxjllje != null">
+        #{bqJyhdcsdxjllje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqBsjxjsz != null">
+        #{bqBsjxjsz,jdbcType=DECIMAL},
+      </if>
+      <if test="bqZwzwzb != null">
+        #{bqZwzwzb,jdbcType=DECIMAL},
+      </if>
+      <if test="bqYnndqdkzhgszj != null">
+        #{bqYnndqdkzhgszj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqRzzrgdzc != null">
+        #{bqRzzrgdzc,jdbcType=DECIMAL},
+      </if>
+      <if test="bqXjjxjdjwjzjqk != null">
+        #{bqXjjxjdjwjzjqk,jdbcType=DECIMAL},
+      </if>
+      <if test="bqXjdqmye != null">
+        #{bqXjdqmye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJxjdqcye != null">
+        #{bqJxjdqcye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJxjdjwdqmye != null">
+        #{bqJxjdjwdqmye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJxjdjwdqcye != null">
+        #{bqJxjdjwdqcye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqXjjxjdjwjzje2 != null">
+        #{bqXjjxjdjwjzje2,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qst.financial.modle.subject.TBasiCashFlow">
+    update T_BASI_CASH_FLOW
+    <set>
+      <if test="impTime != null">
+        IMP_TIME = #{impTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="impUser != null">
+        IMP_USER = #{impUser,jdbcType=VARCHAR},
+      </if>
+      <if test="batchId != null">
+        BATCH_ID = #{batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        ORG_ID = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="kjyear != null">
+        KJYEAR = #{kjyear,jdbcType=VARCHAR},
+      </if>
+      <if test="kjmoth != null">
+        KJMOTH = #{kjmoth,jdbcType=VARCHAR},
+      </if>
+      <if test="kjyearMoth != null">
+        KJYEAR_MOTH = #{kjyearMoth,jdbcType=VARCHAR},
+      </if>
+      <if test="jedw != null">
+        JEDW = #{jedw,jdbcType=VARCHAR},
+      </if>
+      <if test="jyhdSddxj != null">
+        JYHD_SDDXJ = #{jyhdSddxj,jdbcType=DECIMAL},
+      </if>
+      <if test="jyhdSddsffh != null">
+        JYHD_SDDSFFH = #{jyhdSddsffh,jdbcType=DECIMAL},
+      </if>
+      <if test="jyhdSddqtygdxj != null">
+        JYHD_SDDQTYGDXJ = #{jyhdSddqtygdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="jyhdXjlrxj != null">
+        JYHD_XJLRXJ = #{jyhdXjlrxj,jdbcType=DECIMAL},
+      </if>
+      <if test="jyhdGjzfdxj != null">
+        JYHD_GJZFDXJ = #{jyhdGjzfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="jyhdZfgzgdxj != null">
+        JYHD_ZFGZGDXJ = #{jyhdZfgzgdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="jyhdZfdgxsf != null">
+        JYHD_ZFDGXSF = #{jyhdZfdgxsf,jdbcType=DECIMAL},
+      </if>
+      <if test="jyhdZfdqtdxj != null">
+        JYHD_ZFDQTDXJ = #{jyhdZfdqtdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="jyhdXjlcxj != null">
+        JYHD_XJLCXJ = #{jyhdXjlcxj,jdbcType=DECIMAL},
+      </if>
+      <if test="jyhdJyhdcsdje != null">
+        JYHD_JYHDCSDJE = #{jyhdJyhdcsdje,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdShtzssdxj != null">
+        TZHD_SHTZSSDXJ = #{tzhdShtzssdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdQdsyssdxj != null">
+        TZHD_QDSYSSDXJ = #{tzhdQdsyssdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdSshdxj != null">
+        TZHD_SSHDXJ = #{tzhdSshdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdSddqtygdxj != null">
+        TZHD_SDDQTYGDXJ = #{tzhdSddqtygdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdXjlrxj != null">
+        TZHD_XJLRXJ = #{tzhdXjlrxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdSzfdxj != null">
+        TZHD_SZFDXJ = #{tzhdSzfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdTzszfdxj != null">
+        TZHD_TZSZFDXJ = #{tzhdTzszfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdZfqtdxj != null">
+        TZHD_ZFQTDXJ = #{tzhdZfqtdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdXjlcxj != null">
+        TZHD_XJLCXJ = #{tzhdXjlcxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdTzhdscsdxjllje != null">
+        TZHD_TZHDSCSDXJLLJE = #{tzhdTzhdscsdxjllje,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdXstzssddxj != null">
+        CZHD_XSTZSSDDXJ = #{czhdXstzssddxj,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdJkssddxj != null">
+        CZHD_JKSSDDXJ = #{czhdJkssddxj,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdSdqtygdxj != null">
+        CZHD_SDQTYGDXJ = #{czhdSdqtygdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdXjlrxj != null">
+        CZHD_XJLRXJ = #{czhdXjlrxj,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdChzwszfdxj != null">
+        CZHD_CHZWSZFDXJ = #{czhdChzwszfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdFpglszfdxj != null">
+        CZHD_FPGLSZFDXJ = #{czhdFpglszfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdZfqtygdxj != null">
+        CZHD_ZFQTYGDXJ = #{czhdZfqtygdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdXjlcxj != null">
+        CZHD_XJLCXJ = #{czhdXjlcxj,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdZchdxjllje != null">
+        CZHD_ZCHDXJLLJE = #{czhdZchdxjllje,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdHlbdxjdyx != null">
+        CZHD_HLBDXJDYX = #{czhdHlbdxjdyx,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdXjjxjdwjjze != null">
+        CZHD_XJJXJDWJJZE = #{czhdXjjxjdwjjze,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdJlr != null">
+        JLRJYHD_JLR = #{jlrjyhdJlr,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdJtzcjzzb != null">
+        JLRJYHD_JTZCJZZB = #{jlrjyhdJtzcjzzb,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdGdzczj != null">
+        JLRJYHD_GDZCZJ = #{jlrjyhdGdzczj,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdWxzctx != null">
+        JLRJYHD_WXZCTX = #{jlrjyhdWxzctx,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdCqdtfytx != null">
+        JLRJYHD_CQDTFYTX = #{jlrjyhdCqdtfytx,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdDtfyjs != null">
+        JLRJYHD_DTFYJS = #{jlrjyhdDtfyjs,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdYtfyzj != null">
+        JLRJYHD_YTFYZJ = #{jlrjyhdYtfyzj,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdCqzcdss != null">
+        JLRJYHD_CQZCDSS = #{jlrjyhdCqzcdss,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdGdzcbfss != null">
+        JLRJYHD_GDZCBFSS = #{jlrjyhdGdzcbfss,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdCwfy != null">
+        JLRJYHD_CWFY = #{jlrjyhdCwfy,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdTzss != null">
+        JLRJYHD_TZSS = #{jlrjyhdTzss,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdDysdx != null">
+        JLRJYHD_DYSDX = #{jlrjyhdDysdx,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdChdjs != null">
+        JLRJYHD_CHDJS = #{jlrjyhdChdjs,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdJyxysxmjs != null">
+        JLRJYHD_JYXYSXMJS = #{jlrjyhdJyxysxmjs,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdJyxyfxmzj != null">
+        JLRJYHD_JYXYFXMZJ = #{jlrjyhdJyxyfxmzj,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdOhters != null">
+        JLRJYHD_OHTERS = #{jlrjyhdOhters,jdbcType=DECIMAL},
+      </if>
+      <if test="jlrjyhdJyhdcsxjllje != null">
+        JLRJYHD_JYHDCSXJLLJE = #{jlrjyhdJyhdcsxjllje,jdbcType=DECIMAL},
+      </if>
+      <if test="bsjxjZwzwzb != null">
+        BSJXJ_ZWZWZB = #{bsjxjZwzwzb,jdbcType=DECIMAL},
+      </if>
+      <if test="bsjxjYnndqzq != null">
+        BSJXJ_YNNDQZQ = #{bsjxjYnndqzq,jdbcType=DECIMAL},
+      </if>
+      <if test="bsjxjRzzrgdzc != null">
+        BSJXJ_RZZRGDZC = #{bsjxjRzzrgdzc,jdbcType=DECIMAL},
+      </if>
+      <if test="xjjzjeXjqmye != null">
+        XJJZJE_XJQMYE = #{xjjzjeXjqmye,jdbcType=DECIMAL},
+      </if>
+      <if test="xjjzjeXjdqcye != null">
+        XJJZJE_XJDQCYE = #{xjjzjeXjdqcye,jdbcType=DECIMAL},
+      </if>
+      <if test="xjjzjeXjdjwdqmye != null">
+        XJJZJE_XJDJWDQMYE = #{xjjzjeXjdjwdqmye,jdbcType=DECIMAL},
+      </if>
+      <if test="xjjzjeXjdjwdqcye != null">
+        XJJZJE_XJDJWDQCYE = #{xjjzjeXjdjwdqcye,jdbcType=DECIMAL},
+      </if>
+      <if test="xjjzjeXjdjwjzje != null">
+        XJJZJE_XJDJWJZJE = #{xjjzjeXjdjwjzje,jdbcType=DECIMAL},
+      </if>
+      <if test="accountPortType != null">
+        account_port_type = #{accountPortType,jdbcType=BIGINT},
+      </if>
+      <if test="formatFlag != null">
+        FORMAT_FLAG = #{formatFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="bqJyhdSddxj != null">
+        BQ_JYHD_SDDXJ = #{bqJyhdSddxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdSddsffh != null">
+        BQ_JYHD_SDDSFFH = #{bqJyhdSddsffh,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdSddqtygdxj != null">
+        BQ_JYHD_SDDQTYGDXJ = #{bqJyhdSddqtygdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdXjlrxj != null">
+        BQ_JYHD_XJLRXJ = #{bqJyhdXjlrxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdGjzfdxj != null">
+        BQ_JYHD_GJZFDXJ = #{bqJyhdGjzfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdZfgzgdxj != null">
+        BQ_JYHD_ZFGZGDXJ = #{bqJyhdZfgzgdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdZfdgxsf != null">
+        BQ_JYHD_ZFDGXSF = #{bqJyhdZfdgxsf,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdZfdqtdxj != null">
+        BQ_JYHD_ZFDQTDXJ = #{bqJyhdZfdqtdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdXjlcxj != null">
+        BQ_JYHD_XJLCXJ = #{bqJyhdXjlcxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdJyhdcsdje != null">
+        BQ_JYHD_JYHDCSDJE = #{bqJyhdJyhdcsdje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdShtzssdxj != null">
+        BQ_TZHD_SHTZSSDXJ = #{bqTzhdShtzssdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdQdsyssdxj != null">
+        BQ_TZHD_QDSYSSDXJ = #{bqTzhdQdsyssdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdSshdxj != null">
+        BQ_TZHD_SSHDXJ = #{bqTzhdSshdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdSddqtygdxj != null">
+        BQ_TZHD_SDDQTYGDXJ = #{bqTzhdSddqtygdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdXjlrxj != null">
+        BQ_TZHD_XJLRXJ = #{bqTzhdXjlrxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdSzfdxj != null">
+        BQ_TZHD_SZFDXJ = #{bqTzhdSzfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdTzszfdxj != null">
+        BQ_TZHD_TZSZFDXJ = #{bqTzhdTzszfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdZfqtdxj != null">
+        BQ_TZHD_ZFQTDXJ = #{bqTzhdZfqtdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdXjlcxj != null">
+        BQ_TZHD_XJLCXJ = #{bqTzhdXjlcxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdTzhdscsdxjllje != null">
+        BQ_TZHD_TZHDSCSDXJLLJE = #{bqTzhdTzhdscsdxjllje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdXstzssddxj != null">
+        BQ_CZHD_XSTZSSDDXJ = #{bqCzhdXstzssddxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdJkssddxj != null">
+        BQ_CZHD_JKSSDDXJ = #{bqCzhdJkssddxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdSdqtygdxj != null">
+        BQ_CZHD_SDQTYGDXJ = #{bqCzhdSdqtygdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdXjlrxj != null">
+        BQ_CZHD_XJLRXJ = #{bqCzhdXjlrxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdChzwszfdxj != null">
+        BQ_CZHD_CHZWSZFDXJ = #{bqCzhdChzwszfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdFpglszfdxj != null">
+        BQ_CZHD_FPGLSZFDXJ = #{bqCzhdFpglszfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdZfqtygdxj != null">
+        BQ_CZHD_ZFQTYGDXJ = #{bqCzhdZfqtygdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdXjlcxj != null">
+        BQ_CZHD_XJLCXJ = #{bqCzhdXjlcxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdZchdxjllje != null">
+        BQ_CZHD_ZCHDXJLLJE = #{bqCzhdZchdxjllje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdHlbdxjdyx != null">
+        BQ_CZHD_HLBDXJDYX = #{bqCzhdHlbdxjdyx,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdXjjxjdwjjze != null">
+        BQ_CZHD_XJJXJDWJJZE = #{bqCzhdXjjxjdwjjze,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdJlr != null">
+        BQ_JLRJYHD_JLR = #{bqJlrjyhdJlr,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdJtzcjzzb != null">
+        BQ_JLRJYHD_JTZCJZZB = #{bqJlrjyhdJtzcjzzb,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdGdzczj != null">
+        BQ_JLRJYHD_GDZCZJ = #{bqJlrjyhdGdzczj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdWxzctx != null">
+        BQ_JLRJYHD_WXZCTX = #{bqJlrjyhdWxzctx,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdCqdtfytx != null">
+        BQ_JLRJYHD_CQDTFYTX = #{bqJlrjyhdCqdtfytx,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdDtfyjs != null">
+        BQ_JLRJYHD_DTFYJS = #{bqJlrjyhdDtfyjs,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdYtfyzj != null">
+        BQ_JLRJYHD_YTFYZJ = #{bqJlrjyhdYtfyzj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdCqzcdss != null">
+        BQ_JLRJYHD_CQZCDSS = #{bqJlrjyhdCqzcdss,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdGdzcbfss != null">
+        BQ_JLRJYHD_GDZCBFSS = #{bqJlrjyhdGdzcbfss,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdCwfy != null">
+        BQ_JLRJYHD_CWFY = #{bqJlrjyhdCwfy,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdTzss != null">
+        BQ_JLRJYHD_TZSS = #{bqJlrjyhdTzss,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdDysdx != null">
+        BQ_JLRJYHD_DYSDX = #{bqJlrjyhdDysdx,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdChdjs != null">
+        BQ_JLRJYHD_CHDJS = #{bqJlrjyhdChdjs,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdJyxysxmjs != null">
+        BQ_JLRJYHD_JYXYSXMJS = #{bqJlrjyhdJyxysxmjs,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdJyxyfxmzj != null">
+        BQ_JLRJYHD_JYXYFXMZJ = #{bqJlrjyhdJyxyfxmzj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdOhters != null">
+        BQ_JLRJYHD_OHTERS = #{bqJlrjyhdOhters,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlrjyhdJyhdcsxjllje != null">
+        BQ_JLRJYHD_JYHDCSXJLLJE = #{bqJlrjyhdJyhdcsxjllje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqBsjxjZwzwzb != null">
+        BQ_BSJXJ_ZWZWZB = #{bqBsjxjZwzwzb,jdbcType=DECIMAL},
+      </if>
+      <if test="bqBsjxjYnndqzq != null">
+        BQ_BSJXJ_YNNDQZQ = #{bqBsjxjYnndqzq,jdbcType=DECIMAL},
+      </if>
+      <if test="bqBsjxjRzzrgdzc != null">
+        BQ_BSJXJ_RZZRGDZC = #{bqBsjxjRzzrgdzc,jdbcType=DECIMAL},
+      </if>
+      <if test="bqXjjzjeXjqmye != null">
+        BQ_XJJZJE_XJQMYE = #{bqXjjzjeXjqmye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqXjjzjeXjdqcye != null">
+        BQ_XJJZJE_XJDQCYE = #{bqXjjzjeXjdqcye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqXjjzjeXjdjwdqmye != null">
+        BQ_XJJZJE_XJDJWDQMYE = #{bqXjjzjeXjdjwdqmye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqXjjzjeXjdjwdqcye != null">
+        BQ_XJJZJE_XJDJWDQCYE = #{bqXjjzjeXjdjwdqcye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqXjjzjeXjdjwjzje != null">
+        BQ_XJJZJE_XJDJWJZJE = #{bqXjjzjeXjdjwjzje,jdbcType=DECIMAL},
+      </if>
+      <if test="jyhdXssptglwsddxj != null">
+        JYHD_XSSPTGLWSDDXJ = #{jyhdXssptglwsddxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdXssptglwsddxj != null">
+        BQ_JYHD_XSSPTGLWSDDXJ = #{bqJyhdXssptglwsddxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdCzwxhqtshdxjje != null">
+        BQ_TZHD_CZWXHQTSHDXJJE = #{bqTzhdCzwxhqtshdxjje,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdCzwxhqtshdxjje != null">
+        TZHD_CZWXHQTSHDXJJE = #{tzhdCzwxhqtshdxjje,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdCzzgsjqtzfdxjje != null">
+        TZHD_CZZGSJQTZFDXJJE = #{tzhdCzzgsjqtzfdxjje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdCzzgsjqtzfdxjje != null">
+        BQ_TZHD_CZZGSJQTZFDXJJE = #{bqTzhdCzzgsjqtzfdxjje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdGjgdwxhqtzfdxj != null">
+        BQ_TZHD_GJGDWXHQTZFDXJ = #{bqTzhdGjgdwxhqtzfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdGjgdwxhqtzfdxj != null">
+        TZHD_GJGDWXHQTZFDXJ = #{tzhdGjgdwxhqtzfdxj,jdbcType=DECIMAL},
+      </if>
+      <if test="tzhdQdzgsjqtzfdxjje != null">
+        TZHD_QDZGSJQTZFDXJJE = #{tzhdQdzgsjqtzfdxjje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzhdQdzgsjqtzfdxjje != null">
+        BQ_TZHD_QDZGSJQTZFDXJJE = #{bqTzhdQdzgsjqtzfdxjje,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdZgszfgllr != null">
+        CZHD_ZGSZFGLLR = #{czhdZgszfgllr,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdZgszfgllr != null">
+        BQ_CZHD_ZGSZFGLLR = #{bqCzhdZgszfgllr,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdCzhdcsdxjllje != null">
+        CZHD_CZHDCSDXJLLJE = #{czhdCzhdcsdxjllje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdCzhdcsdxjllje != null">
+        BQ_CZHD_CZHDCSDXJLLJE = #{bqCzhdCzhdcsdxjllje,jdbcType=DECIMAL},
+      </if>
+      <if test="xjjxjdjwjzje != null">
+        XJJXJDJWJZJE = #{xjjxjdjwjzje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqXjjxjdjwjzje != null">
+        BQ_XJJXJDJWJZJE = #{bqXjjxjdjwjzje,jdbcType=DECIMAL},
+      </if>
+      <if test="qcxjjxjdjwye != null">
+        QCXJJXJDJWYE = #{qcxjjxjdjwye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqQcxjjxjdjwye != null">
+        BQ_QCXJJXJDJWYE = #{bqQcxjjxjdjwye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqQmxjjxjdjwye != null">
+        BQ_QMXJJXJDJWYE = #{bqQmxjjxjdjwye,jdbcType=DECIMAL},
+      </if>
+      <if test="qmxjjxjdjwye != null">
+        QMXJJXJDJWYE = #{qmxjjxjdjwye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzhdZgsxssddxj != null">
+        BQ_CZHD_ZGSXSSDDXJ = #{bqCzhdZgsxssddxj,jdbcType=DECIMAL},
+      </if>
+      <if test="czhdZgsxssddxj != null">
+        CZHD_ZGSXSSDDXJ = #{czhdZgsxssddxj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqZgsxjje != null">
+        BQ_ZGSXJJE = #{bqZgsxjje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqQdzgsxjje != null">
+        BQ_QDZGSXJJE = #{bqQdzgsxjje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJlr != null">
+        BQ_JLR = #{bqJlr,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJtdzcjz != null">
+        BQ_JTDZCJZ = #{bqJtdzcjz,jdbcType=DECIMAL},
+      </if>
+      <if test="bqGdzczj != null">
+        BQ_GDZCZJ = #{bqGdzczj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqWxzctx != null">
+        BQ_WXZCTX = #{bqWxzctx,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCqdtfytx != null">
+        BQ_CQDTFYTX = #{bqCqdtfytx,jdbcType=DECIMAL},
+      </if>
+      <if test="bqDtfyjs != null">
+        BQ_DTFYJS = #{bqDtfyjs,jdbcType=DECIMAL},
+      </if>
+      <if test="bqYtfyzj != null">
+        BQ_YTFYZJ = #{bqYtfyzj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCzgdzcwxzc != null">
+        BQ_CZGDZCWXZC = #{bqCzgdzcwxzc,jdbcType=DECIMAL},
+      </if>
+      <if test="bqGdzcbfss != null">
+        BQ_GDZCBFSS = #{bqGdzcbfss,jdbcType=DECIMAL},
+      </if>
+      <if test="bqCwfy != null">
+        BQ_CWFY = #{bqCwfy,jdbcType=DECIMAL},
+      </if>
+      <if test="bqTzss != null">
+        BQ_TZSS = #{bqTzss,jdbcType=DECIMAL},
+      </if>
+      <if test="bqDyskdx != null">
+        BQ_DYSKDX = #{bqDyskdx,jdbcType=DECIMAL},
+      </if>
+      <if test="bqChdjs != null">
+        BQ_CHDJS = #{bqChdjs,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyxysxmdjs != null">
+        BQ_JYXYSXMDJS = #{bqJyxysxmdjs,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyxyfxmdzj != null">
+        BQ_JYXYFXMDZJ = #{bqJyxyfxmdzj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqQt != null">
+        BQ_QT = #{bqQt,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJyhdcsdxjllje != null">
+        BQ_JYHDCSDXJLLJE = #{bqJyhdcsdxjllje,jdbcType=DECIMAL},
+      </if>
+      <if test="bqBsjxjsz != null">
+        BQ_BSJXJSZ = #{bqBsjxjsz,jdbcType=DECIMAL},
+      </if>
+      <if test="bqZwzwzb != null">
+        BQ_ZWZWZB = #{bqZwzwzb,jdbcType=DECIMAL},
+      </if>
+      <if test="bqYnndqdkzhgszj != null">
+        BQ_YNNDQDKZHGSZJ = #{bqYnndqdkzhgszj,jdbcType=DECIMAL},
+      </if>
+      <if test="bqRzzrgdzc != null">
+        BQ_RZZRGDZC = #{bqRzzrgdzc,jdbcType=DECIMAL},
+      </if>
+      <if test="bqXjjxjdjwjzjqk != null">
+        BQ_XJJXJDJWJZJQK = #{bqXjjxjdjwjzjqk,jdbcType=DECIMAL},
+      </if>
+      <if test="bqXjdqmye != null">
+        BQ_XJDQMYE = #{bqXjdqmye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJxjdqcye != null">
+        BQ_JXJDQCYE = #{bqJxjdqcye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJxjdjwdqmye != null">
+        BQ_JXJDJWDQMYE = #{bqJxjdjwdqmye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqJxjdjwdqcye != null">
+        BQ_JXJDJWDQCYE = #{bqJxjdjwdqcye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqXjjxjdjwjzje2 != null">
+        BQ_XJJXJDJWJZJE2 = #{bqXjjxjdjwjzje2,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qst.financial.modle.subject.TBasiCashFlow">
+    update T_BASI_CASH_FLOW
+    set IMP_TIME = #{impTime,jdbcType=TIMESTAMP},
+      IMP_USER = #{impUser,jdbcType=VARCHAR},
+      BATCH_ID = #{batchId,jdbcType=VARCHAR},
+      ORG_ID = #{orgId,jdbcType=VARCHAR},
+      KJYEAR = #{kjyear,jdbcType=VARCHAR},
+      KJMOTH = #{kjmoth,jdbcType=VARCHAR},
+      KJYEAR_MOTH = #{kjyearMoth,jdbcType=VARCHAR},
+      JEDW = #{jedw,jdbcType=VARCHAR},
+      JYHD_SDDXJ = #{jyhdSddxj,jdbcType=DECIMAL},
+      JYHD_SDDSFFH = #{jyhdSddsffh,jdbcType=DECIMAL},
+      JYHD_SDDQTYGDXJ = #{jyhdSddqtygdxj,jdbcType=DECIMAL},
+      JYHD_XJLRXJ = #{jyhdXjlrxj,jdbcType=DECIMAL},
+      JYHD_GJZFDXJ = #{jyhdGjzfdxj,jdbcType=DECIMAL},
+      JYHD_ZFGZGDXJ = #{jyhdZfgzgdxj,jdbcType=DECIMAL},
+      JYHD_ZFDGXSF = #{jyhdZfdgxsf,jdbcType=DECIMAL},
+      JYHD_ZFDQTDXJ = #{jyhdZfdqtdxj,jdbcType=DECIMAL},
+      JYHD_XJLCXJ = #{jyhdXjlcxj,jdbcType=DECIMAL},
+      JYHD_JYHDCSDJE = #{jyhdJyhdcsdje,jdbcType=DECIMAL},
+      TZHD_SHTZSSDXJ = #{tzhdShtzssdxj,jdbcType=DECIMAL},
+      TZHD_QDSYSSDXJ = #{tzhdQdsyssdxj,jdbcType=DECIMAL},
+      TZHD_SSHDXJ = #{tzhdSshdxj,jdbcType=DECIMAL},
+      TZHD_SDDQTYGDXJ = #{tzhdSddqtygdxj,jdbcType=DECIMAL},
+      TZHD_XJLRXJ = #{tzhdXjlrxj,jdbcType=DECIMAL},
+      TZHD_SZFDXJ = #{tzhdSzfdxj,jdbcType=DECIMAL},
+      TZHD_TZSZFDXJ = #{tzhdTzszfdxj,jdbcType=DECIMAL},
+      TZHD_ZFQTDXJ = #{tzhdZfqtdxj,jdbcType=DECIMAL},
+      TZHD_XJLCXJ = #{tzhdXjlcxj,jdbcType=DECIMAL},
+      TZHD_TZHDSCSDXJLLJE = #{tzhdTzhdscsdxjllje,jdbcType=DECIMAL},
+      CZHD_XSTZSSDDXJ = #{czhdXstzssddxj,jdbcType=DECIMAL},
+      CZHD_JKSSDDXJ = #{czhdJkssddxj,jdbcType=DECIMAL},
+      CZHD_SDQTYGDXJ = #{czhdSdqtygdxj,jdbcType=DECIMAL},
+      CZHD_XJLRXJ = #{czhdXjlrxj,jdbcType=DECIMAL},
+      CZHD_CHZWSZFDXJ = #{czhdChzwszfdxj,jdbcType=DECIMAL},
+      CZHD_FPGLSZFDXJ = #{czhdFpglszfdxj,jdbcType=DECIMAL},
+      CZHD_ZFQTYGDXJ = #{czhdZfqtygdxj,jdbcType=DECIMAL},
+      CZHD_XJLCXJ = #{czhdXjlcxj,jdbcType=DECIMAL},
+      CZHD_ZCHDXJLLJE = #{czhdZchdxjllje,jdbcType=DECIMAL},
+      CZHD_HLBDXJDYX = #{czhdHlbdxjdyx,jdbcType=DECIMAL},
+      CZHD_XJJXJDWJJZE = #{czhdXjjxjdwjjze,jdbcType=DECIMAL},
+      JLRJYHD_JLR = #{jlrjyhdJlr,jdbcType=DECIMAL},
+      JLRJYHD_JTZCJZZB = #{jlrjyhdJtzcjzzb,jdbcType=DECIMAL},
+      JLRJYHD_GDZCZJ = #{jlrjyhdGdzczj,jdbcType=DECIMAL},
+      JLRJYHD_WXZCTX = #{jlrjyhdWxzctx,jdbcType=DECIMAL},
+      JLRJYHD_CQDTFYTX = #{jlrjyhdCqdtfytx,jdbcType=DECIMAL},
+      JLRJYHD_DTFYJS = #{jlrjyhdDtfyjs,jdbcType=DECIMAL},
+      JLRJYHD_YTFYZJ = #{jlrjyhdYtfyzj,jdbcType=DECIMAL},
+      JLRJYHD_CQZCDSS = #{jlrjyhdCqzcdss,jdbcType=DECIMAL},
+      JLRJYHD_GDZCBFSS = #{jlrjyhdGdzcbfss,jdbcType=DECIMAL},
+      JLRJYHD_CWFY = #{jlrjyhdCwfy,jdbcType=DECIMAL},
+      JLRJYHD_TZSS = #{jlrjyhdTzss,jdbcType=DECIMAL},
+      JLRJYHD_DYSDX = #{jlrjyhdDysdx,jdbcType=DECIMAL},
+      JLRJYHD_CHDJS = #{jlrjyhdChdjs,jdbcType=DECIMAL},
+      JLRJYHD_JYXYSXMJS = #{jlrjyhdJyxysxmjs,jdbcType=DECIMAL},
+      JLRJYHD_JYXYFXMZJ = #{jlrjyhdJyxyfxmzj,jdbcType=DECIMAL},
+      JLRJYHD_OHTERS = #{jlrjyhdOhters,jdbcType=DECIMAL},
+      JLRJYHD_JYHDCSXJLLJE = #{jlrjyhdJyhdcsxjllje,jdbcType=DECIMAL},
+      BSJXJ_ZWZWZB = #{bsjxjZwzwzb,jdbcType=DECIMAL},
+      BSJXJ_YNNDQZQ = #{bsjxjYnndqzq,jdbcType=DECIMAL},
+      BSJXJ_RZZRGDZC = #{bsjxjRzzrgdzc,jdbcType=DECIMAL},
+      XJJZJE_XJQMYE = #{xjjzjeXjqmye,jdbcType=DECIMAL},
+      XJJZJE_XJDQCYE = #{xjjzjeXjdqcye,jdbcType=DECIMAL},
+      XJJZJE_XJDJWDQMYE = #{xjjzjeXjdjwdqmye,jdbcType=DECIMAL},
+      XJJZJE_XJDJWDQCYE = #{xjjzjeXjdjwdqcye,jdbcType=DECIMAL},
+      XJJZJE_XJDJWJZJE = #{xjjzjeXjdjwjzje,jdbcType=DECIMAL},
+      account_port_type = #{accountPortType,jdbcType=BIGINT},
+      FORMAT_FLAG = #{formatFlag,jdbcType=VARCHAR},
+      BQ_JYHD_SDDXJ = #{bqJyhdSddxj,jdbcType=DECIMAL},
+      BQ_JYHD_SDDSFFH = #{bqJyhdSddsffh,jdbcType=DECIMAL},
+      BQ_JYHD_SDDQTYGDXJ = #{bqJyhdSddqtygdxj,jdbcType=DECIMAL},
+      BQ_JYHD_XJLRXJ = #{bqJyhdXjlrxj,jdbcType=DECIMAL},
+      BQ_JYHD_GJZFDXJ = #{bqJyhdGjzfdxj,jdbcType=DECIMAL},
+      BQ_JYHD_ZFGZGDXJ = #{bqJyhdZfgzgdxj,jdbcType=DECIMAL},
+      BQ_JYHD_ZFDGXSF = #{bqJyhdZfdgxsf,jdbcType=DECIMAL},
+      BQ_JYHD_ZFDQTDXJ = #{bqJyhdZfdqtdxj,jdbcType=DECIMAL},
+      BQ_JYHD_XJLCXJ = #{bqJyhdXjlcxj,jdbcType=DECIMAL},
+      BQ_JYHD_JYHDCSDJE = #{bqJyhdJyhdcsdje,jdbcType=DECIMAL},
+      BQ_TZHD_SHTZSSDXJ = #{bqTzhdShtzssdxj,jdbcType=DECIMAL},
+      BQ_TZHD_QDSYSSDXJ = #{bqTzhdQdsyssdxj,jdbcType=DECIMAL},
+      BQ_TZHD_SSHDXJ = #{bqTzhdSshdxj,jdbcType=DECIMAL},
+      BQ_TZHD_SDDQTYGDXJ = #{bqTzhdSddqtygdxj,jdbcType=DECIMAL},
+      BQ_TZHD_XJLRXJ = #{bqTzhdXjlrxj,jdbcType=DECIMAL},
+      BQ_TZHD_SZFDXJ = #{bqTzhdSzfdxj,jdbcType=DECIMAL},
+      BQ_TZHD_TZSZFDXJ = #{bqTzhdTzszfdxj,jdbcType=DECIMAL},
+      BQ_TZHD_ZFQTDXJ = #{bqTzhdZfqtdxj,jdbcType=DECIMAL},
+      BQ_TZHD_XJLCXJ = #{bqTzhdXjlcxj,jdbcType=DECIMAL},
+      BQ_TZHD_TZHDSCSDXJLLJE = #{bqTzhdTzhdscsdxjllje,jdbcType=DECIMAL},
+      BQ_CZHD_XSTZSSDDXJ = #{bqCzhdXstzssddxj,jdbcType=DECIMAL},
+      BQ_CZHD_JKSSDDXJ = #{bqCzhdJkssddxj,jdbcType=DECIMAL},
+      BQ_CZHD_SDQTYGDXJ = #{bqCzhdSdqtygdxj,jdbcType=DECIMAL},
+      BQ_CZHD_XJLRXJ = #{bqCzhdXjlrxj,jdbcType=DECIMAL},
+      BQ_CZHD_CHZWSZFDXJ = #{bqCzhdChzwszfdxj,jdbcType=DECIMAL},
+      BQ_CZHD_FPGLSZFDXJ = #{bqCzhdFpglszfdxj,jdbcType=DECIMAL},
+      BQ_CZHD_ZFQTYGDXJ = #{bqCzhdZfqtygdxj,jdbcType=DECIMAL},
+      BQ_CZHD_XJLCXJ = #{bqCzhdXjlcxj,jdbcType=DECIMAL},
+      BQ_CZHD_ZCHDXJLLJE = #{bqCzhdZchdxjllje,jdbcType=DECIMAL},
+      BQ_CZHD_HLBDXJDYX = #{bqCzhdHlbdxjdyx,jdbcType=DECIMAL},
+      BQ_CZHD_XJJXJDWJJZE = #{bqCzhdXjjxjdwjjze,jdbcType=DECIMAL},
+      BQ_JLRJYHD_JLR = #{bqJlrjyhdJlr,jdbcType=DECIMAL},
+      BQ_JLRJYHD_JTZCJZZB = #{bqJlrjyhdJtzcjzzb,jdbcType=DECIMAL},
+      BQ_JLRJYHD_GDZCZJ = #{bqJlrjyhdGdzczj,jdbcType=DECIMAL},
+      BQ_JLRJYHD_WXZCTX = #{bqJlrjyhdWxzctx,jdbcType=DECIMAL},
+      BQ_JLRJYHD_CQDTFYTX = #{bqJlrjyhdCqdtfytx,jdbcType=DECIMAL},
+      BQ_JLRJYHD_DTFYJS = #{bqJlrjyhdDtfyjs,jdbcType=DECIMAL},
+      BQ_JLRJYHD_YTFYZJ = #{bqJlrjyhdYtfyzj,jdbcType=DECIMAL},
+      BQ_JLRJYHD_CQZCDSS = #{bqJlrjyhdCqzcdss,jdbcType=DECIMAL},
+      BQ_JLRJYHD_GDZCBFSS = #{bqJlrjyhdGdzcbfss,jdbcType=DECIMAL},
+      BQ_JLRJYHD_CWFY = #{bqJlrjyhdCwfy,jdbcType=DECIMAL},
+      BQ_JLRJYHD_TZSS = #{bqJlrjyhdTzss,jdbcType=DECIMAL},
+      BQ_JLRJYHD_DYSDX = #{bqJlrjyhdDysdx,jdbcType=DECIMAL},
+      BQ_JLRJYHD_CHDJS = #{bqJlrjyhdChdjs,jdbcType=DECIMAL},
+      BQ_JLRJYHD_JYXYSXMJS = #{bqJlrjyhdJyxysxmjs,jdbcType=DECIMAL},
+      BQ_JLRJYHD_JYXYFXMZJ = #{bqJlrjyhdJyxyfxmzj,jdbcType=DECIMAL},
+      BQ_JLRJYHD_OHTERS = #{bqJlrjyhdOhters,jdbcType=DECIMAL},
+      BQ_JLRJYHD_JYHDCSXJLLJE = #{bqJlrjyhdJyhdcsxjllje,jdbcType=DECIMAL},
+      BQ_BSJXJ_ZWZWZB = #{bqBsjxjZwzwzb,jdbcType=DECIMAL},
+      BQ_BSJXJ_YNNDQZQ = #{bqBsjxjYnndqzq,jdbcType=DECIMAL},
+      BQ_BSJXJ_RZZRGDZC = #{bqBsjxjRzzrgdzc,jdbcType=DECIMAL},
+      BQ_XJJZJE_XJQMYE = #{bqXjjzjeXjqmye,jdbcType=DECIMAL},
+      BQ_XJJZJE_XJDQCYE = #{bqXjjzjeXjdqcye,jdbcType=DECIMAL},
+      BQ_XJJZJE_XJDJWDQMYE = #{bqXjjzjeXjdjwdqmye,jdbcType=DECIMAL},
+      BQ_XJJZJE_XJDJWDQCYE = #{bqXjjzjeXjdjwdqcye,jdbcType=DECIMAL},
+      BQ_XJJZJE_XJDJWJZJE = #{bqXjjzjeXjdjwjzje,jdbcType=DECIMAL},
+      JYHD_XSSPTGLWSDDXJ = #{jyhdXssptglwsddxj,jdbcType=DECIMAL},
+      BQ_JYHD_XSSPTGLWSDDXJ = #{bqJyhdXssptglwsddxj,jdbcType=DECIMAL},
+      BQ_TZHD_CZWXHQTSHDXJJE = #{bqTzhdCzwxhqtshdxjje,jdbcType=DECIMAL},
+      TZHD_CZWXHQTSHDXJJE = #{tzhdCzwxhqtshdxjje,jdbcType=DECIMAL},
+      TZHD_CZZGSJQTZFDXJJE = #{tzhdCzzgsjqtzfdxjje,jdbcType=DECIMAL},
+      BQ_TZHD_CZZGSJQTZFDXJJE = #{bqTzhdCzzgsjqtzfdxjje,jdbcType=DECIMAL},
+      BQ_TZHD_GJGDWXHQTZFDXJ = #{bqTzhdGjgdwxhqtzfdxj,jdbcType=DECIMAL},
+      TZHD_GJGDWXHQTZFDXJ = #{tzhdGjgdwxhqtzfdxj,jdbcType=DECIMAL},
+      TZHD_QDZGSJQTZFDXJJE = #{tzhdQdzgsjqtzfdxjje,jdbcType=DECIMAL},
+      BQ_TZHD_QDZGSJQTZFDXJJE = #{bqTzhdQdzgsjqtzfdxjje,jdbcType=DECIMAL},
+      CZHD_ZGSZFGLLR = #{czhdZgszfgllr,jdbcType=DECIMAL},
+      BQ_CZHD_ZGSZFGLLR = #{bqCzhdZgszfgllr,jdbcType=DECIMAL},
+      CZHD_CZHDCSDXJLLJE = #{czhdCzhdcsdxjllje,jdbcType=DECIMAL},
+      BQ_CZHD_CZHDCSDXJLLJE = #{bqCzhdCzhdcsdxjllje,jdbcType=DECIMAL},
+      XJJXJDJWJZJE = #{xjjxjdjwjzje,jdbcType=DECIMAL},
+      BQ_XJJXJDJWJZJE = #{bqXjjxjdjwjzje,jdbcType=DECIMAL},
+      QCXJJXJDJWYE = #{qcxjjxjdjwye,jdbcType=DECIMAL},
+      BQ_QCXJJXJDJWYE = #{bqQcxjjxjdjwye,jdbcType=DECIMAL},
+      BQ_QMXJJXJDJWYE = #{bqQmxjjxjdjwye,jdbcType=DECIMAL},
+      QMXJJXJDJWYE = #{qmxjjxjdjwye,jdbcType=DECIMAL},
+      BQ_CZHD_ZGSXSSDDXJ = #{bqCzhdZgsxssddxj,jdbcType=DECIMAL},
+      CZHD_ZGSXSSDDXJ = #{czhdZgsxssddxj,jdbcType=DECIMAL},
+      BQ_ZGSXJJE = #{bqZgsxjje,jdbcType=DECIMAL},
+      BQ_QDZGSXJJE = #{bqQdzgsxjje,jdbcType=DECIMAL},
+      BQ_JLR = #{bqJlr,jdbcType=DECIMAL},
+      BQ_JTDZCJZ = #{bqJtdzcjz,jdbcType=DECIMAL},
+      BQ_GDZCZJ = #{bqGdzczj,jdbcType=DECIMAL},
+      BQ_WXZCTX = #{bqWxzctx,jdbcType=DECIMAL},
+      BQ_CQDTFYTX = #{bqCqdtfytx,jdbcType=DECIMAL},
+      BQ_DTFYJS = #{bqDtfyjs,jdbcType=DECIMAL},
+      BQ_YTFYZJ = #{bqYtfyzj,jdbcType=DECIMAL},
+      BQ_CZGDZCWXZC = #{bqCzgdzcwxzc,jdbcType=DECIMAL},
+      BQ_GDZCBFSS = #{bqGdzcbfss,jdbcType=DECIMAL},
+      BQ_CWFY = #{bqCwfy,jdbcType=DECIMAL},
+      BQ_TZSS = #{bqTzss,jdbcType=DECIMAL},
+      BQ_DYSKDX = #{bqDyskdx,jdbcType=DECIMAL},
+      BQ_CHDJS = #{bqChdjs,jdbcType=DECIMAL},
+      BQ_JYXYSXMDJS = #{bqJyxysxmdjs,jdbcType=DECIMAL},
+      BQ_JYXYFXMDZJ = #{bqJyxyfxmdzj,jdbcType=DECIMAL},
+      BQ_QT = #{bqQt,jdbcType=DECIMAL},
+      BQ_JYHDCSDXJLLJE = #{bqJyhdcsdxjllje,jdbcType=DECIMAL},
+      BQ_BSJXJSZ = #{bqBsjxjsz,jdbcType=DECIMAL},
+      BQ_ZWZWZB = #{bqZwzwzb,jdbcType=DECIMAL},
+      BQ_YNNDQDKZHGSZJ = #{bqYnndqdkzhgszj,jdbcType=DECIMAL},
+      BQ_RZZRGDZC = #{bqRzzrgdzc,jdbcType=DECIMAL},
+      BQ_XJJXJDJWJZJQK = #{bqXjjxjdjwjzjqk,jdbcType=DECIMAL},
+      BQ_XJDQMYE = #{bqXjdqmye,jdbcType=DECIMAL},
+      BQ_JXJDQCYE = #{bqJxjdqcye,jdbcType=DECIMAL},
+      BQ_JXJDJWDQMYE = #{bqJxjdjwdqmye,jdbcType=DECIMAL},
+      BQ_JXJDJWDQCYE = #{bqJxjdjwdqcye,jdbcType=DECIMAL},
+      BQ_XJJXJDJWJZJE2 = #{bqXjjxjdjwjzje2,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+    <delete id="deleteByYearMonth" >
+    delete from T_BASI_CASH_FLOW
+    where KJYEAR_MOTH = #{yearMonth,jdbcType=VARCHAR} and account_port_type = #{accountPortType,jdbcType=BIGINT} and  ORG_ID = #{orgId,jdbcType=BIGINT} 
+  </delete>
+  
+    <update id="updateFormatFlagByPrimaryKey" parameterType="java.lang.String">
+	  update T_BASI_CASH_FLOW
+	  set FORMAT_FLAG='${formatFlag}'
+	  where ID='${id}'
+  </update>
+</mapper>

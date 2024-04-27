@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qst.financial.dao.mapper.base.SysResourcesMapper" >
+  <resultMap id="BaseResultMap" type="com.qst.financial.modle.base.SysResourcesModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="res_key" property="resKey" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="res_url" property="resUrl" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="btn" property="btn" jdbcType="VARCHAR" />
+    <result column="order_no" property="orderNo" jdbcType="INTEGER" />
+    <result column="is_hide" property="isHide" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, parent_id, res_key, type, res_url, icon, btn, order_no, is_hide, 
+    description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_resources
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectUserMenu" parameterType="String" resultMap="BaseResultMap">
+	 select
+	 	<include refid="Base_Column_List" />
+	 from 
+	 	t_sys_resources 
+	 where id in
+		(
+			SELECT 
+				res_id as id 
+			FROM 
+			(
+				select res_id, user_id from t_sys_user_action WHERE user_id =  #{user_id}
+					union
+				select res_id, role_id from t_sys_role_action where role_id = (select role_id from t_sys_user_role where user_id =  #{user_id})
+			) 
+				t1 
+			GROUP BY res_id
+		)
+		and (type = 0 or type = 1) and is_hide = 0
+		order by order_no asc
+  </select>
+  
+  <select id="selectRootUserMenu" resultMap="BaseResultMap">
+    select 
+    	<include refid="Base_Column_List" />
+    from 
+    	t_sys_resources 
+    WHERE 
+    	(type = 0 or type = 1)
+    and 
+    	is_hide = 0
+    ORDER BY 
+    	order_no asc 
+  </select>
+  
+  <select id="selectMenuAll" resultMap="BaseResultMap">
+    select 
+    	<include refid="Base_Column_List" />
+    from 
+    	t_sys_resources 
+    WHERE 
+    	is_hide = 0
+    ORDER BY 
+    	order_no asc 
+  </select>
+  
+  <select id="selectUserMenuButton" parameterType="Map" resultMap="BaseResultMap">
+    select 
+    	<include refid="Base_Column_List" />
+    from 
+    	t_sys_resources
+    where 
+    	parent_id = #{parent_id}
+    and id in
+    (
+    	SELECT 
+			res_id as id 
+		FROM 
+		(
+			select res_id, user_id from t_sys_user_action WHERE user_id =  #{user_id}
+				union
+			select res_id, role_id from t_sys_role_action where role_id = (select role_id from t_sys_user_role where user_id =  #{user_id})
+		) 
+			t1 
+		GROUP BY res_id
+    )
+    and 
+    	is_hide = 0 
+    and 
+    	type = 2
+    order by 
+    	order_no asc
+  </select>
+  
+  <select id="selectRootUserMenuButton" parameterType="Map" resultMap="BaseResultMap">
+    select 
+    	<include refid="Base_Column_List" />
+    from 
+    	t_sys_resources
+    where 
+    	parent_id = #{parent_id}
+    and 
+    	is_hide = 0 
+    and 
+    	type = 2
+    order by 
+    	order_no asc
+  </select>
+  
+  <select id="selectByParentId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    	<include refid="Base_Column_List" />
+    from 
+    	t_sys_resources
+    where 
+    	parent_id = #{parentId,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_sys_resources
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <delete id="deleteByParentId" parameterType="java.lang.Integer" >
+    delete from t_sys_resources
+    where parent_id = #{parentId,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.qst.financial.modle.base.SysResourcesModel" >
+    insert into t_sys_resources (id, name, parent_id, 
+      res_key, type, res_url, 
+      icon, btn, order_no, 
+      is_hide, description)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
+      #{resKey,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{resUrl,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=VARCHAR}, #{btn,jdbcType=VARCHAR}, #{orderNo,jdbcType=INTEGER}, 
+      #{isHide,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qst.financial.modle.base.SysResourcesModel" >
+    insert into t_sys_resources
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="resKey != null" >
+        res_key,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="resUrl != null" >
+        res_url,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="btn != null" >
+        btn,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="isHide != null" >
+        is_hide,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="resKey != null" >
+        #{resKey,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="resUrl != null" >
+        #{resUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="btn != null" >
+        #{btn,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="isHide != null" >
+        #{isHide,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qst.financial.modle.base.SysResourcesModel" >
+    update t_sys_resources
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="resKey != null" >
+        res_key = #{resKey,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="resUrl != null" >
+        res_url = #{resUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="btn != null" >
+        btn = #{btn,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="isHide != null" >
+        is_hide = #{isHide,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qst.financial.modle.base.SysResourcesModel" >
+    update t_sys_resources
+    set name = #{name,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      res_key = #{resKey,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      res_url = #{resUrl,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      btn = #{btn,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=INTEGER},
+      is_hide = #{isHide,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

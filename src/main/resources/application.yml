@@ -1,0 +1,154 @@
+﻿spring:
+  application:
+    name: project.artifactId@
+  main:
+    banner-mode: 'off'
+  #thymeleaf: 
+    #mode: HTML5
+    #encoding: UTF-8
+    #content-type: text/html
+    #开发时关闭缓存,不然没法看到实时页面
+    #cache: false
+    #prefix: /templates/
+    #suffix: .html
+  mvc:
+    view:
+      prefix:  /page/
+      suffix: .jsp
+
+spring.mvc.static-path-pattern: /static/**
+spring.resources.static-locations: classpath:/static/
+
+##服务端口
+server:
+  port: 8006
+  tomcat:
+    uri-encoding: UTF-8
+    access_log_enabled: true
+    basedir: target/tomcat
+    
+logging:
+  #path: D:\log\
+  file: /ruanjian/log/my.log
+  #file: my.log
+  level:
+    xatu.zsl: debug #不同目录下的日志可配置不同级别
+    org.springfromework.web: info
+    org.hibernate: error
+    com.qst.financial.dao.mapper: trace
+
+
+
+#配置mode中的编码 资产负债：zcfz 利润：lr 现金流量： xjll 概要：gy 预警：yj 首页报告 home
+mode:
+  zcfz:
+    home: 'G10045'
+    gy: 'G1001'
+    yj: 'G100001'
+  lr:
+    home: 'G20030'
+    gy: 'G2001'
+    yj: 'G200001'
+  xjll:
+    home: 'G30002'
+    gy: 'G30001'
+    yj: '300001'
+
+
+useArea:  #配置全量数据转换后根据code取得数据
+  zzc: '01'   #总资产
+  zfz: '02'    #总负债
+  zqy: '14'  #总权益
+  lr:  #利润表
+    yysy: '21' #营业收入
+    yycb: '22' #营业成本
+    yylr: '23' #营业利润
+    lrze: '24' #利润总额
+    jlr: '25' #净利润
+  xjll:
+    jyje: '42' #经营净额
+    tzje: '43' #投资净额
+    czje: '37' #筹资净额
+    xjze: '39' #现金增额
+    qmye: '41' #期末余额
+
+ 
+#数据库配置
+jdbc:
+#  user: root
+  user: hanjun
+#  password: 123456
+  password: 12345678
+  driverClass: com.mysql.cj.jdbc.Driver								#com.mysql.jdbc.Driver
+#  url: jdbc:mysql://localhost:3306/financial_01?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai                         #120.78.136.169   #39.106.43.33  localhost
+  url: jdbc:mysql://43.139.65.237:3306/financial_01?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai                         #120.78.136.169   #39.106.43.33  localhost
+  maxActive: 20
+  initialSize: 1
+  minIdle: 1
+  maxWai: 600
+  timeBetweenEvictionRunsMillis: 600
+  minEvictableIdleTimeMillis: 3000
+  validationQuery: select 'x'
+  testWhileIdle: true
+  testOnBorrow: false
+  testOnReturn: false
+  poolPreparedStatements: true
+  maxOpenPreparedStatements: 20
+
+#mybatis配置
+mybatis:
+  typeAliasesPackage: com.qst.financial.modle.*
+  xmlResources: classpath:mapper/*.xml
+
+#druid相关
+druid:
+  druid: /druid/*
+  allow: 127.0.0.1
+  deny: 
+  loginUsername: yj
+  loginPassword: 123456
+  urlPatterns: /*
+  initParameter: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+
+#redis相关
+spring.redis.database: 1
+# Redis服务器地址
+spring.redis.host: localhost
+# Redis服务器连接端口
+spring.redis.port: 6379
+# Redis服务器连接密码（默认为空）
+spring.redis.password:
+# 连接池中的最大空闲连接
+spring.redis.pool.max-idle: 8
+# 连接池中的最小空闲连接
+spring.redis.pool.min-idle: 0
+# 连接池最大连接数（使用负值表示没有限制）
+spring.redis.pool.max-active: 8
+# 连接池最大阻塞等待时间（使用负值表示没有限制）
+spring.redis.pool.max-wait: -1
+# 连接超时时间（毫秒）
+spring.redis.timeout: 5000
+ 
+session.time: 1800
+#urls: http://a242g52637.zicp.vip:37187/KissData?method=
+
+#Interceptor相关配置
+interceptor:
+  configs: /**
+  excludeUrl: 
+
+swagger:
+  controllers: com.qst.financial.controller.api
+  title: 财务系统app文档
+  description: APP文档在线实时查看
+  termsOfServiceUrl: https://www.eec-cn.com/
+  version: 1.0
+ 
+#cbs.Ip: http://47.100.124.118
+#cbs.tempPath: C:/upload
+#cbs.imagesPath: file:/C:/upload/
+
+ 
+  
+  
+  

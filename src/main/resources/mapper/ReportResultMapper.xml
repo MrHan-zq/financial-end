@@ -1,0 +1,1780 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.financial.dao.mapper.subject.ReportResultMapper">
+  <resultMap id="baseResultMap" type="com.qst.financial.modle.subject.ReportResult">
+    <id column="id" property="id"/>
+    <result column="RYEAR" property="ryear" />
+    <result column="RMONTH" property="rmonth" />
+    <result column="RYEAR_AND_MONTH" property="ryearAndMonth" />
+    <result column="CODE_NO" property="codeNo" />
+    <result column="DATA_VALUE" property="dataValue" />
+    <result column="ORG_ID" property="orgId" />
+    <result column="data_type" property="dataType"/>
+  </resultMap>
+	
+	<!-- 根据类型得到总值 -->
+  <select id="selectTBSum" parameterType="java.util.Map" resultType="java.math.BigDecimal">
+  	 select sum(DATA_VALUE) from T_REPORT_RESULT a left join T_CODE_LIBR b on a.CODE_NO=b.CODE_NO
+  	 where date(str_to_date(a.RYEAR_AND_MONTH,'%Y-%m')) &gt;=#{startTime} and date(str_to_date(a.RYEAR_AND_MONTH,'%Y-%m'))   &lt;=#{endTime} and use_area=#{useArea}
+  	 and b.data_type=#{dataType} and a.ORG_ID=#{orgId} and b.REPORT_TYPE = #{reportType}
+  </select>
+  
+  	<!-- 根据类型得到总值  无条件查询所有 -->
+  <select id="selectValueSum" parameterType="java.util.Map" resultType="java.math.BigDecimal">
+  	 select sum(DATA_VALUE) from T_REPORT_RESULT a left join T_CODE_LIBR b on a.CODE_NO=b.CODE_NO where b.data_type='0'
+  	  <if test="startTime != null and startTime != '' ">
+  	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTimes != null and endTimes != '' ">
+  	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="reportType != null and reportType != '' ">
+  	 	 and b.REPORT_TYPE = #{reportType}
+  	 </if>
+  	 <if test="useArea != null and useArea != '' ">
+  	 	and b.use_area = #{ useArea , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="orgId != null and orgId != '' ">
+  	 	and a.ORG_ID = #{ orgId , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="dataType != null and dataType != '' ">
+  	 	and b.data_type = #{ dataType , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="likeUseAreas != null and likeUseAreas != '' ">
+  	 	and b.use_area like CONCAT('',#{likeUseAreas},'%') 
+  	 </if>
+  	 <if test="useAreas != null and useAreas.size()>0">
+  	 	and b.use_area in
+  	 	<foreach collection="useAreas" index="index" item="item" open="(" separator="," close=")">  
+       	 #{item}  
+    	</foreach>  
+  	 </if>
+  </select>
+  
+  <select id="selectExpectValueSum" parameterType="java.util.Map" resultType="java.math.BigDecimal">
+  	 select sum(DATA_VALUE) from T_REPORT a left join T_CODE_LIBR b on a.CODE_NO=b.CODE_NO where b.data_type='0'
+  	  <if test="startTime != null and startTime != '' ">
+  	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTimes != null and endTimes != '' ">
+  	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="year != null and year != '' ">
+  	 	  and a.RYEAR=#{year}
+  	 </if>
+  	  <if test="syear != null and syear != '' ">
+  	 	  and a.RYEAR &gt;=#{syear}
+  	 </if> <if test="dyear != null and dyear != '' ">
+  	 	  and a.RYEAR &lt;= #{dyear}
+  	 </if>
+  	 <if test="reportType != null and reportType != '' ">
+  	 	 and b.REPORT_TYPE = #{reportType}
+  	 </if>
+  	 <if test="useArea != null and useArea != '' ">
+  	 	and b.use_area = #{ useArea , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="orgId != null and orgId != '' ">
+  	 	and a.ORG_ID = #{ orgId , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="dataType != null and dataType != '' ">
+  	 	and b.data_type = #{ dataType , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="likeUseAreas != null and likeUseAreas != '' ">
+  	 	and b.use_area like CONCAT('',#{likeUseAreas},'%') 
+  	 </if>
+  	 <if test="useAreas != null and useAreas.size()>0">
+  	 	and b.use_area in
+  	 	<foreach collection="useAreas" index="index" item="item" open="(" separator="," close=")">  
+       	 #{item}  
+    	</foreach>  
+  	 </if>
+  </select>
+  
+  <!-- 查询详情的时候需要 -->
+  <select id="selectAllValueSum" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+  	 select sum(DATA_VALUE) bigSumMoney,a.CODE_NO code,b.CODE_NAME codeName from T_REPORT_RESULT a , T_CODE_LIBR b on
+  	  a.CODE_NO=b.CODE_NO where b.data_type='0'
+  	   <if test="startTime != null and startTime != '' ">
+  	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTimes != null and endTimes != '' ">
+  	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="useArea != null and useArea != '' ">
+  	 	and b.use_area = #{ useArea , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="orgId != null and orgId != '' ">
+  	 	and a.ORG_ID = #{ orgId , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="dataType != null and dataType != '' ">
+  	 	and b.data_type = #{ dataType , jdbcType = VARCHAR}
+  	 </if>
+  </select>
+  <!-- 根据月份查询 -->
+   <select id="selectValueSumByMoth" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+  	 select sum(a.DATA_VALUE) bigSumMoney,a.RMONTH moth,a.RYEAR_AND_MONTH yearMoth,a.ryear year 
+  	 from T_REPORT_RESULT a LEFT JOIN T_CODE_LIBR b on a.CODE_NO=b.CODE_NO where  b.data_type='0'
+  	 <if test=" useAreases != null and useAreases.size()>0">
+		and b.use_area in 
+		<foreach collection="useAreases" item="item" open="(" separator="," close=")"  >
+			#{item}
+		</foreach>
+	</if>
+  	   <if test="startTime != null and startTime != '' ">
+  	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="endTimes != null and endTimes != '' ">
+  	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="useArea != null and useArea != '' ">
+  	 	and b.use_area = #{ useArea , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="orgId != null and orgId != '' ">
+  	 	and a.ORG_ID = #{ orgId , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="dataType != null and dataType != '' ">
+  	 	and b.data_type = #{ dataType , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="isNull != null and isNull != '' ">
+  	 	 group by b.use_area
+  	 </if>
+  	 <if test="isNull == null  ">
+  	 	 group by a.RMONTH ,a.RYEAR_AND_MONTH ,a.ryear
+  	 </if>
+  	 
+  </select>
+  <select id="selectValueSumByName" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+  	 select sum(a.DATA_VALUE) bigSumMoney,sum(a.DATA_VALUE) sumMoney,b.CODE_NAME codeName
+  	 from T_REPORT_RESULT a LEFT JOIN T_CODE_LIBR b on a.CODE_NO=b.CODE_NO where  b.data_type='0'
+  	 <if test=" useAreases != null and useAreases.size()>0">
+		and b.use_area in 
+		<foreach collection="useAreases" item="item" open="(" separator="," close=")"  >
+			#{item}
+		</foreach>
+	</if>
+  	   <if test="startTime != null and startTime != '' ">
+  	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="endTimes != null and endTimes != '' ">
+  	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="useArea != null and useArea != '' ">
+  	 	and b.use_area = #{ useArea , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="orgId != null and orgId != '' ">
+  	 	and a.ORG_ID = #{ orgId , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="dataType != null and dataType != '' ">
+  	 	and b.data_type = #{ dataType , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="isNull != null and isNull != '' ">
+  	 	 group by b.use_area
+  	 </if>
+  	 <if test="isNull == null  ">
+  	 	 group by  b.CODE_NAME
+  	 </if>
+  	 
+  </select>
+  <select id="selectValueSumByMoth2" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+  	 select sum(a.DATA_VALUE) sumMoney,a.RMONTH moth,a.RYEAR_AND_MONTH yearMoth,a.ryear year,b.CODE_NO CODE
+  	 from T_REPORT_RESULT a LEFT JOIN T_CODE_LIBR b on a.CODE_NO=b.CODE_NO where  b.data_type='0'
+  	 <if test="startTime != null and startTime != '' ">
+  	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="endTimes != null and endTimes != '' ">
+  	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="useArea != null and useArea != '' ">
+  	 	and b.use_area = #{ useArea , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="orgId != null and orgId != '' ">
+  	 	and a.ORG_ID = #{ orgId , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="dataType != null and dataType != '' ">
+  	 	and b.data_type = #{ dataType , jdbcType = VARCHAR}
+  	 </if>
+  	 group by a.RMONTH,a.RYEAR_AND_MONTH,a.ryear,b.CODE_NO
+  </select>
+  
+   <!-- 根据年查询 -->
+   <select id="selectValueSumByYear" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+  	 select sum(a.DATA_VALUE) bigSumMoney,a.ryear year 
+  	 from T_REPORT_RESULT a LEFT JOIN T_CODE_LIBR b on a.CODE_NO=b.CODE_NO where  b.data_type='0'
+  	 <if test="time != null and time != '' ">
+  	 	and a.ryear = #{time, jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="useArea != null and useArea != '' ">
+  	 	and b.use_area = #{ useArea , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="orgId != null and orgId != '' ">
+  	 	and a.ORG_ID = #{ orgId , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="dataType != null and dataType != '' ">
+  	 	and b.data_type = #{ dataType , jdbcType = VARCHAR}
+  	 </if>
+  	 group by a.ryear
+  </select>
+  
+  
+  <!-- 得到资产负债详情 -->
+  <select id="selectValueSumDetail" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+  	 SELECT
+		(SELECT CASE WHEN SUM(DATA_VALUE) IS NULL THEN 0 ELSE  SUM(DATA_VALUE) END FROM T_REPORT_RESULT WHERE CODE_NO = b.CODE_NO  
+		<if test="startTime != null and startTime != '' ">
+  	 		 and str_to_date(CONCAT(RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{startTime , jdbcType = VARCHAR}
+  	 	</if>
+  	  	<if test="endTime != null and endTime != '' ">
+  	 		and str_to_date(CONCAT(RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &lt;= #{endTime , jdbcType = VARCHAR}
+  	 	</if>
+  	 	 <if test="endTimes != null and endTimes != '' ">
+  	 	  	and str_to_date(CONCAT(RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') = #{ endTimes , jdbcType = VARCHAR}
+  	 	</if>
+  		<if test="orgId != null and orgId != '' ">
+  	 		and ORG_ID = #{orgId , jdbcType = VARCHAR}
+  		 </if>
+  		) bigSumMoney,
+		b.CODE_NO CODE,
+		b.CODE_NAME codeName,
+		b.is_current isCurrent,
+		b.is_details isDetails,
+		b.data_type dataType,
+		b.survey,
+		b.warn,
+		b.clzz,
+		b.km1 km1,
+		b.km2 km2,
+		b.km3 km3,
+		b.use_area useArea,
+		b.REPORT_TYPE reportType,
+		b.remark remark,
+		b.parent_id parentId
+		FROM
+		T_CODE_LIBR b
+		where b.data_type='0' and b.CODE_NO is not null
+  	 
+  	 <if test="reportType != null and reportType != '' ">
+  	 	and b.report_type = #{reportType , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="dataType != null and dataType != '' ">
+  	 	and b.data_type = #{dataType , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="isCurrent != null and isCurrent != '' ">
+  	 	and b.is_current = #{isCurrent}
+  	 </if>
+  	  <if test="code != null and code != '' ">
+  	 	and b.CODE_NO = #{code}
+  	 </if>
+  	 <if test="useArea != null and useArea != '' ">
+  	 	and b.use_area = #{useArea}
+  	 </if>
+  	  <if test="likeUseAreas != null and likeUseAreas != '' ">
+  	 	and b.use_area like CONCAT('',#{likeUseAreas},'%') and b.use_area!=#{likeUseAreas}
+  	 </if>
+  </select>
+  <select id="selectExpectValueSumDetail" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+  	 SELECT
+		(SELECT CASE WHEN SUM(DATA_VALUE) IS NULL THEN 0 ELSE  SUM(DATA_VALUE) END FROM T_REPORT  WHERE CODE_NO = b.CODE_NO  
+		<if test="startTime != null and startTime != '' ">
+  	 		 and str_to_date(CONCAT(RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{startTime , jdbcType = VARCHAR}
+  	 	</if>
+  	  	<if test="endTime != null and endTime != '' ">
+  	 		and str_to_date(CONCAT(RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &lt;= #{endTime , jdbcType = VARCHAR}
+  	 	</if>
+  	 	 <if test="endTimes != null and endTimes != '' ">
+  	 	  	and str_to_date(CONCAT(RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') = #{ endTimes , jdbcType = VARCHAR}
+  	 	</if>
+  		<if test="orgId != null and orgId != '' ">
+  	 		and ORG_ID = #{orgId , jdbcType = VARCHAR}
+  		 </if>
+  		 <if test="year != null and year != '' ">
+  	 	  and RYEAR=#{year}
+  		 </if>
+  		) BigSumMoney,
+		b.CODE_NO CODE,
+		b.CODE_NAME codeName,
+		b.is_current isCurrent,
+		b.is_details isDetails,
+		b.data_type dataType,
+		b.survey,
+		b.warn,
+		b.clzz,
+		b.use_area useArea,
+		b.REPORT_TYPE reportType
+		FROM
+		T_CODE_LIBR b
+		where b.data_type='0' and b.CODE_NO is not null
+  	 
+  	 <if test="useArea != null and useArea != '' ">
+  	 	and b.use_area = #{useArea , jdbcType = VARCHAR}
+  	 </if>
+  	
+  	 <if test="dataType != null and dataType != '' ">
+  	 	and b.data_type = #{dataType , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="dataType != null and dataType != '' ">
+  	 	and b.data_type = #{dataType , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="isCurrent != null and isCurrent != '' ">
+  	 	and b.is_current = #{isCurrent}
+  	 </if>
+  	  <if test="code != null and code != '' ">
+  	 	and b.CODE_NO = #{code}
+  	 </if>
+  	 <if test="useArea != null and useArea != '' ">
+  	 	and b.use_area = #{useArea}
+  	 </if>
+  	  <if test="likeUseAreas != null and likeUseAreas != '' ">
+  	 	and b.use_area like CONCAT('',#{likeUseAreas},'%') and b.use_area!=#{likeUseAreas}
+  	 </if>
+  </select>
+  
+  <!-- 利润表首页信息获取 -->
+  <select id="selectProfitMainMsg" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+  	SELECT b.CODE_NO CODE,a.DATA_VALUE bigSumMoney,a.RYEAR year , a.RMONTH moth , b.CODE_NAME codeName , a.RYEAR_AND_MONTH yearMoth  FROM T_REPORT_RESULT a , T_CODE_LIBR b 
+	where a.CODE_NO = b.CODE_NO 
+	and b.REPORT_TYPE = #{reportType , jdbcType = VARCHAR}
+	and (
+	(str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{startM1 , jdbcType = DATE} and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &lt;= #{endM1 , jdbcType = DATE})
+	OR 
+	(str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{startM2 , jdbcType = DATE} and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &lt;= #{endM2 , jdbcType = DATE})
+	)
+	and b.data_type is not null 
+	and a.ORG_ID = #{orgId , jdbcType = VARCHAR}
+	ORDER BY b.ID ASC 
+  </select>
+  
+  <!-- 报表详细信息获取 -->
+  <select id="getReportDetailMsg" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+  	SELECT b.CODE_NO CODE,a.DATA_VALUE bigSumMoney,a.RYEAR year , a.RMONTH moth , b.CODE_NAME codeName , 
+  	a.RYEAR_AND_MONTH yearMoth , b.data_type dataType , b.use_area useArea  FROM T_REPORT_RESULT a , T_CODE_LIBR b 
+	where a.CODE_NO = b.CODE_NO
+	<if test="reportType != null and reportType != '' ">
+  	 	and b.REPORT_TYPE = #{reportType , jdbcType = VARCHAR}
+  	</if>
+	and (
+	(str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{startM1 , jdbcType = DATE} and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &lt;= #{endM1 , jdbcType = DATE})
+	<if test="startM2 != null and endM2 != null ">
+	OR 
+	(str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{startM2 , jdbcType = DATE} and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &lt;= #{endM2 , jdbcType = DATE})
+	</if>
+	)
+	and a.ORG_ID = #{orgId , jdbcType = VARCHAR}
+	ORDER BY b.ID ASC 
+  </select>
+  
+   <!-- 报表详细信息获取 -->
+  <select id="getThreeReportDetailMsg" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+  	SELECT b.CODE_NO CODE,a.DATA_VALUE bigSumMoney,a.RYEAR year , a.RMONTH moth , b.CODE_NAME codeName , 
+  	a.RYEAR_AND_MONTH yearMoth , b.data_type dataType , b.REPORT_TYPE reportType  FROM T_CODE_LIBR b left outer join T_REPORT_RESULT a 
+  	on b.CODE_NO = a.CODE_NO  
+  	and (
+	(str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{startM1 , jdbcType = DATE} and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &lt;= #{endM1 , jdbcType = DATE})
+	<if test="startM2 != null and endM2 != null ">
+	OR 
+	(str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{startM2 , jdbcType = DATE} and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &lt;= #{endM2 , jdbcType = DATE})
+	</if>
+	)
+	and a.ORG_ID = #{orgId , jdbcType = VARCHAR}
+	where b.REPORT_TYPE IN ('1','2','3')
+	ORDER BY b.ID ASC 
+  </select>
+  
+  <!-- 通过codeno获取报表详细信息 -->
+  <select id="getReportDetailByCodeNoList" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+  	SELECT b.CODE_NO CODE,a.DATA_VALUE bigSumMoney,a.RYEAR year , a.RMONTH moth ,
+  	 b.CODE_NAME codeName , a.RYEAR_AND_MONTH yearMoth , b.data_type dataType  , b.use_area useArea  FROM T_REPORT_RESULT a , T_CODE_LIBR b 
+	where a.CODE_NO = b.CODE_NO 
+	<if test=" isList == true ">
+		and b.CODE_NO in 
+		<foreach collection="codeNoList" item="item" open="(" separator="," close=")"  >
+			#{item}
+		</foreach>
+	</if>
+	<if test=" isList == false ">
+		and b.CODE_NO = #{codeNo , jdbcType = VARCHAR}
+	</if>
+	and b.REPORT_TYPE = #{reportType , jdbcType = VARCHAR}
+	and (
+	(str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{startM1 , jdbcType = DATE} and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &lt;= #{endM1 , jdbcType = DATE})
+	<if test=" startM2 != null and endM2 != null">
+	OR 
+	(str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{startM2 , jdbcType = DATE} and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &lt;= #{endM2 , jdbcType = DATE})
+	</if>
+	)
+	and a.ORG_ID = #{orgId , jdbcType = VARCHAR}
+	ORDER BY b.ID ASC 
+  </select>
+  
+  <select id="getReportDetailBySubCodes" parameterType="java.util.Map" resultType="com.qst.financial.modle.subject.TKmye">
+	select KJYEAR , KJMOTH , KJYEAR_MOTH kjyearMoth, SUBJECT_CODE subjectCode, SUBJECT_NAME subjectName, BQDFFSE from T_KMYE a where BQDFFSE is not null
+	<if test=" subCodeLists != null ">
+		and a.SUBJECT_CODE in 
+		<foreach collection="subCodeLists" item="item" open="(" separator="," close=")"  >
+			#{item}
+		</foreach>
+	</if>
+	and (
+	(str_to_date(CONCAT(a.KJYEAR_MOTH,'-01'),'%Y-%m-%d') &gt;= #{startM1 , jdbcType = DATE} and str_to_date(CONCAT(a.KJYEAR_MOTH,'-01'),'%Y-%m-%d') &lt;= #{endM1 , jdbcType = DATE})
+	<if test="startM2 != null and endM2 != null ">
+	OR 
+	(str_to_date(CONCAT(a.KJYEAR_MOTH,'-01'),'%Y-%m-%d') &gt;= #{startM2 , jdbcType = DATE} and str_to_date(CONCAT(a.KJYEAR_MOTH,'-01'),'%Y-%m-%d') &lt;= #{endM2 , jdbcType = DATE})
+	</if>
+	)
+	and a.ORG_ID = #{orgId , jdbcType = VARCHAR}
+	order by a.SUBJECT_CODE ASC 
+  </select>
+  
+  <select id="getZJYNCountMsg" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+  	select CODE_NO CODE, sum(a.DATA_VALUE) bigSumMoney from T_REPORT_RESULT a WHERE 1 = 1 
+  	<if test=" codeLists != null ">
+		and a.CODE_NO in 
+		<foreach collection="codeLists" item="item" open="(" separator="," close=")"  >
+			#{item}
+		</foreach>
+	</if>
+	and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{sTime , jdbcType = DATE} and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &lt; #{eTime , jdbcType = DATE}
+	group by CODE_NO
+  </select>
+  
+  <select id="selectOne" parameterType="java.util.Map" resultType="java.math.BigDecimal">
+  	 select max(DATA_VALUE) from T_REPORT_RESULT a where str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') = #{time , jdbcType = DATE} and a.code_no = #{codeNo , jdbcType = VARCHAR}
+  </select>
+  <!--科目余额表相关 -->
+   <select id="selectResultKm" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+   	SELECT 
+   	<if test="left == 'km01' ">
+		SUM(QCJFYE)
+   	</if>
+   	<if test="left == 'km02' ">
+		SUM(QCDFYE)
+   	</if>
+   	<if test="left == 'km03' ">
+		SUM(BQJFFSE)
+   	</if>
+   	<if test="left == 'km04' ">
+		SUM(BQDFFSE)
+   	</if>
+   	<if test="left == 'km05' ">
+		SUM(BNJFLJ)
+   	</if>
+   	<if test="left == 'km06' ">
+		SUM(BNDFLJ)
+   	</if>
+   	<if test="left == 'km07' ">
+		SUM(QMJFYE)
+   	</if>
+   	<if test="left == 'km08' ">
+		SUM(QMDFYE)
+   	</if>  
+   	 sumMoney,
+ 	<if test="left == 'km01' ">
+		SUM(QCJFYE)
+   	</if>
+   	<if test="left == 'km02' ">
+		SUM(QCDFYE)
+   	</if>
+   	<if test="left == 'km03' ">
+		SUM(BQJFFSE)
+   	</if>
+   	<if test="left == 'km04' ">
+		SUM(BQDFFSE)
+   	</if>
+   	<if test="left == 'km05' ">
+		SUM(BNJFLJ)
+   	</if>
+   	<if test="left == 'km06' ">
+		SUM(BNDFLJ)
+   	</if>
+   	<if test="left == 'km07' ">
+		SUM(QMJFYE)
+   	</if>
+   	<if test="left == 'km08' ">
+		SUM(QMDFYE)
+   	</if>    
+   	bigSumMoney,SUBJECT_CODE code,SUBJECT_NAME codeName FROM T_KMYE 
+   	where SUBJECT_CODE is not null
+	<if test=" subCodeLists != null and subCodeLists.size()>0">
+		and SUBJECT_CODE in 
+		<foreach collection="subCodeLists" item="item" open="(" separator="," close=")"  >
+			#{item}
+		</foreach>
+	</if>
+	<if test=" subNameLists != null and subNameLists.size()>0">
+		and SUBJECT_NAME in 
+		<foreach collection="subNameLists" item="item" open="(" separator="," close=")"  >
+			#{item}
+		</foreach>
+	</if>
+	<if test=" notSubNameLists != null and notSubNameLists.size()>0">
+		and SUBJECT_NAME not in 
+		<foreach collection="notSubNameLists" item="item" open="(" separator="," close=")"  >
+			#{item}
+		</foreach>
+	</if>
+	<if test="startTimes != null and startTimes != null ">
+	 	and (str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') = #{startTimes , jdbcType = DATE}
+	 <!--KJYEAR_MOTH = #{startTimes}-->
+	</if>
+	
+	 <if test="startTime != null and startTime != '' ">
+  	 	  and KJYEAR_MOTH &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and KJYEAR_MOTH &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="endTimes != null and endTimes != '' ">
+  	 	  and KJYEAR_MOTH = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+	<if test="orgId != null and orgId != '' ">
+		and ORG_ID = #{orgId , jdbcType = VARCHAR}
+	</if>
+	<if test="subjectCode != null and subjectCode!= '' ">
+		and SUBJECT_CODE =#{subjectCode}
+	</if>
+	<if test="noSubjectCode != null and noSubjectCode != '' ">
+		and SUBJECT_CODE !=#{noSubjectCode}
+	</if>
+	<if test="subjectCodes != null and subjectCodes != '' ">
+		and SUBJECT_CODE LIKE CONCAT ('',#{subjectCodes},'%')
+	</if>
+	<if test="bj != null and bj != '' ">
+		and bj=#{bj}
+	</if>
+	<if test="isNulls != null and isNulls != '' ">
+		and SUBJECT_CODE is not null
+	</if>
+	<if test="bj != null and bj != '' ">
+		and bj=#{bj}
+	</if>
+	<if test="accountPortType != null and accountPortType != '' ">
+		and account_port_type =#{accountPortType}
+	</if>
+	<if test="groupBy != null and groupBy != '' ">
+		GROUP BY SUBJECT_NAME
+	</if>
+	<if test="groupBy ==null ">
+		GROUP BY SUBJECT_CODE
+	</if>
+	
+	order by <if test="left == 'km01' ">
+		SUM(QCJFYE)
+   	</if>
+   	<if test="left == 'km02' ">
+		SUM(QCDFYE)
+   	</if>
+   	<if test="left == 'km03' ">
+		SUM(BQJFFSE)
+   	</if>
+   	<if test="left == 'km04' ">
+		SUM(BQDFFSE)
+   	</if>
+   	<if test="left == 'km05' ">
+		SUM(BNJFLJ)
+   	</if>
+   	<if test="left == 'km06' ">
+		SUM(BNDFLJ)
+   	</if>
+   	<if test="left == 'km07' ">
+		SUM(QMJFYE)
+   	</if>
+   	<if test="left == 'km08' ">
+		SUM(QMDFYE)
+   	</if>    desc
+  </select>
+  <!--前五大综合-->
+ <select id="selectResultKmTop5Sum" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+   	SELECT 
+ 	<if test="left == 'km01' ">
+		SUM(QCJFYE)
+   	</if>
+   	<if test="left == 'km02' ">
+		SUM(QCDFYE)
+   	</if>
+   	<if test="left == 'km03' ">
+		SUM(BQJFFSE)
+   	</if>
+   	<if test="left == 'km04' ">
+		SUM(BQDFFSE)
+   	</if>
+   	<if test="left == 'km05' ">
+		SUM(BNJFLJ)
+   	</if>
+   	<if test="left == 'km06' ">
+		SUM(BNDFLJ)
+   	</if>
+   	<if test="left == 'km07' ">
+		SUM(QMJFYE)
+   	</if>
+   	<if test="left == 'km08' ">
+		SUM(QMDFYE)
+   	</if>    
+   	bigSumMoney FROM T_KMYE 
+   	where SUBJECT_CODE is not null
+	<if test=" subCodeLists != null and subCodeLists.size()>0">
+		and SUBJECT_CODE in 
+		<foreach collection="subCodeLists" item="item" open="(" separator="," close=")"  >
+			#{item}
+		</foreach>
+	</if>
+	<if test=" subNameLists != null and subNameLists.size()>0">
+		and SUBJECT_NAME in 
+		<foreach collection="subNameLists" item="item" open="(" separator="," close=")"  >
+			#{item}
+		</foreach>
+	</if>
+	<if test="startTimes != null and startTimes != null ">
+	 	and (str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') = #{startTimes , jdbcType = DATE}
+	 <!--KJYEAR_MOTH = #{startTimes}-->
+	</if>
+	
+	 <if test="startTime != null and startTime != '' ">
+  	 	  and KJYEAR_MOTH &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and KJYEAR_MOTH &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="endTimes != null and endTimes != '' ">
+  	 	  and KJYEAR_MOTH = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+	<if test="orgId != null and orgId != '' ">
+		and ORG_ID = #{orgId , jdbcType = VARCHAR}
+	</if>
+	<if test="subjectCode != null and subjectCode!= '' ">
+		and SUBJECT_CODE =#{subjectCode}
+	</if>
+	<if test="noSubjectCode != null and noSubjectCode != '' ">
+		and SUBJECT_CODE !=#{noSubjectCode}
+	</if>
+	<if test="subjectCodes != null and subjectCodes != '' ">
+		and SUBJECT_CODE LIKE CONCAT ('',#{subjectCodes},'%')
+	</if>
+	<if test="bj != null and bj != '' ">
+		and bj=#{bj}
+	</if>
+	<if test="isNulls != null and isNulls != '' ">
+		and SUBJECT_CODE is not null
+	</if>
+	<if test="bj != null and bj != '' ">
+		and bj=#{bj}
+	</if>
+	<if test="accountPortType != null and accountPortType != '' ">
+		and account_port_type =#{accountPortType}
+	</if>
+	
+  </select>
+    <!--销售表 -->
+   <select id="selectResultSale" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+   	SELECT 
+   	<if test="left == 'km01' ">
+		SUM(qcjcsl)
+   	</if>
+   	<if test="left == 'km02' ">
+		SUM(qcjcje)
+   	</if>
+   	<if test="left == 'km03' ">
+		SUM(xscksl)
+   	</if>
+   	<if test="left == 'km04' ">
+		SUM(xsckje)
+   	</if>
+   	<if test="left == 'km05' ">
+		SUM(bqthsl)
+   	</if>
+   	<if test="left == 'km06' ">
+		SUM(bqthje)
+   	</if>
+   	<if test="left == 'km07' ">
+		SUM(wgrksl)
+   	</if>
+   	<if test="left == 'km08' ">
+		SUM(wgrkje)
+   	</if>  
+   	
+   	<if test="left == 'km09' ">
+		SUM(qtrksl)
+   	</if>  
+   	<if test="left == 'km10' ">
+		SUM(qtrkje)
+   	</if>  
+   	<if test="left == 'km11' ">
+		SUM(qtcksl)
+   	</if>  
+   	<if test="left == 'km12' ">
+		SUM(qtckje)
+   	</if>  
+   	<if test="left == 'km13' ">
+		SUM(dbrksl)
+   	</if>  
+   	<if test="left == 'km14' ">
+		SUM(dbrkje)
+   	</if>  
+   	<if test="left == 'km15' ">
+		SUM(dbcksl)
+   	</if>  
+   	<if test="left == 'km16' ">
+		SUM(dbckje)
+   	</if>  
+   	<if test="left == 'km17' ">
+		SUM(pyrksl)
+   	</if>  
+   	<if test="left == 'km18' ">
+		SUM(pyrkje)
+   	</if>  
+   	<if test="left == 'km19' ">
+		SUM(pkhssl)
+   	</if> 
+   	
+   	<if test="left == 'km20' ">
+		SUM(pkhsje)
+   	</if>  
+   	<if test="left == 'km21' ">
+		SUM(bqrksl)
+   	</if>  
+   	<if test="left == 'km22' ">
+		SUM(bqrkje)
+   	</if>  
+   	<if test="left == 'km23' ">
+		SUM(bqcksl)
+   	</if>  
+   	<if test="left == 'km24' ">
+		SUM(bqckje)
+   	</if>  
+   	<if test="left == 'km25' ">
+		SUM(qmjcsl)
+   	</if>  
+   	<if test="left == 'km26' ">
+		SUM(qmjcje)
+   	</if>  
+   	<if test="left == 'km27' ">
+		SUM(pjkcsl)
+   	</if>  
+   	<if test="left == 'km28' ">
+		SUM(pjkcje)
+   	</if>  
+   	<if test="left == 'km29' ">
+		SUM(kczzl)
+   	</if>  
+   	<if test="left == 'km30' ">
+		SUM(kczzts)
+   	</if>   
+   	<if test="left == 'km31' ">
+		SUM(pjrk)
+   	</if>  
+   	<if test="left == 'km32' ">
+		SUM(pjck)
+   	</if>     
+   	
+   	 sumMoney,
+ 		<if test="left == 'km01' ">
+		SUM(qcjcsl)
+   	</if>
+   	<if test="left == 'km02' ">
+		SUM(qcjcje)
+   	</if>
+   	<if test="left == 'km03' ">
+		SUM(xscksl)
+   	</if>
+   	<if test="left == 'km04' ">
+		SUM(xsckje)
+   	</if>
+   	<if test="left == 'km05' ">
+		SUM(bqthsl)
+   	</if>
+   	<if test="left == 'km06' ">
+		SUM(bqthje)
+   	</if>
+   	<if test="left == 'km07' ">
+		SUM(wgrksl)
+   	</if>
+   	<if test="left == 'km08' ">
+		SUM(wgrkje)
+   	</if>  
+   	
+   	<if test="left == 'km09' ">
+		SUM(qtrksl)
+   	</if>  
+   	<if test="left == 'km10' ">
+		SUM(qtrkje)
+   	</if>  
+   	<if test="left == 'km11' ">
+		SUM(qtcksl)
+   	</if>  
+   	<if test="left == 'km12' ">
+		SUM(qtckje)
+   	</if>  
+   	<if test="left == 'km13' ">
+		SUM(dbrksl)
+   	</if>  
+   	<if test="left == 'km14' ">
+		SUM(dbrkje)
+   	</if>  
+   	<if test="left == 'km15' ">
+		SUM(dbcksl)
+   	</if>  
+   	<if test="left == 'km16' ">
+		SUM(dbckje)
+   	</if>  
+   	<if test="left == 'km17' ">
+		SUM(pyrksl)
+   	</if>  
+   	<if test="left == 'km18' ">
+		SUM(pyrkje)
+   	</if>  
+   	<if test="left == 'km19' ">
+		SUM(pkhssl)
+   	</if> 
+   	
+   	<if test="left == 'km20' ">
+		SUM(pkhsje)
+   	</if>  
+   	<if test="left == 'km21' ">
+		SUM(bqrksl)
+   	</if>  
+   	<if test="left == 'km22' ">
+		SUM(bqrkje)
+   	</if>  
+   	<if test="left == 'km23' ">
+		SUM(bqcksl)
+   	</if>  
+   	<if test="left == 'km24' ">
+		SUM(bqckje)
+   	</if>  
+   	<if test="left == 'km25' ">
+		SUM(qmjcsl)
+   	</if>  
+   	<if test="left == 'km26' ">
+		SUM(qmjcje)
+   	</if>  
+   	<if test="left == 'km27' ">
+		SUM(pjkcsl)
+   	</if>  
+   	<if test="left == 'km28' ">
+		SUM(pjkcje)
+   	</if>  
+   	<if test="left == 'km29' ">
+		SUM(kczzl)
+   	</if>  
+   	<if test="left == 'km30' ">
+		SUM(kczzts)
+   	</if> 
+   	<if test="left == 'km31' ">
+		SUM(pjrk)
+   	</if>  
+   	<if test="left == 'km32' ">
+		SUM(pjck)
+   	</if>  
+   	bigSumMoney,spbh code,spmc codeName FROM t_buy_sale_base 
+   	where 1=1
+   	<if test=" isNotNull != null and isNotNull.size()>0">
+   		spbh is not null
+   	</if>
+	<if test=" subCodeLists != null and subCodeLists.size()>0">
+		and spbh in 
+		<foreach collection="subCodeLists" item="item" open="(" separator="," close=")"  >
+			#{item}
+		</foreach>
+	</if>
+	<if test="startTimes != null and startTimes != null ">
+	 	and (str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') = #{startTimes , jdbcType = DATE}
+	 <!--KJYEAR_MOTH = #{startTimes}-->
+	</if>
+	
+	 <if test="startTime != null and startTime != '' ">
+  	 	  and KJYEAR_MOTH &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and KJYEAR_MOTH &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="endTimes != null and endTimes != '' ">
+  	 	  and KJYEAR_MOTH = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+	<if test="orgId != null and orgId != null ">
+		and ORG_ID = #{orgId , jdbcType = VARCHAR}
+	</if>
+	<if test="subjectCode != null and subjectCode != '' ">
+		and SUBJECT_CODE =#{subjectCode}
+	</if>
+	<if test="noSubjectCode != null and noSubjectCode != '' ">
+		and spbh !=#{noSubjectCode}
+	</if>
+	<if test="type != null and type != '' ">
+		and type =#{type}
+	</if>
+	<if test="subjectCodes != null and subjectCodes != '' ">
+		and spbh LIKE CONCAT ('',#{subjectCodes},'%')
+	</if>
+	<if test="spmc != null and spmc != '' ">
+		and spmc =#{spmc}
+	</if>
+	<if test="spmcLike != null and spmcLike != '' ">
+		and spmc LIKE CONCAT ('',#{spmcLike},'%')
+	</if>
+	GROUP BY spbh
+	order by 	<if test="left == 'km01' ">
+		SUM(qcjcsl)
+   	</if>
+   	<if test="left == 'km02' ">
+		SUM(qcjcje)
+   	</if>
+   	<if test="left == 'km03' ">
+		SUM(xscksl)
+   	</if>
+   	<if test="left == 'km04' ">
+		SUM(xsckje)
+   	</if>
+   	<if test="left == 'km05' ">
+		SUM(bqthsl)
+   	</if>
+   	<if test="left == 'km06' ">
+		SUM(bqthje)
+   	</if>
+   	<if test="left == 'km07' ">
+		SUM(wgrksl)
+   	</if>
+   	<if test="left == 'km08' ">
+		SUM(wgrkje)
+   	</if>  
+   	
+   	<if test="left == 'km09' ">
+		SUM(qtrksl)
+   	</if>  
+   	<if test="left == 'km10' ">
+		SUM(qtrkje)
+   	</if>  
+   	<if test="left == 'km11' ">
+		SUM(qtcksl)
+   	</if>  
+   	<if test="left == 'km12' ">
+		SUM(qtckje)
+   	</if>  
+   	<if test="left == 'km13' ">
+		SUM(dbrksl)
+   	</if>  
+   	<if test="left == 'km14' ">
+		SUM(dbrkje)
+   	</if>  
+   	<if test="left == 'km15' ">
+		SUM(dbcksl)
+   	</if>  
+   	<if test="left == 'km16' ">
+		SUM(dbckje)
+   	</if>  
+   	<if test="left == 'km17' ">
+		SUM(pyrksl)
+   	</if>  
+   	<if test="left == 'km18' ">
+		SUM(pyrkje)
+   	</if>  
+   	<if test="left == 'km19' ">
+		SUM(pkhssl)
+   	</if> 
+   	
+   	<if test="left == 'km20' ">
+		SUM(pkhsje)
+   	</if>  
+   	<if test="left == 'km21' ">
+		SUM(bqrksl)
+   	</if>  
+   	<if test="left == 'km22' ">
+		SUM(bqrkje)
+   	</if>  
+   	<if test="left == 'km23' ">
+		SUM(bqcksl)
+   	</if>  
+   	<if test="left == 'km24' ">
+		SUM(bqckje)
+   	</if>  
+   	<if test="left == 'km25' ">
+		SUM(qmjcsl)
+   	</if>  
+   	<if test="left == 'km26' ">
+		SUM(qmjcje)
+   	</if>  
+   	<if test="left == 'km27' ">
+		SUM(pjkcsl)
+   	</if>  
+   	<if test="left == 'km28' ">
+		SUM(pjkcje)
+   	</if>  
+   	<if test="left == 'km29' ">
+		SUM(kczzl)
+   	</if>  
+   	<if test="left == 'km30' ">
+		SUM(kczzts)
+   	</if>
+   	<if test="left == 'km31' ">
+		SUM(pjrk)
+   	</if>  
+   	<if test="left == 'km32' ">
+		SUM(pjck)
+   	</if>      desc
+  </select>
+  <!--销售表 -->
+   <select id="selectResultSaleSum" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+   	SELECT 
+ 	<if test="left == 'km01' ">
+		SUM(qcjcsl)
+   	</if>
+   	<if test="left == 'km02' ">
+		SUM(qcjcje)
+   	</if>
+   	<if test="left == 'km03' ">
+		SUM(xscksl)
+   	</if>
+   	<if test="left == 'km04' ">
+		SUM(xsckje)
+   	</if>
+   	<if test="left == 'km05' ">
+		SUM(bqthsl)
+   	</if>
+   	<if test="left == 'km06' ">
+		SUM(bqthje)
+   	</if>
+   	<if test="left == 'km07' ">
+		SUM(wgrksl)
+   	</if>
+   	<if test="left == 'km08' ">
+		SUM(wgrkje)
+   	</if>  
+   	
+   	<if test="left == 'km09' ">
+		SUM(qtrksl)
+   	</if>  
+   	<if test="left == 'km10' ">
+		SUM(qtrkje)
+   	</if>  
+   	<if test="left == 'km11' ">
+		SUM(qtcksl)
+   	</if>  
+   	<if test="left == 'km12' ">
+		SUM(qtckje)
+   	</if>  
+   	<if test="left == 'km13' ">
+		SUM(dbrksl)
+   	</if>  
+   	<if test="left == 'km14' ">
+		SUM(dbrkje)
+   	</if>  
+   	<if test="left == 'km15' ">
+		SUM(dbcksl)
+   	</if>  
+   	<if test="left == 'km16' ">
+		SUM(dbckje)
+   	</if>  
+   	<if test="left == 'km17' ">
+		SUM(pyrksl)
+   	</if>  
+   	<if test="left == 'km18' ">
+		SUM(pyrkje)
+   	</if>  
+   	<if test="left == 'km19' ">
+		SUM(pkhssl)
+   	</if> 
+   	
+   	<if test="left == 'km20' ">
+		SUM(pkhsje)
+   	</if>  
+   	<if test="left == 'km21' ">
+		SUM(bqrksl)
+   	</if>  
+   	<if test="left == 'km22' ">
+		SUM(bqrkje)
+   	</if>  
+   	<if test="left == 'km23' ">
+		SUM(bqcksl)
+   	</if>  
+   	<if test="left == 'km24' ">
+		SUM(bqckje)
+   	</if>  
+   	<if test="left == 'km25' ">
+		SUM(qmjcsl)
+   	</if>  
+   	<if test="left == 'km26' ">
+		SUM(qmjcje)
+   	</if>  
+   	<if test="left == 'km27' ">
+		SUM(pjkcsl)
+   	</if>  
+   	<if test="left == 'km28' ">
+		SUM(pjkcje)
+   	</if>  
+   	<if test="left == 'km29' ">
+		SUM(kczzl)
+   	</if>  
+   	<if test="left == 'km30' ">
+		SUM(kczzts)
+   	</if> 
+   	<if test="left == 'km31' ">
+		SUM(pjrk)
+   	</if>  
+   	<if test="left == 'km32' ">
+		SUM(pjck)
+   	</if>  
+   	 FROM t_buy_sale_base 
+   	where spbh is not null
+	<if test=" subCodeLists != null and subCodeLists.size()>0">
+		and spbh in 
+		<foreach collection="subCodeLists" item="item" open="(" separator="," close=")"  >
+			#{item}
+		</foreach>
+	</if>
+	<if test="startTimes != null and startTimes != null ">
+	 	and (str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') = #{startTimes , jdbcType = DATE}
+	 <!--KJYEAR_MOTH = #{startTimes}-->
+	</if>
+	
+	 <if test="startTime != null and startTime != '' ">
+  	 	  and KJYEAR_MOTH &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and KJYEAR_MOTH &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="endTimes != null and endTimes != '' ">
+  	 	  and KJYEAR_MOTH = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+	<if test="orgId != null and orgId != null ">
+		and ORG_ID = #{orgId , jdbcType = VARCHAR}
+	</if>
+	<if test="subjectCode != null and subjectCode != '' ">
+		and SUBJECT_CODE =#{subjectCode}
+	</if>
+	<if test="noSubjectCode != null and noSubjectCode != '' ">
+		and spbh !=#{noSubjectCode}
+	</if>
+	<if test="type != null and type != '' ">
+		and type !=#{type}
+	</if>
+	<if test="subjectCodes != null and subjectCodes != '' ">
+		and spbh LIKE CONCAT ('',#{subjectCodes},'%')
+	</if>
+
+  </select>
+   <!--销售表 -->
+   <select id="selectResultSaleByYear" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+   	SELECT 
+   	<if test="left == 'km01' ">
+		SUM(qcjcsl)
+   	</if>
+   	<if test="left == 'km02' ">
+		SUM(qcjcje)
+   	</if>
+   	<if test="left == 'km03' ">
+		SUM(xscksl)
+   	</if>
+   	<if test="left == 'km04' ">
+		SUM(xsckje)
+   	</if>
+   	<if test="left == 'km05' ">
+		SUM(bqthsl)
+   	</if>
+   	<if test="left == 'km06' ">
+		SUM(bqthje)
+   	</if>
+   	<if test="left == 'km07' ">
+		SUM(wgrksl)
+   	</if>
+   	<if test="left == 'km08' ">
+		SUM(wgrkje)
+   	</if>  
+   	
+   	<if test="left == 'km09' ">
+		SUM(qtrksl)
+   	</if>  
+   	<if test="left == 'km10' ">
+		SUM(qtrkje)
+   	</if>  
+   	<if test="left == 'km11' ">
+		SUM(qtcksl)
+   	</if>  
+   	<if test="left == 'km12' ">
+		SUM(qtckje)
+   	</if>  
+   	<if test="left == 'km13' ">
+		SUM(dbrksl)
+   	</if>  
+   	<if test="left == 'km14' ">
+		SUM(dbrkje)
+   	</if>  
+   	<if test="left == 'km15' ">
+		SUM(dbcksl)
+   	</if>  
+   	<if test="left == 'km16' ">
+		SUM(dbckje)
+   	</if>  
+   	<if test="left == 'km17' ">
+		SUM(pyrksl)
+   	</if>  
+   	<if test="left == 'km18' ">
+		SUM(pyrkje)
+   	</if>  
+   	<if test="left == 'km19' ">
+		SUM(pkhssl)
+   	</if> 
+   	
+   	<if test="left == 'km20' ">
+		SUM(pkhsje)
+   	</if>  
+   	<if test="left == 'km21' ">
+		SUM(bqrksl)
+   	</if>  
+   	<if test="left == 'km22' ">
+		SUM(bqrkje)
+   	</if>  
+   	<if test="left == 'km23' ">
+		SUM(bqcksl)
+   	</if>  
+   	<if test="left == 'km24' ">
+		SUM(bqckje)
+   	</if>  
+   	<if test="left == 'km25' ">
+		SUM(qmjcsl)
+   	</if>  
+   	<if test="left == 'km26' ">
+		SUM(qmjcje)
+   	</if>  
+   	<if test="left == 'km27' ">
+		SUM(pjkcsl)
+   	</if>  
+   	<if test="left == 'km28' ">
+		SUM(pjkcje)
+   	</if>  
+   	<if test="left == 'km29' ">
+		SUM(kczzl)
+   	</if>  
+   	<if test="left == 'km30' ">
+		SUM(kczzts)
+   	</if>    
+   	<if test="left == 'km31' ">
+		SUM(pjrk)
+   	</if>  
+   	<if test="left == 'km32' ">
+		SUM(pjck)
+   	</if>  
+   	 sumMoney,
+ 		<if test="left == 'km01' ">
+		SUM(qcjcsl)
+   	</if>
+   	<if test="left == 'km02' ">
+		SUM(qcjcje)
+   	</if>
+   	<if test="left == 'km03' ">
+		SUM(xscksl)
+   	</if>
+   	<if test="left == 'km04' ">
+		SUM(xsckje)
+   	</if>
+   	<if test="left == 'km05' ">
+		SUM(bqthsl)
+   	</if>
+   	<if test="left == 'km06' ">
+		SUM(bqthje)
+   	</if>
+   	<if test="left == 'km07' ">
+		SUM(wgrksl)
+   	</if>
+   	<if test="left == 'km08' ">
+		SUM(wgrkje)
+   	</if>  
+   	
+   	<if test="left == 'km09' ">
+		SUM(qtrksl)
+   	</if>  
+   	<if test="left == 'km10' ">
+		SUM(qtrkje)
+   	</if>  
+   	<if test="left == 'km11' ">
+		SUM(qtcksl)
+   	</if>  
+   	<if test="left == 'km12' ">
+		SUM(qtckje)
+   	</if>  
+   	<if test="left == 'km13' ">
+		SUM(dbrksl)
+   	</if>  
+   	<if test="left == 'km14' ">
+		SUM(dbrkje)
+   	</if>  
+   	<if test="left == 'km15' ">
+		SUM(dbcksl)
+   	</if>  
+   	<if test="left == 'km16' ">
+		SUM(dbckje)
+   	</if>  
+   	<if test="left == 'km17' ">
+		SUM(pyrksl)
+   	</if>  
+   	<if test="left == 'km18' ">
+		SUM(pyrkje)
+   	</if>  
+   	<if test="left == 'km19' ">
+		SUM(pkhssl)
+   	</if> 
+   	
+   	<if test="left == 'km20' ">
+		SUM(pkhsje)
+   	</if>  
+   	<if test="left == 'km21' ">
+		SUM(bqrksl)
+   	</if>  
+   	<if test="left == 'km22' ">
+		SUM(bqrkje)
+   	</if>  
+   	<if test="left == 'km23' ">
+		SUM(bqcksl)
+   	</if>  
+   	<if test="left == 'km24' ">
+		SUM(bqckje)
+   	</if>  
+   	<if test="left == 'km25' ">
+		SUM(qmjcsl)
+   	</if>  
+   	<if test="left == 'km26' ">
+		SUM(qmjcje)
+   	</if>  
+   	<if test="left == 'km27' ">
+		SUM(pjkcsl)
+   	</if>  
+   	<if test="left == 'km28' ">
+		SUM(pjkcje)
+   	</if>  
+   	<if test="left == 'km29' ">
+		SUM(kczzl)
+   	</if>  
+   	<if test="left == 'km30' ">
+		SUM(kczzts)
+   	</if> 
+   	<if test="left == 'km31' ">
+		SUM(pjrk)
+   	</if> 
+   	<if test="left == 'km32' ">
+		SUM(pjck)
+   	</if> 
+   	bigSumMoney,spbh code,spmc codeName,KJYEAR_MOTH yearMoth,KJYEAR year,KJMOTH moth FROM t_buy_sale_base 
+   	where 1=1 
+   	<if test="isNulls != null and isNulls != '' ">
+  	 	and  spbh is null 
+  	 </if>
+  	 <if test="isNull == null  ">
+  	 	 and spbh is not null
+  	 </if>
+	<if test=" subCodeLists != null  and subCodeLists.size()>0">
+		and spbh in 
+		<foreach collection="subCodeLists" item="item" open="(" separator="," close=")"  >
+			#{item}
+		</foreach>
+	</if>
+	<if test="startTimes != null and startTimes != null ">
+	 	and (str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') = #{startTimes , jdbcType = DATE}
+	 <!--KJYEAR_MOTH = #{startTimes}-->
+	</if>
+	
+	 <if test="startTime != null and startTime != '' ">
+  	 	  and KJYEAR_MOTH &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and KJYEAR_MOTH &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="endTimes != null and endTimes != '' ">
+  	 	  and KJYEAR_MOTH = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+	<if test="orgId != null and orgId != null ">
+		and ORG_ID = #{orgId , jdbcType = VARCHAR}
+	</if>
+	<if test="subjectCode != null and subjectCode != null ">
+		and SUBJECT_CODE =#{subjectCode}
+	</if>
+	<if test="noSubjectCode != null and noSubjectCode != null ">
+		and spbh !=#{noSubjectCode}
+	</if>
+	<if test="type != null and type != null ">
+		and type =#{type}
+	</if>
+	<if test="notype != null and notype != null ">
+		and type !=#{notype}
+	</if>
+	<if test="subjectCodes != null and subjectCodes != null ">
+		and spbh LIKE CONCAT ('',#{subjectCodes},'%')
+	</if>
+	<if test="spmc != null and spmc != null ">
+		and spmc =#{spmc}
+	</if> 
+	<if test="spmcLike != null and spmcLike != null ">
+		and spmc LIKE CONCAT ('%',#{spmcLike},'%')
+	</if> 
+	GROUP BY KJYEAR_MOTH
+	
+  </select>
+  <!--科目余额表相关 根据年份 -->
+   <select id="selectResultKmByYear" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+   	SELECT 
+   	<if test="left == 'km01' ">
+		SUM(QCJFYE)
+   	</if>
+   	
+   	<if test="left == 'km02' ">
+		SUM(QCDFYE)
+   	</if>
+   	<if test="left == 'km03' ">
+		SUM(BQJFFSE)
+   	</if>
+   	<if test="left == 'km04' ">
+		SUM(BQDFFSE)
+   	</if>
+   	<if test="left == 'km05' ">
+		SUM(BNJFLJ)
+   	</if>
+   	<if test="left == 'km06' ">
+		SUM(BNDFLJ)
+   	</if>
+   	<if test="left == 'km07' ">
+		SUM(QMJFYE)
+   	</if>
+   	<if test="left == 'km08' ">
+		SUM(QMDFYE)
+   	</if>  
+   	 sumMoney,
+ 	<if test="left == 'km01' ">
+		SUM(QCJFYE)
+   	</if>
+   	<if test="left == 'km02' ">
+		SUM(QCDFYE)
+   	</if>
+   	<if test="left == 'km03' ">
+		SUM(BQJFFSE)
+   	</if>
+   	<if test="left == 'km04' ">
+		SUM(BQDFFSE)
+   	</if>
+   	<if test="left == 'km05' ">
+		SUM(BNJFLJ)
+   	</if>
+   	<if test="left == 'km06' ">
+		SUM(BNDFLJ)
+   	</if>
+   	<if test="left == 'km07' ">
+		SUM(QMJFYE)
+   	</if>
+   	<if test="left == 'km08' ">
+		SUM(QMDFYE)
+   	</if>    
+  
+   	bigSumMoney,SUBJECT_CODE code,SUBJECT_NAME codeName,KJYEAR_MOTH yearMoth,KJYEAR year,KJMOTH moth  FROM T_KMYE 
+   	where BQDFFSE is not null
+	<if test=" subCodeLists != null and subCodeLists.size()>0">
+		and SUBJECT_CODE in 
+		<foreach collection="subCodeLists" item="item" open="(" separator="," close=")"  >
+			#{item}
+		</foreach>
+	</if>
+	<if test="startTimes != null and startTimes != null ">
+	 	and (str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') = #{startTimes , jdbcType = DATE}
+	 <!--KJYEAR_MOTH = #{startTimes}-->
+	</if>
+	
+	 <if test="startTime != null and startTime != '' ">
+  	 	  and KJYEAR_MOTH &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and KJYEAR_MOTH &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="endTimes != null and endTimes != '' ">
+  	 	  and KJYEAR_MOTH = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+	<if test="orgId != null and orgId != null ">
+		and ORG_ID = #{orgId , jdbcType = VARCHAR}
+	</if>
+	<if test="subjectCode != null and subjectCode != '' ">
+		and SUBJECT_CODE =#{subjectCode}
+	</if>
+	<if test="noSubjectCode != null and noSubjectCode!= '' ">
+		and SUBJECT_CODE !=#{noSubjectCode}
+	</if>
+	<if test="subjectCodes != null and subjectCodes != '' ">
+		and SUBJECT_CODE LIKE CONCAT ('',#{subjectCodes},'%')
+	</if>
+	<if test="subjectNames != null and subjectNames != '' ">
+		and SUBJECT_NAME LIKE CONCAT ('%',#{subjectNames},'%')
+	</if>
+	<if test="bj != null and bj != '' ">
+		and bj=#{bj}
+	</if>
+	<if test="isNulls != null and isNulls != '' ">
+		and SUBJECT_CODE is not null
+	</if>
+	GROUP BY KJYEAR_MOTH
+	
+  </select>
+	<!--科目余额表相关 -->
+   <select id="selectResultKmTo5" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+   	SELECT <if test="left == 'km01' ">
+		SUM(QCJFYE)
+   	</if>
+   	<if test="left == 'km02' ">
+		SUM(QCDFYE)
+   	</if>
+   	<if test="left == 'km03' ">
+		SUM(BQJFFSE)
+   	</if>
+   	<if test="left == 'km04' ">
+		SUM(BQDFFSE)
+   	</if>
+   	<if test="left == 'km05' ">
+		SUM(BNJFLJ)
+   	</if>
+   	<if test="left == 'km06' ">
+		SUM(BNDFLJ)
+   	</if>
+   	<if test="left == 'km07' ">
+		SUM(QMJFYE)
+   	</if>
+   	<if test="left == 'km08' ">
+		SUM(QMDFYE)
+   	</if>   sumMoney,
+   	<if test="left == 'km01' ">
+		SUM(QCJFYE)
+   	</if>
+   	<if test="left == 'km02' ">
+		SUM(QCDFYE)
+   	</if>
+   	<if test="left == 'km03' ">
+		SUM(BQJFFSE)
+   	</if>
+   	<if test="left == 'km04' ">
+		SUM(BQDFFSE)
+   	</if>
+   	<if test="left == 'km05' ">
+		SUM(BNJFLJ)
+   	</if>
+   	<if test="left == 'km06' ">
+		SUM(BNDFLJ)
+   	</if>
+   	<if test="left == 'km07' ">
+		SUM(QMJFYE)
+   	</if>
+   	<if test="left == 'km08' ">
+		SUM(QMDFYE)
+   	</if>   bigSumMoney, SUBJECT_CODE code,SUBJECT_NAME codeName FROM T_KMYE 
+   	where BQDFFSE is not null
+	<if test=" subCodeLists != null and subCodeLists.size()>0">
+		and SUBJECT_CODE in 
+		<foreach collection="subCodeLists" item="item" open="(" separator="," close=")"  >
+			#{item}
+		</foreach>
+	</if>
+	<if test="startTimes != null and startTimes != null ">
+	 and (str_to_date(CONCAT(a.KJYEAR_MOTH,'-01'),'%Y-%m-%d') = #{startTimes , jdbcType = DATE} 
+	</if>
+	 <if test="startTime != null and startTime != '' ">
+  	 	  and KJYEAR_MOTH &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and KJYEAR_MOTH &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="endTimes != null and endTimes != '' ">
+  	 	  and KJYEAR_MOTH = #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+	<if test="orgId != null and orgId != '' ">
+		and a.ORG_ID = #{orgId , jdbcType = VARCHAR}
+	</if>
+	<if test="subjectCode != null and subjectCode != '' ">
+		and SUBJECT_CODE =#{subjectCode}
+	</if>
+	<if test="noSubjectCode != null and noSubjectCode != '' ">
+		and SUBJECT_CODE !=#{noSubjectCode}
+	</if>
+	<if test="subjectCodes != null and subjectCodes!= '' ">
+		and SUBJECT_CODE LIKE CONCAT ('',#{subjectCode},'%')          
+	</if>
+    GROUP BY SUBJECT_CODE ORDER BY <if test="left == 'km01' ">
+		SUM(QCJFYE)
+   	</if>
+   	<if test="left == 'km02' ">
+		SUM(QCDFYE)
+   	</if>
+   	<if test="left == 'km03' ">
+		SUM(BQJFFSE)
+   	</if>
+   	<if test="left == 'km04' ">
+		SUM(BQDFFSE)
+   	</if>
+   	<if test="left == 'km05' ">
+		SUM(BNJFLJ)
+   	</if>
+   	<if test="left == 'km06' ">
+		SUM(BNDFLJ)
+   	</if>
+   	<if test="left == 'km07' ">
+		SUM(QMJFYE)
+   	</if>
+   	<if test="left == 'km08' ">
+		SUM(QMDFYE)
+   	</if>  DESC
+    <if test="limit != null and limit != '' ">
+		${limit}     
+	</if>
+      
+  </select>
+  <select id="selectStockAge" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+  	select 
+  	<if test="left == 'km01' ">
+		SUM(kcsljb)
+   	</if>
+   	<if test="left == 'km02' ">
+		SUM(kcslcy)
+   	</if>
+   	<if test="left == 'km03' ">
+		SUM(djjb)
+   	</if>
+   	<if test="left == 'km04' ">
+		SUM(djcy)
+   	</if>
+   	<if test="left == 'km05' ">
+		SUM(je)
+   	</if>
+   	<if test="left == 'km06' ">
+		SUM(zeroday_tosixdayjb)
+   	</if>
+   	<if test="left == 'km07' ">
+		SUM(zeroday_tosixdaycy)
+   	</if>
+   	<if test="left == 'km08' ">
+		SUM(zeroday_tosixdayje)
+   	</if>
+   	<if test="left == 'km09' ">
+		SUM(sevendayjb)
+   	</if> 
+   	<if test="left == 'km10' ">
+		SUM(sevendaycy)
+   	</if> 
+   	<if test="left == 'km11' ">
+		SUM(sevendayje)
+   	</if>    sumMoney,
+   	<if test="left == 'km01' ">
+		SUM(kcsljb)
+   	</if>
+   	<if test="left == 'km02' ">
+		SUM(kcslcy)
+   	</if>
+   	<if test="left == 'km03' ">
+		SUM(djjb)
+   	</if>
+   	<if test="left == 'km04' ">
+		SUM(djcy)
+   	</if>
+   	<if test="left == 'km05' ">
+		SUM(je)
+   	</if>
+   	<if test="left == 'km06' ">
+		SUM(zeroday_tosixdayjb)
+   	</if>
+   	<if test="left == 'km07' ">
+		SUM(zeroday_tosixdaycy)
+   	</if>
+   	<if test="left == 'km08' ">
+		SUM(zeroday_tosixdayje)
+   	</if>
+   	<if test="left == 'km09' ">
+		SUM(sevendayjb)
+   	</if> 
+   	<if test="left == 'km10' ">
+		SUM(sevendaycy)
+   	</if> 
+   	<if test="left == 'km11' ">
+		SUM(sevendayje)
+   	</if>    bigSumMoney,one_material_type codeName from t_stock_age 
+   	where 
+   	<if test="isNull != null and isNull != '' ">
+  	 	  two_material_type is null 
+  	 </if>
+  	 <if test="isNull == null  ">
+  	 	  two_material_type is not null
+  	 </if>
+  	  <if test="startTime != null and startTime != '' ">
+  	 	  and KJYEAR_MOTH &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and KJYEAR_MOTH &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="endTimes != null and endTimes != '' ">
+  	 	  and KJYEAR_MOTH = #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	 GROUP BY one_material_type ORDER BY
+  	 <if test="left == 'km01' ">
+		SUM(kcsljb)
+   	</if>
+   	<if test="left == 'km02' ">
+		SUM(kcslcy)
+   	</if>
+   	<if test="left == 'km03' ">
+		SUM(djjb)
+   	</if>
+   	<if test="left == 'km04' ">
+		SUM(djcy)
+   	</if>
+   	<if test="left == 'km05' ">
+		SUM(je)
+   	</if>
+   	<if test="left == 'km06' ">
+		SUM(zeroday_tosixdayjb)
+   	</if>
+   	<if test="left == 'km07' ">
+		SUM(zeroday_tosixdaycy)
+   	</if>
+   	<if test="left == 'km08' ">
+		SUM(zeroday_tosixdayje)
+   	</if>
+   	<if test="left == 'km09' ">
+		SUM(sevendayjb)
+   	</if> 
+   	<if test="left == 'km10' ">
+		SUM(sevendaycy)
+   	</if> 
+   	<if test="left == 'km11' ">
+		SUM(sevendayje)
+   	</if> 
+  	 DESC
+  	 <if test="limit != null and limit != '' ">
+		${limit}     
+	</if>
+  </select>
+  <select id="selectRate" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+  	 select DATA_VALUE sumMoney,DATA_VALUE bigSumMoney,RYEAR_AND_MONTH yearMoth,TYPE code,DATA_NAME codeName  from T_RATE
+  	 where 1=1 
+  	  <if test="startTime != null and startTime != '' ">
+  	 	  and str_to_date(CONCAT(RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and str_to_date(CONCAT(RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTimes != null and endTimes != '' ">
+  	 	  and str_to_date(CONCAT(RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="type != null ">
+  	 	  and TYPE = #{ type , jdbcType = INTEGER}
+  	 </if>
+  	 group by RYEAR_AND_MONTH order by RYEAR_AND_MONTH desc
+  </select>
+</mapper>
+
+
+
+
+

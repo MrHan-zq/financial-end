@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.financial.dao.mapper.subject.TReportResultMapper">
+<insert id="insertTReportResultList" parameterType="java.util.List">
+	  insert into T_REPORT_RESULT 
+	  (
+		  ID, 
+		  RYEAR, 
+		  RMONTH, 
+	      RYEAR_AND_MONTH, 
+	      CODE_NO, 
+	      DATA_VALUE, 
+	      ORG_ID
+		) values
+	  <foreach collection="list" item="item" index="index"  separator=",">  
+          (
+          #{item.id,jdbcType=VARCHAR}, 
+          #{item.ryear,jdbcType=VARCHAR}, 
+          #{item.rmonth,jdbcType=VARCHAR}, 
+	      #{item.ryearAndMonth,jdbcType=VARCHAR}, 
+	      #{item.codeNo,jdbcType=VARCHAR}, 
+	      #{item.dataValue,jdbcType=DECIMAL}, 
+	      #{item.orgId,jdbcType=VARCHAR}
+	      )
+      </foreach> 
+  </insert> 
+  
+   <select id="selectALLCodeMapper" resultType="com.qst.financial.modle.subject.TCodeMapperBean">
+  	 select BASI_FIELD basiField , CODE_NO codeNo from T_CODE_MAPPER 
+  </select>
+  
+  <delete id="deleteData" parameterType="java.util.Map" >
+  	delete from T_REPORT_RESULT where org_id = #{orgId,jdbcType=VARCHAR}
+  	and ryear_and_month = #{yearMonth,jdbcType=VARCHAR} and code_no in (select code_no from T_CODE_LIBR where REPORT_TYPE = #{reportType,jdbcType=VARCHAR}) 
+  </delete>
+  <select id="selectAllByType" resultType="com.qst.financial.modle.subject.TReportResult" parameterType="com.qst.financial.util.tag.InnerPage">
+	SELECT
+	  T1.id,
+	  T1.ryear,
+	  T1.rmonth,
+	  T1.ryear_and_month ryearAndMonth,
+	  T1.code_no codeNo,
+	  T1.data_value dataValue,
+	  T1.org_id orgId
+	FROM T_REPORT_RESULT T1
+	LEFT JOIN
+	    T_CODE_LIBR T2
+	ON T1.code_no = T2.code_no
+	<where>
+		<if test="date.reportType != null and date.reportType != ''">
+			T2.REPORT_TYPE=#{date.reportType,jdbcType=VARCHAR}
+		</if>
+	</where>
+	  ${limit}
+  </select>
+	<select id="selectAllCountByType" resultType="java.lang.Integer" parameterType="java.util.Map">
+		SELECT
+		count(*)
+		FROM T_REPORT_RESULT T1
+		LEFT JOIN
+		T_CODE_LIBR T2
+		ON T1.CODE_NO = T2.CODE_NO
+		<where>
+			<if test="reportType != null and reportType != ''">
+				T2.REPORT_TYPE=#{reportType,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+</mapper>

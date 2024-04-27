@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.financial.dao.mapper.subject.TModeMapper">
+  <resultMap id="BaseResultMap" type="com.qst.financial.modle.subject.TMode">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="REPORT_TYPE" jdbcType="VARCHAR" property="reportType" />
+    <result column="REPORT_CONTEN" jdbcType="VARCHAR" property="reportConten" />
+    <result column="MODE_CONDITION" jdbcType="VARCHAR" property="modeCondition" />
+    <result column="MODE_CONTENT" jdbcType="VARCHAR" property="modeContent" />
+    <result column="MODE_VALUES" jdbcType="VARCHAR" property="modeValues" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="CONDITION_VALUES" jdbcType="VARCHAR" property="conditionValues" />
+    <result column="MODE_AREA" jdbcType="VARCHAR" property="modeArea" />
+    <result column="PX" jdbcType="INTEGER" property="px" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, REPORT_TYPE, REPORT_CONTEN, MODE_CONDITION, MODE_CONTENT, MODE_VALUES, REMARK, 
+    CONDITION_VALUES,MODE_AREA,PX
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_MODE
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKeyBatch" parameterType="java.util.List" >
+    delete from T_MODE
+    where id in 
+    <foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
+		#{item} 
+	</foreach>
+  </delete>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from T_MODE
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.qst.financial.modle.subject.TMode">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into T_MODE (REPORT_TYPE, REPORT_CONTEN, MODE_CONDITION, 
+      MODE_CONTENT, MODE_VALUES, REMARK, 
+      CONDITION_VALUES)
+    values (#{reportType,jdbcType=VARCHAR}, #{reportConten,jdbcType=VARCHAR}, #{modeCondition,jdbcType=VARCHAR}, 
+      #{modeContent,jdbcType=VARCHAR}, #{modeValues,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{conditionValues,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qst.financial.modle.subject.TMode">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into T_MODE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="reportType != null">
+        REPORT_TYPE,
+      </if>
+      <if test="reportConten != null">
+        REPORT_CONTEN,
+      </if>
+      <if test="modeCondition != null">
+        MODE_CONDITION,
+      </if>
+      <if test="modeContent != null">
+        MODE_CONTENT,
+      </if>
+      <if test="modeValues != null">
+        MODE_VALUES,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="conditionValues != null">
+        CONDITION_VALUES,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="reportType != null">
+        #{reportType,jdbcType=VARCHAR},
+      </if>
+      <if test="reportConten != null">
+        #{reportConten,jdbcType=VARCHAR},
+      </if>
+      <if test="modeCondition != null">
+        #{modeCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="modeContent != null">
+        #{modeContent,jdbcType=VARCHAR},
+      </if>
+      <if test="modeValues != null">
+        #{modeValues,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionValues != null">
+        #{conditionValues,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qst.financial.modle.subject.TMode">
+    update T_MODE
+    <set>
+      <if test="reportType != null">
+        REPORT_TYPE = #{reportType,jdbcType=VARCHAR},
+      </if>
+      <if test="reportConten != null">
+        REPORT_CONTEN = #{reportConten,jdbcType=VARCHAR},
+      </if>
+      <if test="modeCondition != null">
+        MODE_CONDITION = #{modeCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="modeContent != null">
+        MODE_CONTENT = #{modeContent,jdbcType=VARCHAR},
+      </if>
+      <if test="modeValues != null">
+        MODE_VALUES = #{modeValues,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionValues != null">
+        CONDITION_VALUES = #{conditionValues,jdbcType=VARCHAR},
+      </if>
+       <if test="modeArea != null">
+        MODE_AREA = #{modeArea,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qst.financial.modle.subject.TMode">
+    update T_MODE
+    set REPORT_TYPE = #{reportType,jdbcType=VARCHAR},
+      REPORT_CONTEN = #{reportConten,jdbcType=VARCHAR},
+      MODE_CONDITION = #{modeCondition,jdbcType=VARCHAR},
+      MODE_CONTENT = #{modeContent,jdbcType=VARCHAR},
+      MODE_VALUES = #{modeValues,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CONDITION_VALUES = #{conditionValues,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="getTModeInfo" parameterType="java.util.Map" resultMap="BaseResultMap">
+		SELECT ID , REPORT_TYPE , MODE_CONDITION , MODE_CONTENT , MODE_VALUES , MODE_AREA  FROM T_MODE 
+		WHERE 1 = 1 
+		<if test = " reportType != null and reportType != '' ">
+			AND REPORT_TYPE = #{ reportType , jdbcType = VARCHAR}
+		</if>
+		<if test = " modeArea != null and modeArea != '' ">
+			AND MODE_AREA = #{ modeArea , jdbcType = VARCHAR}
+		</if>
+		<if test = " id != null ">
+			AND ID = #{ reportType , jdbcType = VARCHAR}
+		</if>
+		
+		ORDER BY PX ASC 
+	</select>
+</mapper>

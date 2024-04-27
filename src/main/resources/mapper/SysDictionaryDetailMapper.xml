@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qst.financial.dao.mapper.base.SysDictionaryDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.qst.financial.modle.base.SysDictionaryDetailModel" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="value" property="value" jdbcType="VARCHAR" />
+    <result column="dictionary_id" property="dictionaryId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, remark, value, dictionary_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_dictionary_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectByDictionaryId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    	<include refid="Base_Column_List" />
+    from 
+    	t_sys_dictionary_detail
+    where 
+    	dictionary_id = #{dictionaryId,jdbcType=BIGINT}
+  </select>
+   <select id="selectByDic" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select  a.id, a.name, a.remark, a.value, a.dictionary_id from 
+    	t_sys_dictionary_detail a left join t_sys_dictionary b on a.dictionary_id=b.id where 1=1
+    	<if test="enName != null and enName!='' " >
+    		and b.en_name=#{enName}
+    	</if>
+    	<if test="cnName != null and cnName!='' " >
+    		and b.cn_name=#{cnName}
+    	</if>
+    	<!--dictionary_id = #{dictionaryId,jdbcType=BIGINT}-->
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_sys_dictionary_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <delete id="deleteByDictionaryId" parameterType="java.lang.Long" >
+    delete from t_sys_dictionary_detail
+    where dictionary_id = #{dictionaryId,jdbcType=BIGINT}
+  </delete>
+  
+  <delete id="deleteByDictionaryIdBatch" parameterType="java.util.List" >
+    delete from t_sys_dictionary_detail
+    where dictionary_id in 
+    <foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
+		#{item} 
+	</foreach>
+  </delete>
+  
+  <insert id="insert" parameterType="com.qst.financial.modle.base.SysDictionaryDetailModel" >
+    insert into t_sys_dictionary_detail (id, name, remark, 
+      value, dictionary_id)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{value,jdbcType=VARCHAR}, #{dictionaryId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qst.financial.modle.base.SysDictionaryDetailModel" >
+    insert into t_sys_dictionary_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+      <if test="dictionaryId != null" >
+        dictionary_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="dictionaryId != null" >
+        #{dictionaryId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <insert id="insertBatchDictionaryDetail" useGeneratedKeys="true" parameterType="java.util.List">
+		insert into 
+			t_sys_dictionary_detail
+		(
+			name, 
+			remark, 
+      		value, 
+      		dictionary_id
+		)
+			values  
+		<foreach collection="list" item="item" index="index" separator="," >  
+        (
+    		#{item.name},
+    		#{item.remark},
+    		#{item.value},
+    		#{item.dictionaryId}
+        )
+    	</foreach> 
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.qst.financial.modle.base.SysDictionaryDetailModel" >
+    update t_sys_dictionary_detail
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="dictionaryId != null" >
+        dictionary_id = #{dictionaryId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qst.financial.modle.base.SysDictionaryDetailModel" >
+    update t_sys_dictionary_detail
+    set name = #{name,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      value = #{value,jdbcType=VARCHAR},
+      dictionary_id = #{dictionaryId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

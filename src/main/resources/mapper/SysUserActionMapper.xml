@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qst.financial.dao.mapper.base.SysUserActionMapper" >
+  <resultMap id="BaseResultMap" type="com.qst.financial.modle.base.SysUserActionModel" >
+    <result column="res_id" property="resId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+  </resultMap>
+  
+   <sql id="Base_Column_List" >
+    res_id, user_id
+  </sql>
+  
+  <insert id="insert" parameterType="com.qst.financial.modle.base.SysUserActionModel" >
+    insert into t_sys_user_action (res_id, user_id)
+    values (#{resId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qst.financial.modle.base.SysUserActionModel" >
+    insert into t_sys_user_action
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resId != null" >
+        res_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resId != null" >
+        #{resId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+  <delete id="deleteByUserId" parameterType="java.lang.Long" >
+  	delete from t_sys_user_action where user_id = #{userId,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insertBatchUserAction" useGeneratedKeys="true" parameterType="java.util.List">
+		insert into 
+			t_sys_user_action
+		(
+			res_id, 
+			user_id
+		)
+			values  
+		<foreach collection="list" item="item" index="index" separator="," >  
+        (
+    		#{item.resId},
+    		#{item.userId}
+        )
+    	</foreach> 
+  </insert>
+  
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    	<include refid="Base_Column_List" />
+    from 
+    	t_sys_user_action
+    where 
+    	user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  
+</mapper>

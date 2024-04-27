@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.financial.dao.mapper.subject.TCodeMapperBeanMapper">
+  <resultMap id="BaseResultMap" type="com.qst.financial.modle.subject.TCodeMapperBean">
+    <result column="BASI_FIELD" jdbcType="VARCHAR" property="basiField" />
+    <result column="CODE_NO" jdbcType="VARCHAR" property="codeNo" />
+  </resultMap>
+  <insert id="insert" parameterType="com.qst.financial.modle.subject.TCodeMapperBean">
+    insert into T_CODE_MAPPER (BASI_FIELD, CODE_NO)
+    values (#{basiField,jdbcType=VARCHAR}, #{codeNo,jdbcType=VARCHAR})
+  </insert>
+  
+  <select id="selectByCodeNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    BASI_FIELD,CODE_NO
+    from T_CODE_MAPPER
+    where CODE_NO = #{codeNo,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="update" parameterType="com.qst.financial.modle.subject.TCodeMapperBean">
+    update T_CODE_MAPPER
+    <set>
+      <if test="basiField != null">
+        BASI_FIELD = #{basiField,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where CODE_NO = #{codeNo,jdbcType=VARCHAR}
+  </update>
+  
+   <delete id="delete" parameterType="java.lang.String">
+    delete from T_CODE_MAPPER
+    where CODE_NO = #{codeNo,jdbcType=VARCHAR}
+  </delete>
+  
+   <delete id="deleteByPrimaryKeyBatch" parameterType="java.util.List" >
+    delete from T_CODE_MAPPER
+    where CODE_NO in 
+    <foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
+		#{item} 
+	</foreach>
+  </delete>
+  
+  <insert id="insertSelective" parameterType="com.qst.financial.modle.subject.TCodeMapperBean">
+    insert into T_CODE_MAPPER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="basiField != null">
+        BASI_FIELD,
+      </if>
+      <if test="codeNo != null">
+        CODE_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="basiField != null">
+        #{basiField,jdbcType=VARCHAR},
+      </if>
+      <if test="codeNo != null">
+        #{codeNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

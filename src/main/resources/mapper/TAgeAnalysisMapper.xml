@@ -1,0 +1,961 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.financial.dao.mapper.subject.TAgeAnalysisMapper">
+  <resultMap id="BaseResultMap" type="com.qst.financial.modle.subject.TAgeAnalysis">
+    <id column="Id" jdbcType="VARCHAR" property="id" />
+    <result column="project_code" jdbcType="VARCHAR" property="projectCode" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="credit_period" jdbcType="DECIMAL" property="creditPeriod" />
+    <result column="credit_line" jdbcType="DECIMAL" property="creditLine" />
+    <result column="not_due1_to30_days" jdbcType="DECIMAL" property="notDue1To30Days" />
+    <result column="not_due31_to90_days" jdbcType="DECIMAL" property="notDue31To90Days" />
+    <result column="not_due91_to180_days" jdbcType="DECIMAL" property="notDue91To180Days" />
+    <result column="not_due181_days" jdbcType="DECIMAL" property="notDue181Days" />
+    <result column="due1_to30_days" jdbcType="DECIMAL" property="due1To30Days" />
+    <result column="due31_to90_days" jdbcType="DECIMAL" property="due31To90Days" />
+    <result column="due91_to180_days" jdbcType="DECIMAL" property="due91To180Days" />
+    <result column="due181_to360_days" jdbcType="DECIMAL" property="due181To360Days" />
+    <result column="due361_to720_days" jdbcType="DECIMAL" property="due361To720Days" />
+    <result column="due721_to1080_days" jdbcType="DECIMAL" property="due721To1080Days" />
+    <result column="due1081_to1440_days" jdbcType="DECIMAL" property="due1081To1440Days" />
+    <result column="due1441_days" jdbcType="DECIMAL" property="due1441Days" />
+    <result column="due_today" jdbcType="DECIMAL" property="dueToday" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="IMP_TIME" jdbcType="TIMESTAMP" property="impTime" />
+    <result column="KJYEAR" jdbcType="VARCHAR" property="kjyear" />
+    <result column="KJMOTH" jdbcType="VARCHAR" property="kjmoth" />
+    <result column="KJYEAR_MOTH" jdbcType="VARCHAR" property="kjyearMoth" />
+    <result column="ORG_ID" jdbcType="VARCHAR" property="orgId" />
+    <result column="account_port_type" jdbcType="BIGINT" property="accountPortType" />
+    <result column="FORMAT_FLAG" jdbcType="VARCHAR" property="formatFlag" />
+    <result column="IMP_USER" jdbcType="VARCHAR" property="impUser" />
+    <result column="kcsljb" jdbcType="DECIMAL" property="kcsljb" />
+    <result column="kcslcy" jdbcType="DECIMAL" property="kcslcy" />
+    <result column="djjb" jdbcType="DECIMAL" property="djjb" />
+    <result column="djcy" jdbcType="DECIMAL" property="djcy" />
+    <result column="due0_to90_days_nm_jb" jdbcType="DECIMAL" property="due0To90DaysNmJb" />
+    <result column="due0_to90_days_nm_cy" jdbcType="DECIMAL" property="due0To90DaysNmCy" />
+    <result column="due91_to180_days_nm_jb" jdbcType="DECIMAL" property="due91To180DaysNmJb" />
+    <result column="due91_to180_days_nm_cy" jdbcType="DECIMAL" property="due91To180DaysNmCy" />
+    <result column="due181_to360_days_nm_jb" jdbcType="DECIMAL" property="due181To360DaysNmJb" />
+    <result column="due181_to360_days_nm_cy" jdbcType="DECIMAL" property="due181To360DaysNmCy" />
+    <result column="due361_to720_days_nm_jb" jdbcType="DECIMAL" property="due361To720DaysNmJb" />
+    <result column="due361_to720_days_nm_cy" jdbcType="DECIMAL" property="due361To720DaysNmCy" />
+    <result column="due721_to1080_days_nm_jb" jdbcType="DECIMAL" property="due721To1080DaysNmJb" />
+    <result column="due721_to1080_days_nm_cy" jdbcType="DECIMAL" property="due721To1080DaysNmCy" />
+    <result column="due1081_days_nm_jb" jdbcType="DECIMAL" property="due1081DaysNmJb" />
+    <result column="due1081_days_nm_cy" jdbcType="DECIMAL" property="due1081DaysNmCy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, project_code, project_name, balance, credit_period, credit_line, not_due1_to30_days, 
+    not_due31_to90_days, not_due91_to180_days, not_due181_days, due1_to30_days, due31_to90_days, 
+    due91_to180_days, due181_to360_days, due361_to720_days, due721_to1080_days, due1081_to1440_days, 
+    due1441_days, due_today, type, IMP_TIME, KJYEAR, KJMOTH, KJYEAR_MOTH, ORG_ID, account_port_type, 
+    FORMAT_FLAG, IMP_USER, kcsljb, kcslcy, djjb, djcy, due0_to90_days_nm_jb, due0_to90_days_nm_cy, 
+    due91_to180_days_nm_jb, due91_to180_days_nm_cy, due181_to360_days_nm_jb, due181_to360_days_nm_cy, 
+    due361_to720_days_nm_jb, due361_to720_days_nm_cy, due721_to1080_days_nm_jb, due721_to1080_days_nm_cy, 
+    due1081_days_nm_jb, due1081_days_nm_cy
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_age_analysis
+    where Id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_age_analysis
+    where Id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.qst.financial.modle.subject.TAgeAnalysis">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_age_analysis (project_code, project_name, balance, 
+      credit_period, credit_line, not_due1_to30_days, 
+      not_due31_to90_days, not_due91_to180_days, not_due181_days, 
+      due1_to30_days, due31_to90_days, due91_to180_days, 
+      due181_to360_days, due361_to720_days, due721_to1080_days, 
+      due1081_to1440_days, due1441_days, due_today, 
+      type, IMP_TIME, KJYEAR, 
+      KJMOTH, KJYEAR_MOTH, ORG_ID, 
+      account_port_type, FORMAT_FLAG, IMP_USER, 
+      kcsljb, kcslcy, djjb, 
+      djcy, due0_to90_days_nm_jb, due0_to90_days_nm_cy, 
+      due91_to180_days_nm_jb, due91_to180_days_nm_cy, 
+      due181_to360_days_nm_jb, due181_to360_days_nm_cy, 
+      due361_to720_days_nm_jb, due361_to720_days_nm_cy, 
+      due721_to1080_days_nm_jb, due721_to1080_days_nm_cy, 
+      due1081_days_nm_jb, due1081_days_nm_cy)
+    values (#{projectCode,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR}, #{balance,jdbcType=DECIMAL}, 
+      #{creditPeriod,jdbcType=DECIMAL}, #{creditLine,jdbcType=DECIMAL}, #{notDue1To30Days,jdbcType=DECIMAL}, 
+      #{notDue31To90Days,jdbcType=DECIMAL}, #{notDue91To180Days,jdbcType=DECIMAL}, #{notDue181Days,jdbcType=DECIMAL}, 
+      #{due1To30Days,jdbcType=DECIMAL}, #{due31To90Days,jdbcType=DECIMAL}, #{due91To180Days,jdbcType=DECIMAL}, 
+      #{due181To360Days,jdbcType=DECIMAL}, #{due361To720Days,jdbcType=DECIMAL}, #{due721To1080Days,jdbcType=DECIMAL}, 
+      #{due1081To1440Days,jdbcType=DECIMAL}, #{due1441Days,jdbcType=DECIMAL}, #{dueToday,jdbcType=DECIMAL}, 
+      #{type,jdbcType=INTEGER}, #{impTime,jdbcType=TIMESTAMP}, #{kjyear,jdbcType=VARCHAR}, 
+      #{kjmoth,jdbcType=VARCHAR}, #{kjyearMoth,jdbcType=VARCHAR}, #{orgId,jdbcType=VARCHAR}, 
+      #{accountPortType,jdbcType=BIGINT}, #{formatFlag,jdbcType=VARCHAR}, #{impUser,jdbcType=VARCHAR}, 
+      #{kcsljb,jdbcType=DECIMAL}, #{kcslcy,jdbcType=DECIMAL}, #{djjb,jdbcType=DECIMAL}, 
+      #{djcy,jdbcType=DECIMAL}, #{due0To90DaysNmJb,jdbcType=DECIMAL}, #{due0To90DaysNmCy,jdbcType=DECIMAL}, 
+      #{due91To180DaysNmJb,jdbcType=DECIMAL}, #{due91To180DaysNmCy,jdbcType=DECIMAL}, 
+      #{due181To360DaysNmJb,jdbcType=DECIMAL}, #{due181To360DaysNmCy,jdbcType=DECIMAL}, 
+      #{due361To720DaysNmJb,jdbcType=DECIMAL}, #{due361To720DaysNmCy,jdbcType=DECIMAL}, 
+      #{due721To1080DaysNmJb,jdbcType=DECIMAL}, #{due721To1080DaysNmCy,jdbcType=DECIMAL}, 
+      #{due1081DaysNmJb,jdbcType=DECIMAL}, #{due1081DaysNmCy,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qst.financial.modle.subject.TAgeAnalysis">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_age_analysis
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="projectCode != null">
+        project_code,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="creditPeriod != null">
+        credit_period,
+      </if>
+      <if test="creditLine != null">
+        credit_line,
+      </if>
+      <if test="notDue1To30Days != null">
+        not_due1_to30_days,
+      </if>
+      <if test="notDue31To90Days != null">
+        not_due31_to90_days,
+      </if>
+      <if test="notDue91To180Days != null">
+        not_due91_to180_days,
+      </if>
+      <if test="notDue181Days != null">
+        not_due181_days,
+      </if>
+      <if test="due1To30Days != null">
+        due1_to30_days,
+      </if>
+      <if test="due31To90Days != null">
+        due31_to90_days,
+      </if>
+      <if test="due91To180Days != null">
+        due91_to180_days,
+      </if>
+      <if test="due181To360Days != null">
+        due181_to360_days,
+      </if>
+      <if test="due361To720Days != null">
+        due361_to720_days,
+      </if>
+      <if test="due721To1080Days != null">
+        due721_to1080_days,
+      </if>
+      <if test="due1081To1440Days != null">
+        due1081_to1440_days,
+      </if>
+      <if test="due1441Days != null">
+        due1441_days,
+      </if>
+      <if test="dueToday != null">
+        due_today,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="impTime != null">
+        IMP_TIME,
+      </if>
+      <if test="kjyear != null">
+        KJYEAR,
+      </if>
+      <if test="kjmoth != null">
+        KJMOTH,
+      </if>
+      <if test="kjyearMoth != null">
+        KJYEAR_MOTH,
+      </if>
+      <if test="orgId != null">
+        ORG_ID,
+      </if>
+      <if test="accountPortType != null">
+        account_port_type,
+      </if>
+      <if test="formatFlag != null">
+        FORMAT_FLAG,
+      </if>
+      <if test="impUser != null">
+        IMP_USER,
+      </if>
+      <if test="kcsljb != null">
+        kcsljb,
+      </if>
+      <if test="kcslcy != null">
+        kcslcy,
+      </if>
+      <if test="djjb != null">
+        djjb,
+      </if>
+      <if test="djcy != null">
+        djcy,
+      </if>
+      <if test="due0To90DaysNmJb != null">
+        due0_to90_days_nm_jb,
+      </if>
+      <if test="due0To90DaysNmCy != null">
+        due0_to90_days_nm_cy,
+      </if>
+      <if test="due91To180DaysNmJb != null">
+        due91_to180_days_nm_jb,
+      </if>
+      <if test="due91To180DaysNmCy != null">
+        due91_to180_days_nm_cy,
+      </if>
+      <if test="due181To360DaysNmJb != null">
+        due181_to360_days_nm_jb,
+      </if>
+      <if test="due181To360DaysNmCy != null">
+        due181_to360_days_nm_cy,
+      </if>
+      <if test="due361To720DaysNmJb != null">
+        due361_to720_days_nm_jb,
+      </if>
+      <if test="due361To720DaysNmCy != null">
+        due361_to720_days_nm_cy,
+      </if>
+      <if test="due721To1080DaysNmJb != null">
+        due721_to1080_days_nm_jb,
+      </if>
+      <if test="due721To1080DaysNmCy != null">
+        due721_to1080_days_nm_cy,
+      </if>
+      <if test="due1081DaysNmJb != null">
+        due1081_days_nm_jb,
+      </if>
+      <if test="due1081DaysNmCy != null">
+        due1081_days_nm_cy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="projectCode != null">
+        #{projectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="creditPeriod != null">
+        #{creditPeriod,jdbcType=DECIMAL},
+      </if>
+      <if test="creditLine != null">
+        #{creditLine,jdbcType=DECIMAL},
+      </if>
+      <if test="notDue1To30Days != null">
+        #{notDue1To30Days,jdbcType=DECIMAL},
+      </if>
+      <if test="notDue31To90Days != null">
+        #{notDue31To90Days,jdbcType=DECIMAL},
+      </if>
+      <if test="notDue91To180Days != null">
+        #{notDue91To180Days,jdbcType=DECIMAL},
+      </if>
+      <if test="notDue181Days != null">
+        #{notDue181Days,jdbcType=DECIMAL},
+      </if>
+      <if test="due1To30Days != null">
+        #{due1To30Days,jdbcType=DECIMAL},
+      </if>
+      <if test="due31To90Days != null">
+        #{due31To90Days,jdbcType=DECIMAL},
+      </if>
+      <if test="due91To180Days != null">
+        #{due91To180Days,jdbcType=DECIMAL},
+      </if>
+      <if test="due181To360Days != null">
+        #{due181To360Days,jdbcType=DECIMAL},
+      </if>
+      <if test="due361To720Days != null">
+        #{due361To720Days,jdbcType=DECIMAL},
+      </if>
+      <if test="due721To1080Days != null">
+        #{due721To1080Days,jdbcType=DECIMAL},
+      </if>
+      <if test="due1081To1440Days != null">
+        #{due1081To1440Days,jdbcType=DECIMAL},
+      </if>
+      <if test="due1441Days != null">
+        #{due1441Days,jdbcType=DECIMAL},
+      </if>
+      <if test="dueToday != null">
+        #{dueToday,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="impTime != null">
+        #{impTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="kjyear != null">
+        #{kjyear,jdbcType=VARCHAR},
+      </if>
+      <if test="kjmoth != null">
+        #{kjmoth,jdbcType=VARCHAR},
+      </if>
+      <if test="kjyearMoth != null">
+        #{kjyearMoth,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountPortType != null">
+        #{accountPortType,jdbcType=BIGINT},
+      </if>
+      <if test="formatFlag != null">
+        #{formatFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="impUser != null">
+        #{impUser,jdbcType=VARCHAR},
+      </if>
+      <if test="kcsljb != null">
+        #{kcsljb,jdbcType=DECIMAL},
+      </if>
+      <if test="kcslcy != null">
+        #{kcslcy,jdbcType=DECIMAL},
+      </if>
+      <if test="djjb != null">
+        #{djjb,jdbcType=DECIMAL},
+      </if>
+      <if test="djcy != null">
+        #{djcy,jdbcType=DECIMAL},
+      </if>
+      <if test="due0To90DaysNmJb != null">
+        #{due0To90DaysNmJb,jdbcType=DECIMAL},
+      </if>
+      <if test="due0To90DaysNmCy != null">
+        #{due0To90DaysNmCy,jdbcType=DECIMAL},
+      </if>
+      <if test="due91To180DaysNmJb != null">
+        #{due91To180DaysNmJb,jdbcType=DECIMAL},
+      </if>
+      <if test="due91To180DaysNmCy != null">
+        #{due91To180DaysNmCy,jdbcType=DECIMAL},
+      </if>
+      <if test="due181To360DaysNmJb != null">
+        #{due181To360DaysNmJb,jdbcType=DECIMAL},
+      </if>
+      <if test="due181To360DaysNmCy != null">
+        #{due181To360DaysNmCy,jdbcType=DECIMAL},
+      </if>
+      <if test="due361To720DaysNmJb != null">
+        #{due361To720DaysNmJb,jdbcType=DECIMAL},
+      </if>
+      <if test="due361To720DaysNmCy != null">
+        #{due361To720DaysNmCy,jdbcType=DECIMAL},
+      </if>
+      <if test="due721To1080DaysNmJb != null">
+        #{due721To1080DaysNmJb,jdbcType=DECIMAL},
+      </if>
+      <if test="due721To1080DaysNmCy != null">
+        #{due721To1080DaysNmCy,jdbcType=DECIMAL},
+      </if>
+      <if test="due1081DaysNmJb != null">
+        #{due1081DaysNmJb,jdbcType=DECIMAL},
+      </if>
+      <if test="due1081DaysNmCy != null">
+        #{due1081DaysNmCy,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qst.financial.modle.subject.TAgeAnalysis">
+    update t_age_analysis
+    <set>
+      <if test="projectCode != null">
+        project_code = #{projectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="creditPeriod != null">
+        credit_period = #{creditPeriod,jdbcType=DECIMAL},
+      </if>
+      <if test="creditLine != null">
+        credit_line = #{creditLine,jdbcType=DECIMAL},
+      </if>
+      <if test="notDue1To30Days != null">
+        not_due1_to30_days = #{notDue1To30Days,jdbcType=DECIMAL},
+      </if>
+      <if test="notDue31To90Days != null">
+        not_due31_to90_days = #{notDue31To90Days,jdbcType=DECIMAL},
+      </if>
+      <if test="notDue91To180Days != null">
+        not_due91_to180_days = #{notDue91To180Days,jdbcType=DECIMAL},
+      </if>
+      <if test="notDue181Days != null">
+        not_due181_days = #{notDue181Days,jdbcType=DECIMAL},
+      </if>
+      <if test="due1To30Days != null">
+        due1_to30_days = #{due1To30Days,jdbcType=DECIMAL},
+      </if>
+      <if test="due31To90Days != null">
+        due31_to90_days = #{due31To90Days,jdbcType=DECIMAL},
+      </if>
+      <if test="due91To180Days != null">
+        due91_to180_days = #{due91To180Days,jdbcType=DECIMAL},
+      </if>
+      <if test="due181To360Days != null">
+        due181_to360_days = #{due181To360Days,jdbcType=DECIMAL},
+      </if>
+      <if test="due361To720Days != null">
+        due361_to720_days = #{due361To720Days,jdbcType=DECIMAL},
+      </if>
+      <if test="due721To1080Days != null">
+        due721_to1080_days = #{due721To1080Days,jdbcType=DECIMAL},
+      </if>
+      <if test="due1081To1440Days != null">
+        due1081_to1440_days = #{due1081To1440Days,jdbcType=DECIMAL},
+      </if>
+      <if test="due1441Days != null">
+        due1441_days = #{due1441Days,jdbcType=DECIMAL},
+      </if>
+      <if test="dueToday != null">
+        due_today = #{dueToday,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="impTime != null">
+        IMP_TIME = #{impTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="kjyear != null">
+        KJYEAR = #{kjyear,jdbcType=VARCHAR},
+      </if>
+      <if test="kjmoth != null">
+        KJMOTH = #{kjmoth,jdbcType=VARCHAR},
+      </if>
+      <if test="kjyearMoth != null">
+        KJYEAR_MOTH = #{kjyearMoth,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        ORG_ID = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountPortType != null">
+        account_port_type = #{accountPortType,jdbcType=BIGINT},
+      </if>
+      <if test="formatFlag != null">
+        FORMAT_FLAG = #{formatFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="impUser != null">
+        IMP_USER = #{impUser,jdbcType=VARCHAR},
+      </if>
+      <if test="kcsljb != null">
+        kcsljb = #{kcsljb,jdbcType=DECIMAL},
+      </if>
+      <if test="kcslcy != null">
+        kcslcy = #{kcslcy,jdbcType=DECIMAL},
+      </if>
+      <if test="djjb != null">
+        djjb = #{djjb,jdbcType=DECIMAL},
+      </if>
+      <if test="djcy != null">
+        djcy = #{djcy,jdbcType=DECIMAL},
+      </if>
+      <if test="due0To90DaysNmJb != null">
+        due0_to90_days_nm_jb = #{due0To90DaysNmJb,jdbcType=DECIMAL},
+      </if>
+      <if test="due0To90DaysNmCy != null">
+        due0_to90_days_nm_cy = #{due0To90DaysNmCy,jdbcType=DECIMAL},
+      </if>
+      <if test="due91To180DaysNmJb != null">
+        due91_to180_days_nm_jb = #{due91To180DaysNmJb,jdbcType=DECIMAL},
+      </if>
+      <if test="due91To180DaysNmCy != null">
+        due91_to180_days_nm_cy = #{due91To180DaysNmCy,jdbcType=DECIMAL},
+      </if>
+      <if test="due181To360DaysNmJb != null">
+        due181_to360_days_nm_jb = #{due181To360DaysNmJb,jdbcType=DECIMAL},
+      </if>
+      <if test="due181To360DaysNmCy != null">
+        due181_to360_days_nm_cy = #{due181To360DaysNmCy,jdbcType=DECIMAL},
+      </if>
+      <if test="due361To720DaysNmJb != null">
+        due361_to720_days_nm_jb = #{due361To720DaysNmJb,jdbcType=DECIMAL},
+      </if>
+      <if test="due361To720DaysNmCy != null">
+        due361_to720_days_nm_cy = #{due361To720DaysNmCy,jdbcType=DECIMAL},
+      </if>
+      <if test="due721To1080DaysNmJb != null">
+        due721_to1080_days_nm_jb = #{due721To1080DaysNmJb,jdbcType=DECIMAL},
+      </if>
+      <if test="due721To1080DaysNmCy != null">
+        due721_to1080_days_nm_cy = #{due721To1080DaysNmCy,jdbcType=DECIMAL},
+      </if>
+      <if test="due1081DaysNmJb != null">
+        due1081_days_nm_jb = #{due1081DaysNmJb,jdbcType=DECIMAL},
+      </if>
+      <if test="due1081DaysNmCy != null">
+        due1081_days_nm_cy = #{due1081DaysNmCy,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qst.financial.modle.subject.TAgeAnalysis">
+    update t_age_analysis
+    set project_code = #{projectCode,jdbcType=VARCHAR},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=DECIMAL},
+      credit_period = #{creditPeriod,jdbcType=DECIMAL},
+      credit_line = #{creditLine,jdbcType=DECIMAL},
+      not_due1_to30_days = #{notDue1To30Days,jdbcType=DECIMAL},
+      not_due31_to90_days = #{notDue31To90Days,jdbcType=DECIMAL},
+      not_due91_to180_days = #{notDue91To180Days,jdbcType=DECIMAL},
+      not_due181_days = #{notDue181Days,jdbcType=DECIMAL},
+      due1_to30_days = #{due1To30Days,jdbcType=DECIMAL},
+      due31_to90_days = #{due31To90Days,jdbcType=DECIMAL},
+      due91_to180_days = #{due91To180Days,jdbcType=DECIMAL},
+      due181_to360_days = #{due181To360Days,jdbcType=DECIMAL},
+      due361_to720_days = #{due361To720Days,jdbcType=DECIMAL},
+      due721_to1080_days = #{due721To1080Days,jdbcType=DECIMAL},
+      due1081_to1440_days = #{due1081To1440Days,jdbcType=DECIMAL},
+      due1441_days = #{due1441Days,jdbcType=DECIMAL},
+      due_today = #{dueToday,jdbcType=DECIMAL},
+      type = #{type,jdbcType=INTEGER},
+      IMP_TIME = #{impTime,jdbcType=TIMESTAMP},
+      KJYEAR = #{kjyear,jdbcType=VARCHAR},
+      KJMOTH = #{kjmoth,jdbcType=VARCHAR},
+      KJYEAR_MOTH = #{kjyearMoth,jdbcType=VARCHAR},
+      ORG_ID = #{orgId,jdbcType=VARCHAR},
+      account_port_type = #{accountPortType,jdbcType=BIGINT},
+      FORMAT_FLAG = #{formatFlag,jdbcType=VARCHAR},
+      IMP_USER = #{impUser,jdbcType=VARCHAR},
+      kcsljb = #{kcsljb,jdbcType=DECIMAL},
+      kcslcy = #{kcslcy,jdbcType=DECIMAL},
+      djjb = #{djjb,jdbcType=DECIMAL},
+      djcy = #{djcy,jdbcType=DECIMAL},
+      due0_to90_days_nm_jb = #{due0To90DaysNmJb,jdbcType=DECIMAL},
+      due0_to90_days_nm_cy = #{due0To90DaysNmCy,jdbcType=DECIMAL},
+      due91_to180_days_nm_jb = #{due91To180DaysNmJb,jdbcType=DECIMAL},
+      due91_to180_days_nm_cy = #{due91To180DaysNmCy,jdbcType=DECIMAL},
+      due181_to360_days_nm_jb = #{due181To360DaysNmJb,jdbcType=DECIMAL},
+      due181_to360_days_nm_cy = #{due181To360DaysNmCy,jdbcType=DECIMAL},
+      due361_to720_days_nm_jb = #{due361To720DaysNmJb,jdbcType=DECIMAL},
+      due361_to720_days_nm_cy = #{due361To720DaysNmCy,jdbcType=DECIMAL},
+      due721_to1080_days_nm_jb = #{due721To1080DaysNmJb,jdbcType=DECIMAL},
+      due721_to1080_days_nm_cy = #{due721To1080DaysNmCy,jdbcType=DECIMAL},
+      due1081_days_nm_jb = #{due1081DaysNmJb,jdbcType=DECIMAL},
+      due1081_days_nm_cy = #{due1081DaysNmCy,jdbcType=DECIMAL}
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+ <delete id="deleteByYearMonth" >
+    delete from t_age_analysis
+    where KJYEAR_MOTH = #{yearMonth,jdbcType=VARCHAR} and account_port_type = #{accountPortType,jdbcType=BIGINT} and type= #{type,jdbcType=INTEGER} and  ORG_ID = #{orgId,jdbcType=BIGINT} 
+  </delete>
+  <select id="selectSumTop" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+  	 SELECT SUM(balance) bigSumMoney,project_code code,project_name codeName
+   	 FROM t_age_analysis WHERE  1=1
+   	 <if test="isNull != null and isNull != '' ">
+  	 	 and project_code IS NULL 
+  	 </if>
+  	  <if test="isNotNull != null and isNotNull != '' ">
+  	 	  and project_code IS NOT NULL 
+  	 </if>
+   	   <if test="type != null and type != '' ">
+  	 	  and type=#{type}
+  	 </if>
+  	 <if test="startTimes != null and startTimes != '' ">
+  	 	  and str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') = #{ startTimes , jdbcType = VARCHAR}
+  	 </if>
+     <!--<if test="startTime != null and startTime != '' ">
+  	 	  and str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>-->
+  	  <if test="startTime != null and startTime != '' ">
+  	 	  and KJYEAR_MOTH &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and KJYEAR_MOTH &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTimes != null and endTimes != '' ">
+  	 	  and KJYEAR_MOTH &lt;= #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="orgId != null and orgId != '' ">
+  	 	  and org_id=#{orgId}
+  	 </if>
+   	 GROUP BY project_code  ORDER BY SUM(balance)  DESC LIMIT 0,5
+  </select>
+  
+  <select id="selectSumTops" parameterType="java.util.Map" resultType="com.qst.financial.modle.subject.TAgeAnalysis">
+  	 SELECT project_name projectName,SUM(balance) balance,SUM(not_due1_to30_days) notDue1To30Days,SUM(not_due31_to90_days) notDue31To90Days,SUM(not_due91_to180_days) notDue91To180Days,
+  	SUM(not_due181_days) notDue181Days,SUM(due1_to30_days) due1To30Days,SUM(due31_to90_days) due31To90Days,SUM(due91_to180_days) due91To180Days,
+  	SUM(due181_to360_days) due181To360Days,SUM(due361_to720_days) due361To720Days,SUM(due721_to1080_days) due721To1080Days,SUM(due1081_to1440_days) due1081To1440Days,
+  	SUM(due1441_days) due1441Days,SUM(due_today) dueToday
+   	 FROM t_age_analysis WHERE 1=1
+   	 <if test="isNull != null and isNull != '' ">
+  	 	  and project_code IS NULL 
+  	 </if>
+  	  <if test="isNotNull != null and isNotNull != '' ">
+  	 	  and project_code IS NOT NULL 
+  	 </if>
+   	 <if test="type != null and type != '' ">
+  	 	  and type=#{type}
+  	 </if>
+  	 <if test="startTimes != null and startTimes != '' ">
+  	 	  and str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') = #{ startTimes , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="endTimes != null and endTimes != '' ">
+  	 	   and KJYEAR_MOTH = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="orgId != null and orgId != '' ">
+  	 	  and org_id=#{orgId}
+  	 </if>
+  	  <if test="startTime != null and startTime != '' ">
+  	 	  and KJYEAR_MOTH &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and KJYEAR_MOTH &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="projectName != null and projectName != '' ">
+  	 	  and project_name = #{ projectName }
+  	 </if>
+  	 <if test="notprojectName != null and notprojectName != '' ">
+  	 	  and project_name != #{ notprojectName }
+  	 </if>
+   	  <if test="ids != null ">
+  	 	and project_code in
+  	 	<foreach collection="ids" index="index" item="item" open="(" separator="," close=")">  
+       	 #{item}  
+    	</foreach>  
+  	 </if> 
+  	 AND project_name NOT IN 
+	(SELECT project_name FROM t_age_analysis WHERE 1=1
+		 <if test="type != null and type != '' ">
+  	 	  and type=#{type}
+  	 </if>
+  	 <if test="startTimes != null and startTimes != '' ">
+  	 	  and str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') = #{ startTimes , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="endTimes != null and endTimes != '' ">
+  	 	   and KJYEAR_MOTH = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="orgId != null and orgId != '' ">
+  	 	  and org_id=#{orgId}
+  	 </if>
+  	  <if test="startTime != null and startTime != '' ">
+  	 	  and KJYEAR_MOTH &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and KJYEAR_MOTH &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="projectName != null and projectName != '' ">
+  	 	  and project_name = #{ projectName }
+  	 </if>
+  	 <if test="notprojectName != null and notprojectName != '' ">
+  	 	  and project_name != #{ notprojectName }
+  	 </if>
+		AND  (project_name LIKE '%合计' OR project_name LIKE '%(小计)' OR project_name LIKE '%（小计）')  GROUP BY project_name)
+   	 GROUP BY project_name  ORDER BY SUM(balance)  DESC ${limit}
+  </select>
+  <select id="selectSumTops2" parameterType="java.util.Map" resultType="com.qst.financial.modle.subject.TAgeAnalysis">
+  	 SELECT  SUM(balance) balance,SUM(not_due1_to30_days) notDue1To30Days,SUM(not_due31_to90_days) notDue31To90Days,SUM(not_due91_to180_days) notDue91To180Days,
+  	SUM(not_due181_days) notDue181Days,SUM(due1_to30_days) due1To30Days,SUM(due31_to90_days) due31To90Days,SUM(due91_to180_days) due91To180Days,
+  	SUM(due181_to360_days) due181To360Days,SUM(due361_to720_days) due361To720Days,SUM(due721_to1080_days) due721To1080Days,SUM(due1081_to1440_days) due1081To1440Days,
+  	SUM(due1441_days) due1441Days,SUM(due_today) dueToday
+   	 FROM t_age_analysis WHERE 1=1
+   	 <if test="isNull != null and isNull != '' ">
+  	 	  and project_code IS NULL 
+  	 </if>
+  	  <if test="isNotNull != null and isNotNull != '' ">
+  	 	  and project_code IS NOT NULL 
+  	 </if>
+   	 <if test="type != null and type != '' ">
+  	 	  and type=#{type}
+  	 </if>
+  	 <if test="startTimes != null and startTimes != '' ">
+  	 	  and str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') = #{ startTimes , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="endTimes != null and endTimes != '' ">
+  	 	   and KJYEAR_MOTH = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="orgId != null and orgId != '' ">
+  	 	  and org_id=#{orgId}
+  	 </if>
+  	  <if test="startTime != null and startTime != '' ">
+  	 	  and KJYEAR_MOTH &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and KJYEAR_MOTH &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="projectName != null and projectName != '' ">
+  	 	  and project_name = #{ projectName }
+  	 </if>
+  	 <if test="notprojectName != null and notprojectName != '' ">
+  	 	  and project_name != #{ notprojectName }
+  	 </if>
+   	  <if test="ids != null ">
+  	 	and project_code in
+  	 	<foreach collection="ids" index="index" item="item" open="(" separator="," close=")">  
+       	 #{item}  
+    	</foreach>  
+  	 </if> 
+  	 AND project_name NOT IN 
+	(SELECT project_name FROM t_age_analysis WHERE 1=1
+		 <if test="type != null and type != '' ">
+  	 	  and type=#{type}
+  	 </if>
+  	 <if test="startTimes != null and startTimes != '' ">
+  	 	  and str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') = #{ startTimes , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="endTimes != null and endTimes != '' ">
+  	 	   and KJYEAR_MOTH = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="orgId != null and orgId != '' ">
+  	 	  and org_id=#{orgId}
+  	 </if>
+  	  <if test="startTime != null and startTime != '' ">
+  	 	  and KJYEAR_MOTH &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and KJYEAR_MOTH &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="projectName != null and projectName != '' ">
+  	 	  and project_name = #{ projectName }
+  	 </if>
+  	 <if test="notprojectName != null and notprojectName != '' ">
+  	 	  and project_name != #{ notprojectName }
+  	 </if>
+		AND  (project_name LIKE '%合计' OR project_name LIKE '%(小计)' OR project_name LIKE '%（小计）')  GROUP BY project_name)
+   	  ORDER BY SUM(balance)  DESC ${limit}
+  </select>
+   <select id="selectSum" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
+  	 SELECT SUM(balance) bigSumMoney FROM t_age_analysis WHERE 1=1
+   	 <if test="isNull != null and isNull != '' ">
+  	 	  and project_code IS NULL 
+  	 </if>
+  	  <if test="isNotNull != null and isNotNull != '' ">
+  	 	  and project_code IS NOT NULL 
+  	 </if>
+   	   <if test="type != null and type != '' ">
+  	 	  and type=#{type}
+  	 </if>
+  	 <if test="startTimes != null and startTimes != '' ">
+  	 	  and str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') = #{ startTimes , jdbcType = VARCHAR}
+  	 </if>
+     <!--<if test="startTime != null and startTime != '' ">
+  	 	  and str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>-->
+  	  <if test="startTime != null and startTime != '' ">
+  	 	  and KJYEAR_MOTH &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and KJYEAR_MOTH &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="endTimes != null and endTimes != '' ">
+  	 	   and KJYEAR_MOTH = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="orgId != null and orgId != '' ">
+  	 	  and org_id=#{orgId}
+  	 </if>
+   	 GROUP BY project_code  
+  </select>
+  <select id="selectSumAll" parameterType="java.util.Map" resultType="com.qst.financial.modle.subject.TAgeAnalysis">
+  	 SELECT project_code projectCode,project_name projectName,SUM(balance) balance,SUM(not_due1_to30_days) notDue1To30Days,SUM(not_due31_to90_days) notDue31To90Days,SUM(not_due91_to180_days) notDue91To180Days,
+  	SUM(not_due181_days) notDue181Days,SUM(due1_to30_days) due1To30Days,SUM(due31_to90_days) due31To90Days,SUM(due91_to180_days) due91To180Days,
+  	SUM(due181_to360_days) due181To360Days,SUM(due361_to720_days) due361To720Days,SUM(due721_to1080_days) due721To1080Days,SUM(due1081_to1440_days) due1081To1440Days,
+  	SUM(due1441_days) due1441Days,SUM(due_today) dueToday
+   	 FROM t_age_analysis WHERE 1=1
+   	 <if test="isNull != null and isNull != '' ">
+  	 	  and project_code IS NULL 
+  	 </if>
+  	  <if test="isNotNull != null and isNotNull != '' ">
+  	 	  and project_code IS NOT NULL 
+  	 </if>
+   	   <if test="type != null and type != '' ">
+  	 	  and type=#{type}
+  	 </if>
+  	  <if test="endTimes != null and endTimes != '' ">
+  	 	   and KJYEAR_MOTH = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="startTimes != null and startTimes != '' ">
+  	 	  and str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') = #{ startTimes , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="orgId != null and orgId != '' ">
+  	 	  and org_id=#{orgId}
+  	 </if>
+     <!--<if test="startTime != null and startTime != '' ">
+  	 	  and str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>-->
+  	  <if test="startTime != null and startTime != '' ">
+  	 	  and KJYEAR_MOTH &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and KJYEAR_MOTH &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="projectName != null and projectName != '' ">
+  	 	  and project_name = #{ projectName }
+  	 </if>
+   	  <if test="ids != null ">
+  	 	and project_code in
+  	 	<foreach collection="ids" index="index" item="item" open="(" separator="," close=")">  
+       	 #{item}  
+    	</foreach>  
+  	 </if>
+  	  GROUP BY project_code  
+  </select>
+   <select id="selectSumAllByQJ" parameterType="java.util.Map" resultType="com.qst.financial.modle.subject.TAgeAnalysis">
+  	 SELECT SUM(balance) balance,SUM(not_due1_to30_days) notDue1To30Days,SUM(not_due31_to90_days) notDue31To90Days,SUM(not_due91_to180_days) notDue91To180Days,
+  	SUM(not_due181_days) notDue181Days,SUM(due1_to30_days) due1To30Days,SUM(due31_to90_days) due31To90Days,SUM(due91_to180_days) due91To180Days,
+  	SUM(due181_to360_days) due181To360Days,SUM(due361_to720_days) due361To720Days,SUM(due721_to1080_days) due721To1080Days,SUM(due1081_to1440_days) due1081To1440Days,
+  	SUM(due1441_days) due1441Days,SUM(due_today) dueToday
+   	 FROM t_age_analysis WHERE 1=1
+   	 <if test="isNull != null and isNull != '' ">
+  	 	  and project_code IS NULL 
+  	 </if>
+  	  <if test="isNotNull != null and isNotNull != '' ">
+  	 	  and project_code IS NOT NULL 
+  	 </if>
+   	 <if test="type != null and type != '' ">
+  	 	  and type=#{type}
+  	 </if>
+  	 <if test="startTimes != null and startTimes != '' ">
+  	 	  and str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') = #{ startTimes , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="endTimes != null and endTimes != '' ">
+  	 	   and KJYEAR_MOTH = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="orgId != null and orgId != '' ">
+  	 	  and org_id=#{orgId}
+  	 </if>
+  	  <if test="startTime != null and startTime != '' ">
+  	 	  and KJYEAR_MOTH &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and KJYEAR_MOTH &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="projectName != null and projectName != '' ">
+  	 	  and project_name = #{ projectName }
+  	 </if>
+  	   <if test="likeProjectName != null and likeProjectName != '' ">
+  	 	  and project_name LIKE CONCAT ('%',#{likeProjectName},'%')
+  	 </if>
+  	 <if test="notprojectName != null and notprojectName != '' ">
+  	 	  and project_name != #{ notprojectName }
+  	 </if>
+   	  <if test="ids != null ">
+  	 	and project_code in
+  	 	<foreach collection="ids" index="index" item="item" open="(" separator="," close=")">  
+       	 #{item}  
+    	</foreach>  
+  	 </if>
+  	 
+  </select>
+  <select id="selectSumAllByType" parameterType="java.util.Map" resultType="com.qst.financial.modle.subject.TAgeAnalysis">
+  	 SELECT type, SUM(balance) balance,SUM(not_due1_to30_days) notDue1To30Days,SUM(not_due31_to90_days) notDue31To90Days,SUM(not_due91_to180_days) notDue91To180Days,
+  	SUM(not_due181_days) notDue181Days,SUM(due1_to30_days) due1To30Days,SUM(due31_to90_days) due31To90Days,SUM(due91_to180_days) due91To180Days,
+  	SUM(due181_to360_days) due181To360Days,SUM(due361_to720_days) due361To720Days,SUM(due721_to1080_days) due721To1080Days,SUM(due1081_to1440_days) due1081To1440Days,
+  	SUM(due1441_days) due1441Days,SUM(due_today) dueToday
+   	 FROM t_age_analysis WHERE 1=1
+   	 <if test="isNull != null and isNull != '' ">
+  	 	  and project_code IS NULL 
+  	 </if>
+  	  <if test="isNotNull != null and isNotNull != '' ">
+  	 	  and project_code IS NOT NULL 
+  	 </if>
+   	 <if test="type != null and type != '' ">
+  	 	  and type=#{type}
+  	 </if>
+  	 <if test="startTimes != null and startTimes != '' ">
+  	 	  and str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') = #{ startTimes , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="endTimes != null and endTimes != '' ">
+  	 	   and KJYEAR_MOTH = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="orgId != null and orgId != '' ">
+  	 	  and org_id=#{orgId}
+  	 </if>
+     <!--<if test="startTime != null and startTime != '' ">
+  	 	  and str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>-->
+  	  <if test="startTime != null and startTime != '' ">
+  	 	  and KJYEAR_MOTH &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and KJYEAR_MOTH &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="projectName != null and projectName != '' ">
+  	 	  and project_name = #{ projectName }
+  	 </if>
+  	 <if test="notprojectName != null and notprojectName != '' ">
+  	 	  and project_name != #{ notprojectName }
+  	 </if>
+   	  <if test="ids != null ">
+  	 	and project_code in
+  	 	<foreach collection="ids" index="index" item="item" open="(" separator="," close=")">  
+       	 #{item}  
+    	</foreach>  
+  	 </if>
+  	 group by type
+  </select>
+   <select id="selectCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+  	 SELECT count(*)
+   	 FROM t_age_analysis WHERE 1=1
+   	 <if test="isNull != null and isNull != '' ">
+  	 	  and project_code IS NULL 
+  	 </if>
+  	  <if test="isNotNull != null and isNotNull != '' ">
+  	 	  and project_code IS NOT NULL 
+  	 </if>
+   	   <if test="type != null and type != '' ">
+  	 	  and type=#{type}
+  	 </if>
+  	 <if test="startTimes != null and startTimes != '' ">
+  	 	  and str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') = #{ startTimes , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="orgId != null and orgId != '' ">
+  	 	  and org_id=#{orgId}
+  	 </if>
+     <!--<if test="startTime != null and startTime != '' ">
+  	 	  and str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and str_to_date(CONCAT(KJYEAR_MOTH,'-01'),'%Y-%m-%d') &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>-->
+  	 <if test="startTime != null and startTime != '' ">
+  	 	  and KJYEAR_MOTH &gt;= #{ startTime , jdbcType = VARCHAR}
+  	 </if>
+  	 <if test="endTime != null and endTime != '' ">
+  	 	  and KJYEAR_MOTH &lt;= #{ endTime , jdbcType = VARCHAR}
+  	 </if>
+  	  <if test="endTimes != null and endTimes != '' ">
+  	 	   and KJYEAR_MOTH = #{ endTimes , jdbcType = VARCHAR}
+  	 </if>
+   	  <if test="ids != null ">
+  	 	and project_code in
+  	 	<foreach collection="ids" index="index" item="item" open="(" separator="," close=")">  
+       	 #{item}  
+    	</foreach>  
+  	 </if>
+  	 
+  </select>
+</mapper>
+
+
+

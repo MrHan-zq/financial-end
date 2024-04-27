@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.financial.dao.mapper.subject.CodeLibrMapper">
+  <resultMap id="BaseResultMap" type="com.qst.financial.modle.subject.CodeLibr">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="CODE_NAME" jdbcType="VARCHAR" property="codeName" />
+    <result column="CODE_NO" jdbcType="VARCHAR" property="codeNo" />
+    <result column="REPORT_TYPE" jdbcType="VARCHAR" property="reportType" />
+    <result column="use_area" jdbcType="VARCHAR" property="useArea" />
+    <result column="use_area_remark" jdbcType="VARCHAR" property="useAreaRemark" />
+    <result column="data_type" jdbcType="VARCHAR" property="dataType" />
+    <result column="data_type_desc" jdbcType="VARCHAR" property="dataTypeDesc" />
+    <result column="is_current" jdbcType="VARCHAR" property="isCurrent" />
+    <result column="is_details" jdbcType="VARCHAR" property="isDetails" />
+    <result column="survey" jdbcType="VARCHAR" property="survey" />
+    <result column="warn" jdbcType="VARCHAR" property="warn" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="clzz" jdbcType="VARCHAR" property="clzz" />
+     <result column="BASI_FIELD" jdbcType="VARCHAR" property="basiField" />
+      <result column="km1" jdbcType="VARCHAR" property="km1" />
+       <result column="km2" jdbcType="VARCHAR" property="km2" />
+        <result column="km3" jdbcType="VARCHAR" property="km3" />
+         <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CODE_NAME, CODE_NO, REPORT_TYPE, use_area, use_area_remark, data_type, data_type_desc, 
+    is_current, is_details, survey, warn, parent_id, clzz,km1,km2,km3,remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_CODE_LIBR
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+ 
+  
+  <!-- 分页查询 -->
+  <select id="selectCodeMapperList" resultMap="BaseResultMap" parameterType="com.qst.financial.util.tag.InnerPage" >
+   select ID, CODE_NAME, l.CODE_NO,m.BASI_FIELD
+    from T_CODE_LIBR l  left join T_CODE_MAPPER m on l.CODE_NO=m.CODE_NO
+    <trim prefix="where" prefixOverrides="and">
+       <if test="date.codeName!=null and date.codeName != '' ">
+            CODE_NAME=#{date.codeName}
+       </if>
+       <if test="date.codeNo !=null and date.codeNo !='' ">
+            and l.CODE_NO=#{date.codeNo}
+       </if>
+    </trim>    
+    ${limit}
+  </select>
+  
+  <select id="selectCodeNoList" resultMap="BaseResultMap" >
+   	select code_no from T_CODE_LIBR where code_no not in (select code_no from T_CODE_MAPPER);
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from T_CODE_LIBR
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qst.financial.modle.subject.CodeLibr">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into T_CODE_LIBR (CODE_NAME, CODE_NO, REPORT_TYPE, 
+      use_area, use_area_remark, data_type, 
+      data_type_desc, is_current, is_details, 
+      survey, warn, parent_id, 
+      clzz)
+    values (#{codeName,jdbcType=VARCHAR}, #{codeNo,jdbcType=VARCHAR}, #{reportType,jdbcType=VARCHAR}, 
+      #{useArea,jdbcType=VARCHAR}, #{useAreaRemark,jdbcType=VARCHAR}, #{dataType,jdbcType=VARCHAR}, 
+      #{dataTypeDesc,jdbcType=VARCHAR}, #{isCurrent,jdbcType=VARCHAR}, #{isDetails,jdbcType=VARCHAR}, 
+      #{survey,jdbcType=VARCHAR}, #{warn,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, 
+      #{clzz,jdbcType=VARCHAR})
+  </insert>
+  
+   <delete id="deleteByPrimaryKeyBatch" parameterType="java.util.List" >
+    delete from T_CODE_LIBR
+    where id in 
+    <foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
+		#{item} 
+	</foreach>
+  </delete>
+  <insert id="insertSelective" parameterType="com.qst.financial.modle.subject.CodeLibr">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into T_CODE_LIBR
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="codeName != null">
+        CODE_NAME,
+      </if>
+      <if test="codeNo != null">
+        CODE_NO,
+      </if>
+      <if test="reportType != null">
+        REPORT_TYPE,
+      </if>
+      <if test="useArea != null">
+        use_area,
+      </if>
+      <if test="useAreaRemark != null">
+        use_area_remark,
+      </if>
+      <if test="dataType != null">
+        data_type,
+      </if>
+      <if test="dataTypeDesc != null">
+        data_type_desc,
+      </if>
+      <if test="isCurrent != null">
+        is_current,
+      </if>
+      <if test="isDetails != null">
+        is_details,
+      </if>
+      <if test="survey != null">
+        survey,
+      </if>
+      <if test="warn != null">
+        warn,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="clzz != null">
+        clzz,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="codeName != null">
+        #{codeName,jdbcType=VARCHAR},
+      </if>
+      <if test="codeNo != null">
+        #{codeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="reportType != null">
+        #{reportType,jdbcType=VARCHAR},
+      </if>
+      <if test="useArea != null">
+        #{useArea,jdbcType=VARCHAR},
+      </if>
+      <if test="useAreaRemark != null">
+        #{useAreaRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="dataType != null">
+        #{dataType,jdbcType=VARCHAR},
+      </if>
+      <if test="dataTypeDesc != null">
+        #{dataTypeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isCurrent != null">
+        #{isCurrent,jdbcType=VARCHAR},
+      </if>
+      <if test="isDetails != null">
+        #{isDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="survey != null">
+        #{survey,jdbcType=VARCHAR},
+      </if>
+      <if test="warn != null">
+        #{warn,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="clzz != null">
+        #{clzz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qst.financial.modle.subject.CodeLibr">
+    update T_CODE_LIBR
+    <set>
+      <if test="codeName != null">
+        CODE_NAME = #{codeName,jdbcType=VARCHAR},
+      </if>
+      <if test="codeNo != null">
+        CODE_NO = #{codeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="reportType != null">
+        REPORT_TYPE = #{reportType,jdbcType=VARCHAR},
+      </if>
+      <if test="useArea != null">
+        use_area = #{useArea,jdbcType=VARCHAR},
+      </if>
+      <if test="useAreaRemark != null">
+        use_area_remark = #{useAreaRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="dataType != null">
+        data_type = #{dataType,jdbcType=VARCHAR},
+      </if>
+      <if test="dataTypeDesc != null">
+        data_type_desc = #{dataTypeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isCurrent != null">
+        is_current = #{isCurrent,jdbcType=VARCHAR},
+      </if>
+      <if test="isDetails != null">
+        is_details = #{isDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="survey != null">
+        survey = #{survey,jdbcType=VARCHAR},
+      </if>
+      <if test="warn != null">
+        warn = #{warn,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="clzz != null">
+        clzz = #{clzz,jdbcType=VARCHAR},
+      </if>
+      <if test="km1 != null">
+        km1 = #{km1,jdbcType=VARCHAR},
+      </if>
+      <if test="km2 != null">
+        km2 = #{km2,jdbcType=VARCHAR},
+      </if>
+      <if test="km3 != null">
+        km3 = #{km3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qst.financial.modle.subject.CodeLibr">
+    update T_CODE_LIBR
+    set CODE_NAME = #{codeName,jdbcType=VARCHAR},
+      CODE_NO = #{codeNo,jdbcType=VARCHAR},
+      REPORT_TYPE = #{reportType,jdbcType=VARCHAR},
+      use_area = #{useArea,jdbcType=VARCHAR},
+      use_area_remark = #{useAreaRemark,jdbcType=VARCHAR},
+      data_type = #{dataType,jdbcType=VARCHAR},
+      data_type_desc = #{dataTypeDesc,jdbcType=VARCHAR},
+      is_current = #{isCurrent,jdbcType=VARCHAR},
+      is_details = #{isDetails,jdbcType=VARCHAR},
+      survey = #{survey,jdbcType=VARCHAR},
+      warn = #{warn,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=VARCHAR},
+      clzz = #{clzz,jdbcType=VARCHAR},
+      km1 = #{km1,jdbcType=VARCHAR},
+      km2 = #{km2,jdbcType=VARCHAR},
+      km3 = #{km3,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getReportDivine" parameterType="java.util.Map" statementType="CALLABLE"  resultType="java.util.Map">
+        
+		{call report_divine(
+			#{orgId,mode=IN,jdbcType=VARCHAR}
+		)}
+
+	</select>
+</mapper>

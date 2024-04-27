@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.financial.dao.mapper.subject.TKmyeMapper">
+  <resultMap id="BaseResultMap" type="com.qst.financial.modle.subject.TKmye">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="IMP_TIME" jdbcType="TIMESTAMP" property="impTime" />
+    <result column="IMP_USER" jdbcType="VARCHAR" property="impUser" />
+    <result column="BATCH_ID" jdbcType="VARCHAR" property="batchId" />
+    <result column="ORG_ID" jdbcType="VARCHAR" property="orgId" />
+    <result column="KJYEAR" jdbcType="VARCHAR" property="kjyear" />
+    <result column="KJMOTH" jdbcType="VARCHAR" property="kjmoth" />
+    <result column="KJYEAR_MOTH" jdbcType="VARCHAR" property="kjyearMoth" />
+    <result column="SUBJECT_CODE" jdbcType="VARCHAR" property="subjectCode" />
+    <result column="SUBJECT_NAME" jdbcType="VARCHAR" property="subjectName" />
+    <result column="HBZL" jdbcType="VARCHAR" property="hbzl" />
+    <result column="QCJFYE" jdbcType="DECIMAL" property="qcjfye" />
+    <result column="QCDFYE" jdbcType="DECIMAL" property="qcdfye" />
+    <result column="BQJFFSE" jdbcType="DECIMAL" property="bqjffse" />
+    <result column="BQDFFSE" jdbcType="DECIMAL" property="bqdffse" />
+    <result column="BNJFLJ" jdbcType="DECIMAL" property="bnjflj" />
+    <result column="BNDFLJ" jdbcType="DECIMAL" property="bndflj" />
+    <result column="QMJFYE" jdbcType="DECIMAL" property="qmjfye" />
+    <result column="QMDFYE" jdbcType="DECIMAL" property="qmdfye" />
+    <result column="ZTZB" jdbcType="VARCHAR" property="ztzb" />
+    <result column="FX" jdbcType="VARCHAR" property="fx" />
+    <result column="account_port_type" jdbcType="BIGINT" property="accountPortType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, IMP_TIME, IMP_USER, BATCH_ID, ORG_ID, KJYEAR, KJMOTH, KJYEAR_MOTH, SUBJECT_CODE, 
+    SUBJECT_NAME, HBZL, QCJFYE, QCDFYE, BQJFFSE, BQDFFSE, BNJFLJ, BNDFLJ, QMJFYE, QMDFYE, 
+    ZTZB, FX, account_port_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_KMYE
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+   <delete id="deleteByYearMonth">
+    delete from T_KMYE
+    where KJYEAR_MOTH = #{yearMonth,jdbcType=VARCHAR}  and account_port_type = #{accountPortType,jdbcType=BIGINT} and  ORG_ID = #{orgId,jdbcType=BIGINT} 
+  </delete>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_KMYE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insertTKmyeList" parameterType="java.util.List">
+	  insert into T_KMYE (ID, IMP_USER, BATCH_ID, 
+      ORG_ID, KJYEAR, KJMOTH, 
+      KJYEAR_MOTH, SUBJECT_CODE, SUBJECT_NAME, 
+      HBZL, QCJFYE, QCDFYE, 
+      BQJFFSE, BQDFFSE, BNJFLJ, 
+      BNDFLJ, QMJFYE, QMDFYE, 
+      ZTZB, FX, account_port_type) values
+	  <foreach collection="list" item="item" index="index"  separator=",">  
+         (#{item.id,jdbcType=TIMESTAMP}, #{item.impUser,jdbcType=VARCHAR}, #{item.batchId,jdbcType=VARCHAR}, 
+	      #{item.orgId,jdbcType=VARCHAR}, #{item.kjyear,jdbcType=VARCHAR}, #{item.kjmoth,jdbcType=VARCHAR}, 
+	      #{item.kjyearMoth,jdbcType=VARCHAR}, #{item.subjectCode,jdbcType=VARCHAR}, #{item.subjectName,jdbcType=VARCHAR}, 
+	      #{item.hbzl,jdbcType=VARCHAR}, #{item.qcjfye,jdbcType=DECIMAL}, #{item.qcdfye,jdbcType=DECIMAL}, 
+	      #{item.bqjffse,jdbcType=DECIMAL}, #{item.bqdffse,jdbcType=DECIMAL}, #{item.bnjflj,jdbcType=DECIMAL}, 
+	      #{item.bndflj,jdbcType=DECIMAL}, #{item.qmjfye,jdbcType=DECIMAL}, #{item.qmdfye,jdbcType=DECIMAL}, 
+	      #{item.ztzb,jdbcType=VARCHAR}, #{item.fx,jdbcType=VARCHAR}, #{item.accountPortType,jdbcType=BIGINT})
+      </foreach> 
+  </insert>   
+  <insert id="insert" parameterType="com.qst.financial.modle.subject.TKmye">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into T_KMYE (IMP_TIME, IMP_USER, BATCH_ID, 
+      ORG_ID, KJYEAR, KJMOTH, 
+      KJYEAR_MOTH, SUBJECT_CODE, SUBJECT_NAME, 
+      HBZL, QCJFYE, QCDFYE, 
+      BQJFFSE, BQDFFSE, BNJFLJ, 
+      BNDFLJ, QMJFYE, QMDFYE, 
+      ZTZB, FX, account_port_type
+      )
+    values (#{impTime,jdbcType=TIMESTAMP}, #{impUser,jdbcType=VARCHAR}, #{batchId,jdbcType=VARCHAR}, 
+      #{orgId,jdbcType=VARCHAR}, #{kjyear,jdbcType=VARCHAR}, #{kjmoth,jdbcType=VARCHAR}, 
+      #{kjyearMoth,jdbcType=VARCHAR}, #{subjectCode,jdbcType=VARCHAR}, #{subjectName,jdbcType=VARCHAR}, 
+      #{hbzl,jdbcType=VARCHAR}, #{qcjfye,jdbcType=DECIMAL}, #{qcdfye,jdbcType=DECIMAL}, 
+      #{bqjffse,jdbcType=DECIMAL}, #{bqdffse,jdbcType=DECIMAL}, #{bnjflj,jdbcType=DECIMAL}, 
+      #{bndflj,jdbcType=DECIMAL}, #{qmjfye,jdbcType=DECIMAL}, #{qmdfye,jdbcType=DECIMAL}, 
+      #{ztzb,jdbcType=VARCHAR}, #{fx,jdbcType=VARCHAR}, #{accountPortType,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qst.financial.modle.subject.TKmye">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into T_KMYE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="impTime != null">
+        IMP_TIME,
+      </if>
+      <if test="impUser != null">
+        IMP_USER,
+      </if>
+      <if test="batchId != null">
+        BATCH_ID,
+      </if>
+      <if test="orgId != null">
+        ORG_ID,
+      </if>
+      <if test="kjyear != null">
+        KJYEAR,
+      </if>
+      <if test="kjmoth != null">
+        KJMOTH,
+      </if>
+      <if test="kjyearMoth != null">
+        KJYEAR_MOTH,
+      </if>
+      <if test="subjectCode != null">
+        SUBJECT_CODE,
+      </if>
+      <if test="subjectName != null">
+        SUBJECT_NAME,
+      </if>
+      <if test="hbzl != null">
+        HBZL,
+      </if>
+      <if test="qcjfye != null">
+        QCJFYE,
+      </if>
+      <if test="qcdfye != null">
+        QCDFYE,
+      </if>
+      <if test="bqjffse != null">
+        BQJFFSE,
+      </if>
+      <if test="bqdffse != null">
+        BQDFFSE,
+      </if>
+      <if test="bnjflj != null">
+        BNJFLJ,
+      </if>
+      <if test="bndflj != null">
+        BNDFLJ,
+      </if>
+      <if test="qmjfye != null">
+        QMJFYE,
+      </if>
+      <if test="qmdfye != null">
+        QMDFYE,
+      </if>
+      <if test="ztzb != null">
+        ZTZB,
+      </if>
+      <if test="fx != null">
+        FX,
+      </if>
+      <if test="accountPortType != null">
+        account_port_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="impTime != null">
+        #{impTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="impUser != null">
+        #{impUser,jdbcType=VARCHAR},
+      </if>
+      <if test="batchId != null">
+        #{batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="kjyear != null">
+        #{kjyear,jdbcType=VARCHAR},
+      </if>
+      <if test="kjmoth != null">
+        #{kjmoth,jdbcType=VARCHAR},
+      </if>
+      <if test="kjyearMoth != null">
+        #{kjyearMoth,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectCode != null">
+        #{subjectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectName != null">
+        #{subjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="hbzl != null">
+        #{hbzl,jdbcType=VARCHAR},
+      </if>
+      <if test="qcjfye != null">
+        #{qcjfye,jdbcType=DECIMAL},
+      </if>
+      <if test="qcdfye != null">
+        #{qcdfye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqjffse != null">
+        #{bqjffse,jdbcType=DECIMAL},
+      </if>
+      <if test="bqdffse != null">
+        #{bqdffse,jdbcType=DECIMAL},
+      </if>
+      <if test="bnjflj != null">
+        #{bnjflj,jdbcType=DECIMAL},
+      </if>
+      <if test="bndflj != null">
+        #{bndflj,jdbcType=DECIMAL},
+      </if>
+      <if test="qmjfye != null">
+        #{qmjfye,jdbcType=DECIMAL},
+      </if>
+      <if test="qmdfye != null">
+        #{qmdfye,jdbcType=DECIMAL},
+      </if>
+      <if test="ztzb != null">
+        #{ztzb,jdbcType=VARCHAR},
+      </if>
+      <if test="fx != null">
+        #{fx,jdbcType=VARCHAR},
+      </if>
+      <if test="accountPortType != null">
+        #{accountPortType,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qst.financial.modle.subject.TKmye">
+    update T_KMYE
+    <set>
+      <if test="impTime != null">
+        IMP_TIME = #{impTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="impUser != null">
+        IMP_USER = #{impUser,jdbcType=VARCHAR},
+      </if>
+      <if test="batchId != null">
+        BATCH_ID = #{batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        ORG_ID = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="kjyear != null">
+        KJYEAR = #{kjyear,jdbcType=VARCHAR},
+      </if>
+      <if test="kjmoth != null">
+        KJMOTH = #{kjmoth,jdbcType=VARCHAR},
+      </if>
+      <if test="kjyearMoth != null">
+        KJYEAR_MOTH = #{kjyearMoth,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectCode != null">
+        SUBJECT_CODE = #{subjectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectName != null">
+        SUBJECT_NAME = #{subjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="hbzl != null">
+        HBZL = #{hbzl,jdbcType=VARCHAR},
+      </if>
+      <if test="qcjfye != null">
+        QCJFYE = #{qcjfye,jdbcType=DECIMAL},
+      </if>
+      <if test="qcdfye != null">
+        QCDFYE = #{qcdfye,jdbcType=DECIMAL},
+      </if>
+      <if test="bqjffse != null">
+        BQJFFSE = #{bqjffse,jdbcType=DECIMAL},
+      </if>
+      <if test="bqdffse != null">
+        BQDFFSE = #{bqdffse,jdbcType=DECIMAL},
+      </if>
+      <if test="bnjflj != null">
+        BNJFLJ = #{bnjflj,jdbcType=DECIMAL},
+      </if>
+      <if test="bndflj != null">
+        BNDFLJ = #{bndflj,jdbcType=DECIMAL},
+      </if>
+      <if test="qmjfye != null">
+        QMJFYE = #{qmjfye,jdbcType=DECIMAL},
+      </if>
+      <if test="qmdfye != null">
+        QMDFYE = #{qmdfye,jdbcType=DECIMAL},
+      </if>
+      <if test="ztzb != null">
+        ZTZB = #{ztzb,jdbcType=VARCHAR},
+      </if>
+      <if test="fx != null">
+        FX = #{fx,jdbcType=VARCHAR},
+      </if>
+      <if test="accountPortType != null">
+        account_port_type = #{accountPortType,jdbcType=BIGINT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qst.financial.modle.subject.TKmye">
+    update T_KMYE
+    set IMP_TIME = #{impTime,jdbcType=TIMESTAMP},
+      IMP_USER = #{impUser,jdbcType=VARCHAR},
+      BATCH_ID = #{batchId,jdbcType=VARCHAR},
+      ORG_ID = #{orgId,jdbcType=VARCHAR},
+      KJYEAR = #{kjyear,jdbcType=VARCHAR},
+      KJMOTH = #{kjmoth,jdbcType=VARCHAR},
+      KJYEAR_MOTH = #{kjyearMoth,jdbcType=VARCHAR},
+      SUBJECT_CODE = #{subjectCode,jdbcType=VARCHAR},
+      SUBJECT_NAME = #{subjectName,jdbcType=VARCHAR},
+      HBZL = #{hbzl,jdbcType=VARCHAR},
+      QCJFYE = #{qcjfye,jdbcType=DECIMAL},
+      QCDFYE = #{qcdfye,jdbcType=DECIMAL},
+      BQJFFSE = #{bqjffse,jdbcType=DECIMAL},
+      BQDFFSE = #{bqdffse,jdbcType=DECIMAL},
+      BNJFLJ = #{bnjflj,jdbcType=DECIMAL},
+      BNDFLJ = #{bndflj,jdbcType=DECIMAL},
+      QMJFYE = #{qmjfye,jdbcType=DECIMAL},
+      QMDFYE = #{qmdfye,jdbcType=DECIMAL},
+      ZTZB = #{ztzb,jdbcType=VARCHAR},
+      FX = #{fx,jdbcType=VARCHAR},
+      account_port_type = #{accountPortType,jdbcType=BIGINT}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateFormatFlagByPrimaryKey" parameterType="java.lang.String">
+	  update T_KMYE
+	  set FORMAT_FLAG='${formatFlag}'
+	  where ID='${id}'
+  </update>
+</mapper>
