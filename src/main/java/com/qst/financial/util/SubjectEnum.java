@@ -4,15 +4,15 @@ package com.qst.financial.util;
 public enum SubjectEnum {
 
     //资产负债表
-	T_BASI_ASSETS_AND_LIABILITIES(1L),
+	t_basi_assets_and_liabilities(1L),
     //现金流表
-	T_BASI_CASH_FLOW(2L),
+	t_basi_cash_flow(2L),
 	//利润表
-	T_BASI_PROFIT(3L),
+	t_basi_profit(3L),
 	//明细账
 	T_DETAIL(4L),
 	//科目余额表
-	T_KMYE(5L);
+	t_kmye(5L);
     Long code;
 
     SubjectEnum(Long code) {

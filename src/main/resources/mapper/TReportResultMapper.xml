@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qst.financial.dao.mapper.subject.TReportResultMapper">
 <insert id="insertTReportResultList" parameterType="java.util.List">
-	  insert into T_REPORT_RESULT 
+	  insert into t_report_result
 	  (
 		  ID, 
 		  RYEAR, 
@@ -26,12 +26,12 @@
   </insert> 
   
    <select id="selectALLCodeMapper" resultType="com.qst.financial.modle.subject.TCodeMapperBean">
-  	 select BASI_FIELD basiField , CODE_NO codeNo from T_CODE_MAPPER 
+  	 select BASI_FIELD basiField , CODE_NO codeNo from t_code_mapper
   </select>
   
   <delete id="deleteData" parameterType="java.util.Map" >
-  	delete from T_REPORT_RESULT where org_id = #{orgId,jdbcType=VARCHAR}
-  	and ryear_and_month = #{yearMonth,jdbcType=VARCHAR} and code_no in (select code_no from T_CODE_LIBR where REPORT_TYPE = #{reportType,jdbcType=VARCHAR}) 
+  	delete from t_report_result where org_id = #{orgId,jdbcType=VARCHAR}
+  	and ryear_and_month = #{yearMonth,jdbcType=VARCHAR} and code_no in (select code_no from t_code_libr where REPORT_TYPE = #{reportType,jdbcType=VARCHAR})
   </delete>
   <select id="selectAllByType" resultType="com.qst.financial.modle.subject.TReportResult" parameterType="com.qst.financial.util.tag.InnerPage">
 	SELECT
@@ -42,9 +42,9 @@
 	  T1.code_no codeNo,
 	  T1.data_value dataValue,
 	  T1.org_id orgId
-	FROM T_REPORT_RESULT T1
+	FROM t_report_result T1
 	LEFT JOIN
-	    T_CODE_LIBR T2
+	    t_code_libr T2
 	ON T1.code_no = T2.code_no
 	<where>
 		<if test="date.reportType != null and date.reportType != ''">
@@ -56,9 +56,9 @@
 	<select id="selectAllCountByType" resultType="java.lang.Integer" parameterType="java.util.Map">
 		SELECT
 		count(*)
-		FROM T_REPORT_RESULT T1
+		FROM t_report_result T1
 		LEFT JOIN
-		T_CODE_LIBR T2
+		t_code_libr T2
 		ON T1.CODE_NO = T2.CODE_NO
 		<where>
 			<if test="reportType != null and reportType != ''">

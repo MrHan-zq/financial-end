@@ -13,7 +13,7 @@ import java.util.Date;
  * 科目余额表
  * @author chenHao
  */
-@TableName(name = "T_KMYE") 
+@TableName(name = "t_kmye") 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TKmye extends PoModel implements Serializable{
 

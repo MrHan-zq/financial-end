@@ -14,14 +14,14 @@
 	
 	<!-- 根据类型得到总值 -->
   <select id="selectTBSum" parameterType="java.util.Map" resultType="java.math.BigDecimal">
-  	 select sum(DATA_VALUE) from T_REPORT_RESULT a left join T_CODE_LIBR b on a.CODE_NO=b.CODE_NO
+  	 select sum(DATA_VALUE) from t_report_result a left join t_code_libr b on a.CODE_NO=b.CODE_NO
   	 where date(str_to_date(a.RYEAR_AND_MONTH,'%Y-%m')) &gt;=#{startTime} and date(str_to_date(a.RYEAR_AND_MONTH,'%Y-%m'))   &lt;=#{endTime} and use_area=#{useArea}
   	 and b.data_type=#{dataType} and a.ORG_ID=#{orgId} and b.REPORT_TYPE = #{reportType}
   </select>
   
   	<!-- 根据类型得到总值  无条件查询所有 -->
   <select id="selectValueSum" parameterType="java.util.Map" resultType="java.math.BigDecimal">
-  	 select sum(DATA_VALUE) from T_REPORT_RESULT a left join T_CODE_LIBR b on a.CODE_NO=b.CODE_NO where b.data_type='0'
+  	 select sum(DATA_VALUE) from t_report_result a left join t_code_libr b on a.CODE_NO=b.CODE_NO where b.data_type='0'
   	  <if test="startTime != null and startTime != '' ">
   	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{ startTime , jdbcType = VARCHAR}
   	 </if>
@@ -55,7 +55,7 @@
   </select>
   
   <select id="selectExpectValueSum" parameterType="java.util.Map" resultType="java.math.BigDecimal">
-  	 select sum(DATA_VALUE) from T_REPORT a left join T_CODE_LIBR b on a.CODE_NO=b.CODE_NO where b.data_type='0'
+  	 select sum(DATA_VALUE) from T_REPORT a left join t_code_libr b on a.CODE_NO=b.CODE_NO where b.data_type='0'
   	  <if test="startTime != null and startTime != '' ">
   	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{ startTime , jdbcType = VARCHAR}
   	 </if>
@@ -98,7 +98,7 @@
   
   <!-- 查询详情的时候需要 -->
   <select id="selectAllValueSum" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
-  	 select sum(DATA_VALUE) bigSumMoney,a.CODE_NO code,b.CODE_NAME codeName from T_REPORT_RESULT a , T_CODE_LIBR b on
+  	 select sum(DATA_VALUE) bigSumMoney,a.CODE_NO code,b.CODE_NAME codeName from t_report_result a , t_code_libr b on
   	  a.CODE_NO=b.CODE_NO where b.data_type='0'
   	   <if test="startTime != null and startTime != '' ">
   	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{ startTime , jdbcType = VARCHAR}
@@ -122,7 +122,7 @@
   <!-- 根据月份查询 -->
    <select id="selectValueSumByMoth" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
   	 select sum(a.DATA_VALUE) bigSumMoney,a.RMONTH moth,a.RYEAR_AND_MONTH yearMoth,a.ryear year 
-  	 from T_REPORT_RESULT a LEFT JOIN T_CODE_LIBR b on a.CODE_NO=b.CODE_NO where  b.data_type='0'
+  	 from t_report_result a LEFT JOIN t_code_libr b on a.CODE_NO=b.CODE_NO where  b.data_type='0'
   	 <if test=" useAreases != null and useAreases.size()>0">
 		and b.use_area in 
 		<foreach collection="useAreases" item="item" open="(" separator="," close=")"  >
@@ -157,7 +157,7 @@
   </select>
   <select id="selectValueSumByName" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
   	 select sum(a.DATA_VALUE) bigSumMoney,sum(a.DATA_VALUE) sumMoney,b.CODE_NAME codeName
-  	 from T_REPORT_RESULT a LEFT JOIN T_CODE_LIBR b on a.CODE_NO=b.CODE_NO where  b.data_type='0'
+  	 from t_report_result a LEFT JOIN t_code_libr b on a.CODE_NO=b.CODE_NO where  b.data_type='0'
   	 <if test=" useAreases != null and useAreases.size()>0">
 		and b.use_area in 
 		<foreach collection="useAreases" item="item" open="(" separator="," close=")"  >
@@ -192,7 +192,7 @@
   </select>
   <select id="selectValueSumByMoth2" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
   	 select sum(a.DATA_VALUE) sumMoney,a.RMONTH moth,a.RYEAR_AND_MONTH yearMoth,a.ryear year,b.CODE_NO CODE
-  	 from T_REPORT_RESULT a LEFT JOIN T_CODE_LIBR b on a.CODE_NO=b.CODE_NO where  b.data_type='0'
+  	 from t_report_result a LEFT JOIN t_code_libr b on a.CODE_NO=b.CODE_NO where  b.data_type='0'
   	 <if test="startTime != null and startTime != '' ">
   	 	  and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{ startTime , jdbcType = VARCHAR}
   	 </if>
@@ -217,7 +217,7 @@
    <!-- 根据年查询 -->
    <select id="selectValueSumByYear" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
   	 select sum(a.DATA_VALUE) bigSumMoney,a.ryear year 
-  	 from T_REPORT_RESULT a LEFT JOIN T_CODE_LIBR b on a.CODE_NO=b.CODE_NO where  b.data_type='0'
+  	 from t_report_result a LEFT JOIN t_code_libr b on a.CODE_NO=b.CODE_NO where  b.data_type='0'
   	 <if test="time != null and time != '' ">
   	 	and a.ryear = #{time, jdbcType = VARCHAR}
   	 </if>
@@ -237,7 +237,7 @@
   <!-- 得到资产负债详情 -->
   <select id="selectValueSumDetail" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
   	 SELECT
-		(SELECT CASE WHEN SUM(DATA_VALUE) IS NULL THEN 0 ELSE  SUM(DATA_VALUE) END FROM T_REPORT_RESULT WHERE CODE_NO = b.CODE_NO  
+		(SELECT CASE WHEN SUM(DATA_VALUE) IS NULL THEN 0 ELSE  SUM(DATA_VALUE) END FROM t_report_result WHERE CODE_NO = b.CODE_NO
 		<if test="startTime != null and startTime != '' ">
   	 		 and str_to_date(CONCAT(RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{startTime , jdbcType = VARCHAR}
   	 	</if>
@@ -267,7 +267,7 @@
 		b.remark remark,
 		b.parent_id parentId
 		FROM
-		T_CODE_LIBR b
+		t_code_libr b
 		where b.data_type='0' and b.CODE_NO is not null
   	 
   	 <if test="reportType != null and reportType != '' ">
@@ -319,7 +319,7 @@
 		b.use_area useArea,
 		b.REPORT_TYPE reportType
 		FROM
-		T_CODE_LIBR b
+		t_code_libr b
 		where b.data_type='0' and b.CODE_NO is not null
   	 
   	 <if test="useArea != null and useArea != '' ">
@@ -348,7 +348,7 @@
   
   <!-- 利润表首页信息获取 -->
   <select id="selectProfitMainMsg" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
-  	SELECT b.CODE_NO CODE,a.DATA_VALUE bigSumMoney,a.RYEAR year , a.RMONTH moth , b.CODE_NAME codeName , a.RYEAR_AND_MONTH yearMoth  FROM T_REPORT_RESULT a , T_CODE_LIBR b 
+  	SELECT b.CODE_NO CODE,a.DATA_VALUE bigSumMoney,a.RYEAR year , a.RMONTH moth , b.CODE_NAME codeName , a.RYEAR_AND_MONTH yearMoth  FROM t_report_result a , t_code_libr b
 	where a.CODE_NO = b.CODE_NO 
 	and b.REPORT_TYPE = #{reportType , jdbcType = VARCHAR}
 	and (
@@ -364,7 +364,7 @@
   <!-- 报表详细信息获取 -->
   <select id="getReportDetailMsg" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
   	SELECT b.CODE_NO CODE,a.DATA_VALUE bigSumMoney,a.RYEAR year , a.RMONTH moth , b.CODE_NAME codeName , 
-  	a.RYEAR_AND_MONTH yearMoth , b.data_type dataType , b.use_area useArea  FROM T_REPORT_RESULT a , T_CODE_LIBR b 
+  	a.RYEAR_AND_MONTH yearMoth , b.data_type dataType , b.use_area useArea  FROM t_report_result a , t_code_libr b
 	where a.CODE_NO = b.CODE_NO
 	<if test="reportType != null and reportType != '' ">
   	 	and b.REPORT_TYPE = #{reportType , jdbcType = VARCHAR}
@@ -383,7 +383,7 @@
    <!-- 报表详细信息获取 -->
   <select id="getThreeReportDetailMsg" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
   	SELECT b.CODE_NO CODE,a.DATA_VALUE bigSumMoney,a.RYEAR year , a.RMONTH moth , b.CODE_NAME codeName , 
-  	a.RYEAR_AND_MONTH yearMoth , b.data_type dataType , b.REPORT_TYPE reportType  FROM T_CODE_LIBR b left outer join T_REPORT_RESULT a 
+  	a.RYEAR_AND_MONTH yearMoth , b.data_type dataType , b.REPORT_TYPE reportType  FROM t_code_libr b left outer join t_report_result a
   	on b.CODE_NO = a.CODE_NO  
   	and (
 	(str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &gt;= #{startM1 , jdbcType = DATE} and str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') &lt;= #{endM1 , jdbcType = DATE})
@@ -400,7 +400,7 @@
   <!-- 通过codeno获取报表详细信息 -->
   <select id="getReportDetailByCodeNoList" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
   	SELECT b.CODE_NO CODE,a.DATA_VALUE bigSumMoney,a.RYEAR year , a.RMONTH moth ,
-  	 b.CODE_NAME codeName , a.RYEAR_AND_MONTH yearMoth , b.data_type dataType  , b.use_area useArea  FROM T_REPORT_RESULT a , T_CODE_LIBR b 
+  	 b.CODE_NAME codeName , a.RYEAR_AND_MONTH yearMoth , b.data_type dataType  , b.use_area useArea  FROM t_report_result a , t_code_libr b
 	where a.CODE_NO = b.CODE_NO 
 	<if test=" isList == true ">
 		and b.CODE_NO in 
@@ -424,7 +424,7 @@
   </select>
   
   <select id="getReportDetailBySubCodes" parameterType="java.util.Map" resultType="com.qst.financial.modle.subject.TKmye">
-	select KJYEAR , KJMOTH , KJYEAR_MOTH kjyearMoth, SUBJECT_CODE subjectCode, SUBJECT_NAME subjectName, BQDFFSE from T_KMYE a where BQDFFSE is not null
+	select KJYEAR , KJMOTH , KJYEAR_MOTH kjyearMoth, SUBJECT_CODE subjectCode, SUBJECT_NAME subjectName, BQDFFSE from t_kmye a where BQDFFSE is not null
 	<if test=" subCodeLists != null ">
 		and a.SUBJECT_CODE in 
 		<foreach collection="subCodeLists" item="item" open="(" separator="," close=")"  >
@@ -443,7 +443,7 @@
   </select>
   
   <select id="getZJYNCountMsg" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
-  	select CODE_NO CODE, sum(a.DATA_VALUE) bigSumMoney from T_REPORT_RESULT a WHERE 1 = 1 
+  	select CODE_NO CODE, sum(a.DATA_VALUE) bigSumMoney from t_report_result a WHERE 1 = 1
   	<if test=" codeLists != null ">
 		and a.CODE_NO in 
 		<foreach collection="codeLists" item="item" open="(" separator="," close=")"  >
@@ -455,7 +455,7 @@
   </select>
   
   <select id="selectOne" parameterType="java.util.Map" resultType="java.math.BigDecimal">
-  	 select max(DATA_VALUE) from T_REPORT_RESULT a where str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') = #{time , jdbcType = DATE} and a.code_no = #{codeNo , jdbcType = VARCHAR}
+  	 select max(DATA_VALUE) from t_report_result a where str_to_date(CONCAT(a.RYEAR_AND_MONTH,'-01'),'%Y-%m-%d') = #{time , jdbcType = DATE} and a.code_no = #{codeNo , jdbcType = VARCHAR}
   </select>
   <!--科目余额表相关 -->
    <select id="selectResultKm" parameterType="java.util.Map" resultType="com.qst.financial.dto.ResultDto">
@@ -509,7 +509,7 @@
    	<if test="left == 'km08' ">
 		SUM(QMDFYE)
    	</if>    
-   	bigSumMoney,SUBJECT_CODE code,SUBJECT_NAME codeName FROM T_KMYE 
+   	bigSumMoney,SUBJECT_CODE code,SUBJECT_NAME codeName FROM t_kmye
    	where SUBJECT_CODE is not null
 	<if test=" subCodeLists != null and subCodeLists.size()>0">
 		and SUBJECT_CODE in 
@@ -626,7 +626,7 @@
    	<if test="left == 'km08' ">
 		SUM(QMDFYE)
    	</if>    
-   	bigSumMoney FROM T_KMYE 
+   	bigSumMoney FROM t_kmye
    	where SUBJECT_CODE is not null
 	<if test=" subCodeLists != null and subCodeLists.size()>0">
 		and SUBJECT_CODE in 
@@ -1476,7 +1476,7 @@
 		SUM(QMDFYE)
    	</if>    
   
-   	bigSumMoney,SUBJECT_CODE code,SUBJECT_NAME codeName,KJYEAR_MOTH yearMoth,KJYEAR year,KJMOTH moth  FROM T_KMYE 
+   	bigSumMoney,SUBJECT_CODE code,SUBJECT_NAME codeName,KJYEAR_MOTH yearMoth,KJYEAR year,KJMOTH moth  FROM t_kmye
    	where BQDFFSE is not null
 	<if test=" subCodeLists != null and subCodeLists.size()>0">
 		and SUBJECT_CODE in 
@@ -1571,7 +1571,7 @@
    	</if>
    	<if test="left == 'km08' ">
 		SUM(QMDFYE)
-   	</if>   bigSumMoney, SUBJECT_CODE code,SUBJECT_NAME codeName FROM T_KMYE 
+   	</if>   bigSumMoney, SUBJECT_CODE code,SUBJECT_NAME codeName FROM t_kmye
    	where BQDFFSE is not null
 	<if test=" subCodeLists != null and subCodeLists.size()>0">
 		and SUBJECT_CODE in 

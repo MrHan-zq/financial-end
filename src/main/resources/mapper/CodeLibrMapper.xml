@@ -29,7 +29,7 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from T_CODE_LIBR
+    from t_code_libr
     where ID = #{id,jdbcType=INTEGER}
   </select>
  
@@ -37,7 +37,7 @@
   <!-- 分页查询 -->
   <select id="selectCodeMapperList" resultMap="BaseResultMap" parameterType="com.qst.financial.util.tag.InnerPage" >
    select ID, CODE_NAME, l.CODE_NO,m.BASI_FIELD
-    from T_CODE_LIBR l  left join T_CODE_MAPPER m on l.CODE_NO=m.CODE_NO
+    from t_code_libr l  left join t_code_mapper m on l.CODE_NO=m.CODE_NO
     <trim prefix="where" prefixOverrides="and">
        <if test="date.codeName!=null and date.codeName != '' ">
             CODE_NAME=#{date.codeName}
@@ -50,18 +50,18 @@
   </select>
   
   <select id="selectCodeNoList" resultMap="BaseResultMap" >
-   	select code_no from T_CODE_LIBR where code_no not in (select code_no from T_CODE_MAPPER);
+   	select code_no from t_code_libr where code_no not in (select code_no from t_code_mapper);
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from T_CODE_LIBR
+    delete from t_code_libr
     where ID = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.qst.financial.modle.subject.CodeLibr">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into T_CODE_LIBR (CODE_NAME, CODE_NO, REPORT_TYPE, 
+    insert into t_code_libr (CODE_NAME, CODE_NO, REPORT_TYPE,
       use_area, use_area_remark, data_type, 
       data_type_desc, is_current, is_details, 
       survey, warn, parent_id, 
@@ -74,7 +74,7 @@
   </insert>
   
    <delete id="deleteByPrimaryKeyBatch" parameterType="java.util.List" >
-    delete from T_CODE_LIBR
+    delete from t_code_libr
     where id in 
     <foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
 		#{item} 
@@ -84,7 +84,7 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into T_CODE_LIBR
+    insert into t_code_libr
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="codeName != null">
         CODE_NAME,
@@ -169,7 +169,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.qst.financial.modle.subject.CodeLibr">
-    update T_CODE_LIBR
+    update t_code_libr
     <set>
       <if test="codeName != null">
         CODE_NAME = #{codeName,jdbcType=VARCHAR},
@@ -226,7 +226,7 @@
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.qst.financial.modle.subject.CodeLibr">
-    update T_CODE_LIBR
+    update t_code_libr
     set CODE_NAME = #{codeName,jdbcType=VARCHAR},
       CODE_NO = #{codeNo,jdbcType=VARCHAR},
       REPORT_TYPE = #{reportType,jdbcType=VARCHAR},

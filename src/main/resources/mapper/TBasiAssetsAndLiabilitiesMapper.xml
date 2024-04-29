@@ -265,18 +265,18 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from T_BASI_ASSETS_AND_LIABILITIES
+    from t_basi_assets_and_liabilities
     where ID = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from T_BASI_ASSETS_AND_LIABILITIES
+    delete from t_basi_assets_and_liabilities
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.qst.financial.modle.subject.TBasiAssetsAndLiabilities">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into T_BASI_ASSETS_AND_LIABILITIES (IS_SURE, IMP_TIME, IMP_USER, 
+    insert into t_basi_assets_and_liabilities (IS_SURE, IMP_TIME, IMP_USER,
       BATCH_ID, ORG_ID, KJYEAR, 
       KJMOTH, KJYEAR_MOTH, JEDW, 
       NC_LDZC_HBZJ, NC_LDZC_DQTC, NC_LDZC_YSPJ, 
@@ -429,7 +429,7 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into T_BASI_ASSETS_AND_LIABILITIES
+    insert into t_basi_assets_and_liabilities
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="isSure != null">
         IS_SURE,
@@ -1750,7 +1750,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.qst.financial.modle.subject.TBasiAssetsAndLiabilities">
-    update T_BASI_ASSETS_AND_LIABILITIES
+    update t_basi_assets_and_liabilities
     <set>
       <if test="isSure != null">
         IS_SURE = #{isSure,jdbcType=VARCHAR},
@@ -2413,7 +2413,7 @@
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.qst.financial.modle.subject.TBasiAssetsAndLiabilities">
-    update T_BASI_ASSETS_AND_LIABILITIES
+    update t_basi_assets_and_liabilities
     set IS_SURE = #{isSure,jdbcType=VARCHAR},
       IMP_TIME = #{impTime,jdbcType=TIMESTAMP},
       IMP_USER = #{impUser,jdbcType=VARCHAR},
@@ -2637,11 +2637,11 @@
   </update>
   
     <delete id="deleteByYearMonth">
-    delete from T_BASI_ASSETS_AND_LIABILITIES
+    delete from t_basi_assets_and_liabilities
     where KJYEAR_MOTH = #{yearMonth,jdbcType=VARCHAR}  and account_port_type = #{accountPortType,jdbcType=BIGINT} and  ORG_ID = #{orgId,jdbcType=BIGINT} 
   </delete>	  
    <update id="updateFormatFlagByPrimaryKey" parameterType="java.lang.String">
-	  update T_BASI_ASSETS_AND_LIABILITIES
+	  update t_basi_assets_and_liabilities
 	  set FORMAT_FLAG='${formatFlag}'
 	  where ID='${id}'
   </update>

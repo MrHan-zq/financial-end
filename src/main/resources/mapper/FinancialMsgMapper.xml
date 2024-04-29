@@ -31,11 +31,11 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from T_MESSAGE_INFO
+    from t_message_info
     where ID = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKeyBatch" parameterType="java.util.List" >
-    delete from T_MESSAGE_INFO
+    delete from t_message_info
     where id in 
     <foreach item="item" index="index" collection="list" open="(" separator="," close=")"> 
 		#{item} 
@@ -43,14 +43,14 @@
   </delete>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from T_MESSAGE_INFO
+    delete from t_message_info
     where ID = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.qst.financial.modle.msg.FinancialMsg">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into T_MESSAGE_INFO (ARRY_QUE, TITLE, VIEW_NUM, 
+    insert into t_message_info (ARRY_QUE, TITLE, VIEW_NUM,
       AUTHOR, UP_DATE, UP_PERSON, 
       UP_PERSON_TEL, CREATE_TIME, CREATE_USER, 
       UPDATE_TIME, UPDATE_USER, CLZZ, 
@@ -65,7 +65,7 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into T_MESSAGE_INFO
+    insert into t_message_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="arryQue != null">
         ARRY_QUE,
@@ -150,7 +150,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.qst.financial.modle.msg.FinancialMsg">
-    update T_MESSAGE_INFO
+    update t_message_info
     <set>
       <if test="arryQue != null">
         ARRY_QUE = #{arryQue,jdbcType=VARCHAR},
@@ -195,7 +195,7 @@
     where ID = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qst.financial.modle.msg.FinancialMsg">
-    update T_MESSAGE_INFO
+    update t_message_info
     set ARRY_QUE = #{arryQue,jdbcType=VARCHAR},
       TITLE = #{title,jdbcType=VARCHAR},
       VIEW_NUM = #{viewNum,jdbcType=DECIMAL},
@@ -212,7 +212,7 @@
     where ID = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.qst.financial.modle.msg.FinancialMsg">
-    update T_MESSAGE_INFO
+    update t_message_info
     set ARRY_QUE = #{arryQue,jdbcType=VARCHAR},
       TITLE = #{title,jdbcType=VARCHAR},
       VIEW_NUM = #{viewNum,jdbcType=DECIMAL},

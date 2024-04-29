@@ -6,7 +6,7 @@ import com.qst.financial.modle.base.PoModel;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-@TableName(name="T_REPORT_RESULT")
+@TableName(name="t_report_result")
 public class TReportResult extends PoModel implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

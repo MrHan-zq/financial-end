@@ -5,7 +5,7 @@ import com.qst.financial.modle.base.PoModel;
 
 import java.io.Serializable;
 
-@TableName(name="T_CODE_MAPPER")
+@TableName(name="t_code_mapper")
 public class TCodeMapperBean extends PoModel implements Serializable{
 	
 private static final long serialVersionUID = 1L;

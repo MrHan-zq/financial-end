@@ -13,7 +13,7 @@ import java.util.Date;
  * 现金流量表
  * @author chenHao
  */
-@TableName(name = "T_BASI_CASH_FLOW") 
+@TableName(name = "t_basi_cash_flow") 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TBasiCashFlow extends PoModel implements Serializable{
 

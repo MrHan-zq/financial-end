@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @author yj
  * 结果实体类
  */
-@TableName(name = "T_REPORT_RESULT")
+@TableName(name = "t_report_result")
 public class ReportResult extends PoModel implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String ryear;

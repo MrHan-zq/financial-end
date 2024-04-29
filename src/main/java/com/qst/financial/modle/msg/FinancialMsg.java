@@ -12,7 +12,7 @@ import java.util.Date;
  * @author GaryChen
  *资讯信息
  */
-@TableName(name="T_MESSAGE_INFO")
+@TableName(name="t_message_info")
 public class FinancialMsg extends PoModel implements Serializable {
 
 	/**

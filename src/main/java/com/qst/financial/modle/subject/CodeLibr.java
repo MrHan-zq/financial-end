@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @author why
  *
  */
-@TableName(name = "T_CODE_LIBR") 
+@TableName(name = "t_code_libr") 
 public class CodeLibr extends PoModel implements Serializable{
 	private static final long serialVersionUID = 1L;
 

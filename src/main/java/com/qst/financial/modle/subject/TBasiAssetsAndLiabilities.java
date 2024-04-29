@@ -13,7 +13,7 @@ import java.util.Date;
  * 资产负债表
  * @author chenHao
  */
-@TableName(name = "T_BASI_ASSETS_AND_LIABILITIES") 
+@TableName(name = "t_basi_assets_and_liabilities") 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TBasiAssetsAndLiabilities extends PoModel implements Serializable{
 	

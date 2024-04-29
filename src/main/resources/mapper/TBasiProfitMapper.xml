@@ -119,18 +119,18 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from T_BASI_PROFIT
+    from t_basi_profit
     where ID = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from T_BASI_PROFIT
+    delete from t_basi_profit
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.qst.financial.modle.subject.TBasiProfit">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into T_BASI_PROFIT (IMP_TIME, IMP_USER, BATCH_ID, 
+    insert into t_basi_profit (IMP_TIME, IMP_USER, BATCH_ID,
       ORG_ID, KJYEAR, KJMOTH, 
       KJYEAR_MOTH, JEDW, BY_ZYYWSR, 
       BY_ZYYWCB, BY_ZYYWSJJFJ, BY_ZYYWLR, 
@@ -201,7 +201,7 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into T_BASI_PROFIT
+    insert into t_basi_profit
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="impTime != null">
         IMP_TIME,
@@ -790,7 +790,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.qst.financial.modle.subject.TBasiProfit">
-    update T_BASI_PROFIT
+    update t_basi_profit
     <set>
       <if test="impTime != null">
         IMP_TIME = #{impTime,jdbcType=TIMESTAMP},
@@ -1087,7 +1087,7 @@
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.qst.financial.modle.subject.TBasiProfit">
-    update T_BASI_PROFIT
+    update t_basi_profit
     set IMP_TIME = #{impTime,jdbcType=TIMESTAMP},
       IMP_USER = #{impUser,jdbcType=VARCHAR},
       BATCH_ID = #{batchId,jdbcType=VARCHAR},
@@ -1188,12 +1188,12 @@
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateFormatFlagByPrimaryKey" parameterType="java.lang.String">
-    update T_BASI_PROFIT
+    update t_basi_profit
     set FORMAT_FLAG='${formatFlag}'
     where ID='${id}'
   </update>
    <delete id="deleteByYearMonth" >
-    delete from T_BASI_PROFIT
+    delete from t_basi_profit
     where KJYEAR_MOTH = #{yearMonth,jdbcType=VARCHAR} and account_port_type = #{accountPortType,jdbcType=BIGINT} and  ORG_ID = #{orgId,jdbcType=BIGINT} 
   </delete>
 </mapper>
