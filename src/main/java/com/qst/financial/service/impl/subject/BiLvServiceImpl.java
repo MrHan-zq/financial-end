@@ -19,7 +19,7 @@ import java.util.Map;
 
 @Service
 public class BiLvServiceImpl implements BilvService {
-	@Autowired 
+	@Autowired
 	private ReportResultService reportResultService ;
 	@Override
 	public Map<String,Object> getBilv(String startTime,String endTime,String orgId) throws ParseException{
@@ -30,7 +30,7 @@ public class BiLvServiceImpl implements BilvService {
 		map.put("startTimes", startTime);
 		map.put("endTimes", endTime);
 		map.put("orgId", orgId);
-		map.put("useArea", null); 
+		map.put("useArea", null);
 		map.put("reportType", 1);
 		map.put("isZh", "1");
 		int days = TbAndHb.getDays(startTime, endTime);
@@ -220,7 +220,7 @@ public class BiLvServiceImpl implements BilvService {
 		map.put("startTime", startTime);
 		map.put("endTime", endTime);
 		map.put("orgId", orgId);
-		map.put("useArea", null); 
+		map.put("useArea", null);
 		map.put("reportType", 3);
 		map.put("isZh", "1");
 		List<ResultDto> zcLists2=reportResultService.selectValueSumDetailAll(map);
@@ -238,7 +238,7 @@ public class BiLvServiceImpl implements BilvService {
 		map.put("startTime", startTime);
 		map.put("endTime", endTime);
 		map.put("orgId", orgId);
-		map.put("useArea", null); 
+		map.put("useArea", null);
 		map.put("reportType", 2);
 		map.put("isZh", "1");
 		List<ResultDto> zcLists3=reportResultService.selectValueSumDetailAll(map);
@@ -266,7 +266,7 @@ public class BiLvServiceImpl implements BilvService {
 				tbyycb=tbbz;
 				hbyycb=hbbz;
 			}
-			
+
 		}
 		//=========短期偿债能力=========
 		Map<String,Object> dqcznl = new HashMap<>();
@@ -395,6 +395,26 @@ public class BiLvServiceImpl implements BilvService {
 		ResultDto xsjlR=new ResultDto();
 		xsjlR= TbAndHb.getResultDto(jlr, tbjlr, hbjlr, yysr, tbyysr, hbyysr, "YBLFX-T", "销售净利润率", "%","bl5301");
 		ylnlList.add(xsjlR);
+		// (yysr-yycb)/yysr 营业收入利润率
+		ResultDto yysrlrl=new ResultDto();
+		yysrlrl.setCode("YBLFX-SR");
+		yysrlrl.setCodeName("营业收入利润率");
+		String multiply = yysr.compareTo(BigDecimal.ZERO)==0?"-":(yysr.subtract(yycb)).divide(yysr, 4, RoundingMode.CEILING).multiply(new BigDecimal("100"))+"%";
+		yysrlrl.setSumMoney(multiply);
+		yysrlrl.setUseArea("bl5304");
+		yysrlrl.setOnRise("-");
+		yysrlrl.setLinkRise("-");
+        ylnlList.add(yysrlrl);
+		// (yysr-yycb)/yycb 营业成本利润率
+		ResultDto yycblrl=new ResultDto();
+		yycblrl.setCode("YBLFX-CB");
+		String multiply1 = yycb.compareTo(BigDecimal.ZERO)==0?"-":(yysr.subtract(yycb)).divide(yycb, 4, RoundingMode.CEILING).multiply(new BigDecimal("100"))+"%";
+		yycblrl.setSumMoney(multiply1);
+		yycblrl.setCodeName("营业成本利润率");
+		yycblrl.setUseArea("bl5305");
+		yycblrl.setOnRise("-");
+		yycblrl.setLinkRise("-");
+        ylnlList.add(yycblrl);
 		//2、总资产净利润率
 		ResultDto zzcjlrR=new ResultDto();
 		zzcjlrR= TbAndHb.getResultDto(jlr, tbjlr, hbjlr, zzc, tbzzc, hbzzc, "YBLFX-W", "总资产净利润率", "%","bl5302");
@@ -414,7 +434,7 @@ public class BiLvServiceImpl implements BilvService {
 		map.put("startTimes", startTime);
 		map.put("endTimes", endTime);
 		map.put("orgId", orgId);
-		map.put("useArea", null); 
+		map.put("useArea", null);
 		map.put("reportType", 1);
 		map.put("isZh", "1");
 		int days = TbAndHb.getDays(startTime, endTime);
@@ -604,7 +624,7 @@ public class BiLvServiceImpl implements BilvService {
 		map.put("startTime", startTime);
 		map.put("endTime", endTime);
 		map.put("orgId", orgId);
-		map.put("useArea", null); 
+		map.put("useArea", null);
 		map.put("reportType", 3);
 		map.put("isZh", "1");
 		List<ResultDto> zcLists2=reportResultService.selectValueSumDetailAll(map);
@@ -622,7 +642,7 @@ public class BiLvServiceImpl implements BilvService {
 		map.put("startTime", startTime);
 		map.put("endTime", endTime);
 		map.put("orgId", orgId);
-		map.put("useArea", null); 
+		map.put("useArea", null);
 		map.put("reportType", 2);
 		map.put("isZh", "1");
 		List<ResultDto> zcLists3=reportResultService.selectValueSumDetailAll(map);
@@ -650,7 +670,7 @@ public class BiLvServiceImpl implements BilvService {
 				tbyycb=tbbz;
 				hbyycb=hbbz;
 			}
-			
+
 		}
 		//=========短期偿债能力=========
 		ResultDto r=new ResultDto();
@@ -679,8 +699,8 @@ public class BiLvServiceImpl implements BilvService {
 				r.setLinkRise("-");
 			}
 		}
-		
-		
+
+
 		//流动比率
 		if(useArea.equals("bl5002")){
 			r= TbAndHb.getResultDto(ldzc, tbldzc, hbldzc, ldfz, tbldfz, hbldfz, "YBLFX-B", "流动比率", "","bl5002");

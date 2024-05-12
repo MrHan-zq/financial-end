@@ -74,7 +74,8 @@ public class LoginController extends BaseController {
                 		//SessionUtilRedis.setAttr(request, CommonConstant.SESSION_USER, sysUserModel);
                 		redisService.setAttr(request,CommonConstant.SESSION_USER, sysUserModel);
                         session.setAttribute("PCUserToken", sysUserModel);
-                        return "redirect:index";
+//                        return "redirect:index";
+                        return "redirect:/client/zcfz/table";
                 	}
                 }
                 else

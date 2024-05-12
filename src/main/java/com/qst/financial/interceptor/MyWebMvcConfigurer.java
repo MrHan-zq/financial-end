@@ -23,7 +23,10 @@ public class MyWebMvcConfigurer extends WebMvcConfigurerAdapter{
 	@Override
     public void addInterceptors(InterceptorRegistry registry) {
 	    registry.addInterceptor(getMyInterceptor()).addPathPatterns(configs)
-	    .excludePathPatterns("/MP_verify_zARiL3syFOvleDge.txt","/wxPay/**","/wx/**","/about","/static/**","/index/*","/page/html/index.html","/MP_verify_zARiL3syFOvleDge","/websocket","/configuration/security","/configuration/ui","/v2/api-docs","swagger-ui.html","/wxchat","/index","/admin/pc/login","/admin/pc/toLogin","/swagger-*","/report/ss","/api/*/*");
+	    .excludePathPatterns("/MP_verify_zARiL3syFOvleDge.txt","/wxPay/**","/wx/**","/about","/static/**","/index/*",
+                "/page/html/index.html","/MP_verify_zARiL3syFOvleDge","/websocket","/configuration/security","/configuration/ui","/v2/api-docs",
+                "swagger-ui.html","/wxchat","/index","/admin/pc/login","/admin/pc/toLogin","/swagger-*","/report/ss","/api/*/*",
+                "/client/login","/client/to/login");
 
         super.addInterceptors(registry); 
     }

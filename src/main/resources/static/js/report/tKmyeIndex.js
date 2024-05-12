@@ -93,7 +93,7 @@ function upload(){
             time: false //取消自动关闭
         });
         $.ajax({
-            url: rootPath+'/report/importTKmye',
+            url: rootPath+'/report/importTKmyeBulk',
             type: 'POST',
             data: data,
             dataType: 'JSON',

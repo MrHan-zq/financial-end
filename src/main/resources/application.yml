@@ -83,7 +83,7 @@ jdbc:
   password: 12345678
   driverClass: com.mysql.cj.jdbc.Driver								#com.mysql.jdbc.Driver
 #  url: jdbc:mysql://localhost:3306/financial_01?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai                         #120.78.136.169   #39.106.43.33  localhost
-  url: jdbc:mysql://43.139.65.237:3306/financial_01?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai                         #120.78.136.169   #39.106.43.33  localhost
+  url: jdbc:mysql://43.139.65.237:3306/financial_01?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false                         #120.78.136.169   #39.106.43.33  localhost
   maxActive: 20
   initialSize: 1
   minIdle: 1
@@ -123,7 +123,7 @@ spring.redis:
 # Redis服务器连接密码（默认为空）
   password: 123456
   # 连接超时时间（毫秒）
-  timeout: 5000
+  timeout: 30000
   jedis:
     pool:
       # 连接池中的最大空闲连接

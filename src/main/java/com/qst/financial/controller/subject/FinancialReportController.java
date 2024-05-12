@@ -390,7 +390,7 @@ public class FinancialReportController<T extends PoModel> extends BaseController
 			count=(int) tAgeAnalysisService.count(wherePrams);
 			initPage(request, Integer.parseInt(pageNow), Integer.parseInt(pageSize), count);
 			String limit = getLimit(Integer.parseInt(pageNow), count);
-			List<TAgeAnalysis> otherTAgeAnalysisList=tAgeAnalysisService.listPage(wherePrams, limit);;
+			List<TAgeAnalysis> otherTAgeAnalysisList=tAgeAnalysisService.listPage(wherePrams, limit);
 			model.addAttribute("otherTAgeAnalysisList", otherTAgeAnalysisList);
 		} catch (Exception e) {
 			log.info("=====" + e.getMessage());
@@ -1017,10 +1017,10 @@ public class FinancialReportController<T extends PoModel> extends BaseController
 				Long orgId=user.getOrgId();
 				tAgeAnalysisService.deleteByYearMonth(yearMoth,portType,Integer.valueOf(type),user.getOrgId());
 				for(int i=0;i<listModel.size();i++){
-					if(listModel.get(i).getProjectName()!=null && !listModel.get(i).getProjectName().equals("")){
+//					if(listModel.get(i).getProjectName()!=null && !listModel.get(i).getProjectName().equals("")){
 						listModel.get(i).setType(Integer.valueOf(type));
 						tAgeAnalysisService.addLocal(listModel.get(i));
-					}
+//					}
 				}
 				TReportName name=new TReportName();
 				name.setName(fileName);

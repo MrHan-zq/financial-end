@@ -101,6 +101,7 @@
 						</div>
 					</div>
 				</form><br>
+				<button type="button" id="upload" name="upload" class="btn btn-xs btn-info" onclick="upload()">点击导入EXCEL</button>
 				<c:forEach items="${buttonList}" var="key">
 					<button type="button" id="${fn:split(key.btn,',')[0]}" name="${fn:split(key.btn,',')[1]}" class="${fn:split(key.btn,',')[2]}" onclick="${fn:split(key.btn,',')[0]}()">${fn:split(key.btn,',')[3]}</button>
 					&nbsp; &nbsp; &nbsp;

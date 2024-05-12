@@ -415,6 +415,7 @@ public class ReportResultServiceImpl extends BaseServiceImpl<ReportResult,String
 		}
 		/*String startTime=map.get("startTime").toString();
 		String endTime=map.get("endTime").toString();*/
+		//本期金额
 		BigDecimal money=reportResultMapper.selectValueSum(map); 
 		String startDt="";
 		String endDt="";
@@ -431,6 +432,7 @@ public class ReportResultServiceImpl extends BaseServiceImpl<ReportResult,String
 		map.put("startTime", startDt);
 		map.put("endTime", endDt);
 		map.put("endTimes", endTimes);
+		//上期金额
 		BigDecimal tbMoney=reportResultMapper.selectValueSum(map);
 		String hbsDate="";
 		String hbeDt="";
@@ -465,7 +467,7 @@ public class ReportResultServiceImpl extends BaseServiceImpl<ReportResult,String
 				tb=((money.subtract(tbMoney)).divide(tbMoney,4, RoundingMode.HALF_UP)).multiply(new BigDecimal("100"));
 			}else{
 				tb=new BigDecimal("100.00");
-			}*/
+			}*/ //计算环比   环比增长速度=（本期数－上期数）÷上期数×100%
 			if(tbMoney.compareTo(BigDecimal.ZERO)==0 && money.compareTo(BigDecimal.ZERO)!=0){
 				//tb=new BigDecimal("100.00");
 				tb="-";
