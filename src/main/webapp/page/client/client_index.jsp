@@ -19,7 +19,7 @@
 					<span class="menu-text"></span>
 				</a>
 
-				<%@include file="/page/client/client_menu.jspf"%>
+				<%@include file="/page/client/client_menu_xjl_tb.jspf"%>
 
 				<div class="main-content">
 					<div class="breadcrumbs" id="breadcrumbs">

@@ -34,7 +34,7 @@
 			</script>
 			<div class="main-container-inner">
 				<a class="menu-toggler" id="menu-toggler" href="javascript:void(0)"><span class="menu-text"></span></a>
-				<%@include file="/page/client/client_menu.jspf"%>
+				<%@include file="/page/client/client_menu_xjl_tb.jspf"%>
 				<div class="main-content">
 					<div class="breadcrumbs" id="breadcrumbs">
 						<script type="text/javascript">
@@ -45,8 +45,8 @@
 								<i class="icon-home home-icon"></i>
 								<a href="admin/pc/index">首页</a>
 							</li>
-							<li><a>${map.fatherName}</a></li>
-							<li class="active">${map.parentName}</li>
+							<li><a>报表明细</a></li>
+							<li class="active">现金流报表明细</li>
 						</ul>
 						<div class="nav-search" id="nav-search">
 							<input type="hidden" id="parentId" value="${parentId}" />
@@ -145,31 +145,45 @@
 			</a>
 		</div>
 	<script type="text/javascript">
+		layui.use(['layer'], function () {
+			var layer = layui.layer;
+		});
 		function onSearchBtn(){
+			id = layer.msg('正在查询，请稍后', {
+				icon: 16,
+				shade: 0.4,
+				time: false //取消自动关闭
+			});
 			var startTime = $("#startTime").val();
 			if(startTime == ""){
 				alert("请选择开始时间");
+				layer.close(id);//手动关闭
 				return;
 			}
 			var endTime = $("#endTime").val();
 			if(endTime == ""){
 				alert("请选择结束时间");
+				layer.close(id);//手动关闭
 				return;
 			}
 			if(startTime > endTime){
 				alert("开始时间不能大于结束时间");
+				layer.close(id);//手动关闭
 				return;
 			}
+			let url = "${ctx}/client/xjl/table/list"+ "?startTime=" + startTime + "&endTime=" + endTime;
 			$.ajax({
-				type: "POST",
-				url: "${ctx}/admin/pc/report/list",
-				data: {
-					"startTime": startTime,
-					"endTime": endTime
-				},
-				dataType: "json",
+				type: "GET",
+				url: url,
+				dataType: "html",
 				success: function(data){
-					$("#reportList").html(data.html);
+					debugger;
+					$("#reportList").html(data);
+					layer.close(id);//手动关闭
+				}, error: function (msg) {//ajax请求失败后触发的方法
+					layer.close(id);//手动关闭
+					layer.msg('查询失败');
+					console.log(msg);//弹出错误信息
 				}
 			});
 		}

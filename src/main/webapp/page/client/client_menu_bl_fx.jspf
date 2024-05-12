@@ -29,36 +29,6 @@
 	</div>
 
 	<ul class="nav nav-list">
-		<li class="active">
-			<a href="javascript:void(0)" class="dropdown-toggle">
-				<i class="icon-book"></i>
-				<span class="menu-text">报表明细</span>
-				<b class="arrow icon-angle-down"></b>
-			</a>
-			<ul class="submenu">
-				<li class="active">
-					<a href="${ctx}/client/zcfz/table">
-						<i class="icon-double-angle-right"></i>
-						<i class="icon-book"></i>
-						资产负债报表明细
-					</a>
-				</li>
-				<li>
-					<a href="${ctx}/report/cashflow/list">
-						<i class="icon-double-angle-right"></i>
-						<i class="icon-book"></i>
-						利润报表明细
-					</a>
-				</li>
-				<li>
-					<a href="${ctx}/report/cashflow/list">
-						<i class="icon-double-angle-right"></i>
-						<i class="icon-book"></i>
-						现金流报表明细
-					</a>
-				</li>
-			</ul>
-		</li>
 		<li>
 			<a href="javascript:void(0)" class="dropdown-toggle">
 				<i class="icon-book"></i>
@@ -74,21 +44,51 @@
 					</a>
 				</li>
 				<li>
-					<a href="${ctx}/report/cashflow/list">
+					<a href="${ctx}/client/lr/table">
 						<i class="icon-double-angle-right"></i>
 						<i class="icon-book"></i>
 						利润报表明细
 					</a>
 				</li>
 				<li>
-					<a href="${ctx}/report/cashflow/list">
+					<a href="${ctx}/client/xjl/table">
 						<i class="icon-double-angle-right"></i>
 						<i class="icon-book"></i>
 						现金流报表明细
 					</a>
 				</li>
+			</ul>
+		</li>
+		<li class="active">
+			<a href="javascript:void(0)" class="dropdown-toggle">
+				<i class="icon-book"></i>
+				<span class="menu-text">报表分析</span>
+				<b class="arrow icon-angle-down"></b>
+			</a>
+			<ul class="submenu">
 				<li>
-					<a href="${ctx}/report/cashflow/list">
+					<a href="${ctx}/client/zcfz/table/fx">
+						<i class="icon-double-angle-right"></i>
+						<i class="icon-book"></i>
+						资产负债报表分析
+					</a>
+				</li>
+				<li>
+					<a href="${ctx}/client/lr/table/fx">
+						<i class="icon-double-angle-right"></i>
+						<i class="icon-book"></i>
+						利润报表分析
+					</a>
+				</li>
+				<li>
+					<a href="${ctx}/client/xjl/table/fx">
+						<i class="icon-double-angle-right"></i>
+						<i class="icon-book"></i>
+						现金流报表分析
+					</a>
+				</li>
+				<li class="active">
+					<a href="${ctx}/client/bl/table/fx">
 						<i class="icon-double-angle-right"></i>
 						<i class="icon-book"></i>
 						比例分析
@@ -97,7 +97,7 @@
 			</ul>
 		</li>
 	</ul>
-	
+
 	<div class="sidebar-collapse" id="sidebar-collapse">
 		<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
 	</div>

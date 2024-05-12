@@ -37,7 +37,7 @@
     </script>
     <div class="main-container-inner">
         <a class="menu-toggler" id="menu-toggler" href="javascript:void(0)"><span class="menu-text"></span></a>
-        <%@include file="/page/client/client_menu_zcfz_tb.jspf"%>
+        <%@include file="/page/client/client_menu_bl_fx.jspf"%>
         <div class="main-content">
             <div class="breadcrumbs" id="breadcrumbs">
                 <script type="text/javascript">
@@ -52,7 +52,7 @@
                         <a href="admin/pc/index">首页</a>
                     </li>
                     <li><a>报表明细</a></li>
-                    <li class="active">资产负债报表明细</li>
+                    <li class="active">比例分析</li>
                 </ul>
                 <div class="nav-search" id="nav-search">
                     <input type="hidden" id="parentId" value="${parentId}"/>
@@ -163,7 +163,7 @@
             time: false //取消自动关闭
         });
         var startTime = $("#startTime").val();
-        let url = "${ctx}/client/zcfz/table/list";
+        let url = "${ctx}/client/bl/table/fx/list";
         if (startTime == "") {
             alert("请选择开始时间");
             layer.close(id);//手动关闭

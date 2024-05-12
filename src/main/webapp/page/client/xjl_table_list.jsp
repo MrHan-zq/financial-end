@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="page" uri="/WEB-INF/page-tag.tld" %>
+<%--<%@ taglib prefix="page" uri="/WEB-INF/page-tag.tld" %>--%>
 
 <div class="col-xs-12">
 	<!-- <h3 class="header smaller lighter blue">资产负债列表</h3> -->
@@ -20,16 +20,16 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${tBasiAssetsAndLiabilitiesList}" var="tBasiAssetsAndLiabilities">
+				<c:forEach items="${dataList}" var="data">
 					<tr>
-						<td class="center">${tBasiAssetsAndLiabilities.qmGdqySyzqyhj}</td>
-						<td class="center">${tBasiAssetsAndLiabilities.ncGdqyFzhsyzqy}</td>
-						<td class="center">${tBasiAssetsAndLiabilities.qmGdqyFzhsyzqy}</td>
-						<td class="center">${tBasiAssetsAndLiabilities.impTime}</td>
+						<td class="center">${data.codeName}</td>
+						<td class="center">${data.sumMoney}</td>
+						<td class="center">${data.onRise}</td>
+						<td class="center">${data.linkRise}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
-	<page:createPager pageSize="${pageSize}" totalPage="${totalPage}" totalCount="${totalCount}" curPage="${curPage}" />
+<%--	<page:createPager pageSize="${pageSize}" totalPage="${totalPage}" totalCount="${totalCount}" curPage="${curPage}" />--%>
 </div>
